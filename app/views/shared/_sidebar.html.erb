@@ -1,0 +1,38 @@
+<nav class="sidebar">
+  <div class="sidebar-sticky">
+    <div class="sidebar-logo">
+      <%= image_tag "campaignvault-logo-dark.png" %>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link <%= current_class?('/') %>" href="/">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= current_class?('/campaigns') %>" href="/campaigns">Campaigns</a>
+      </li>
+      <% if current_user.id == 1 %>
+        <li class="nav-item">
+          <a class="nav-link <%= current_class?('/users') %>" href="/users">Users</a>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <a class="nav-link <%= current_class?('/settings') %>" href="/settings">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link <%= current_class?('/account') %>" href="/account">Account</a>
+      </li>
+      <li>
+        <hr class="hr-sidebar">
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" target="_blank" href="https://webhookdb.com/docs/getting-started">Documentation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" target="_blank" href="https://webhookdb.com/contact">Support</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'nav-link') %>
+      </li>
+    </ul>
+  </div>
+</nav>

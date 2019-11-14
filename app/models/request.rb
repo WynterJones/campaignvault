@@ -1,5 +1,4 @@
 class Request < ApplicationRecord
-  belongs_to :webhook
+  belongs_to :app
   belongs_to :campaign
-  has_one :tag
 end

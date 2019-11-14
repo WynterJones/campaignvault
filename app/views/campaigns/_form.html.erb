@@ -1,0 +1,92 @@
+<%= form_with(model: campaign, local: true) do |form| %>
+  <div class="row">
+    <% if campaign.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
+
+        <ul>
+          <% campaign.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="col-md-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :description %>
+      <%= form.text_field :description, class: 'form-control' %>
+    </div>
+
+    <input type="hidden" name="apps" id="apps-input">
+
+    <div class="col-md-12 pt-4">
+      <!-- <h5 class="text-muted">Apps</h5>
+      <hr> -->
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="aweber">
+            <%= image_tag('apps/aweber.png') %>
+            <p class="text-muted font-weight-bold mb-0">Aweber</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="mailchimp">
+            <%= image_tag('apps/mailchimp.png') %>
+            <p class="text-muted font-weight-bold mb-0">MailChimp</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="stripe">
+            <%= image_tag('apps/stripe.png') %>
+            <p class="text-muted font-weight-bold mb-0">Stripe</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="airtable">
+            <%= image_tag('apps/airtable.png') %>
+            <p class="text-muted font-weight-bold mb-0">Airtable</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="shopify">
+            <%= image_tag('apps/shopify.png') %>
+            <p class="text-muted font-weight-bold mb-0">Shopify</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="salesforce">
+            <%= image_tag('apps/salesforce.png') %>
+            <p class="text-muted font-weight-bold mb-0">Salesforce</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="paypal">
+            <%= image_tag('apps/paypal.png') %>
+            <p class="text-muted font-weight-bold mb-0">Paypal</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="recurly">
+            <%= image_tag('apps/recurly.png') %>
+            <p class="text-muted font-weight-bold mb-0">Recurly</p>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="card-block card-select-app text-center" data-type="gotowebinar">
+            <%= image_tag('apps/gotowebinar.png') %>
+            <p class="text-muted font-weight-bold mb-0">GoToWebinar</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="card-block-footer clearfix">
+    <button class="btn btn-primary float-right">Save</button>
+  </div>
+<% end %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :campaigns, param: :slug
+  resources :apps, param: :slug
   resources :settings
   resources :users
 

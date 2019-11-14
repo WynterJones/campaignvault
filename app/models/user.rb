@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
   has_many :settings
 
   after_create :set_settings
@@ -11,7 +10,6 @@ class User < ApplicationRecord
     settings.date_format = 'MM/DD/YY HH:MM PM'
     settings.timezone = 'Eastern Time (US & Canada)'
     settings.user_id = user.id
-    settings.tooltip = true
     settings.save!
   end
 end

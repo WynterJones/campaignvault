@@ -1,0 +1,31 @@
+<%= link_to 'New User', '/users/new', class: 'btn btn-warning float-right' %>
+<h1>Users</h1>
+<hr>
+
+<%= will_paginate @users, class: 'table_pagination mt-3 mb-3' %>
+
+<div class="table-simple">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th class="table-total">Logins</th>
+        <th class="table-control"></th>
+        <th class="table-control"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><% if user.id == 1 %>Admin<% else %>Collaborator<% end %></td>
+          <td class="table-total text-center"><%= user.sign_in_count %></td>
+          <td><a href="<% if user.id == 1 %>/account<% else %>/users/edit/<%= user.id %><% end %>" class="btn btn-sm btn-block btn-outline-secondary">Edit</a></td>
+          <td><% if user.id != 1 %><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-block btn-outline-secondary' %><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,15 +1,114 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Campaignvault</title>
+    <%= display_meta_tags site: 'CampaignVault', reverse: true %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+
+    <%# render 'shared/main-navbar' %>
+    <div class="container-fluid">
+      <div class="row">
+        <%= render 'shared/sidebar' %>
+        <main role="main">
+          <nav aria-label="breadcrumb">
+            <ol class='breadcrumb'>
+              <% breadcrumb_trail do |crumb| %>
+                <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
+                  <%= link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'campaign'} : {}) %>
+                </li>
+              <% end %>
+            </ol>
+          </nav>
+          <hr>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+
+    <div id="notice" class="notification" style="display: none"><%= notice %></div>
+    <div id="alert" class="notification" style="display: none"><%= alert %></div>
+
+    <script src="/popper.min.js"></script>
+    <script src="/tippy.min.js"></script>
+    <script src="/datatables.js"></script>
+    <script src="/datatables-select.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        var table = $('table.datatables').DataTable({
+          paging: false,
+          columnDefs: [{
+            orderable: false,
+            className: 'select-checkbox',
+            targets: 0
+          }],
+          select: {
+            style: 'multi',
+            selector: 'td'
+          },
+          order: [[ 1, 'asc' ]],
+          dom: 'Bfrtip',
+          buttons: [
+            {
+              text: 'Select all',
+              action: function () {
+                table.rows().select();
+              }
+            },
+            {
+              text: 'Select none',
+              action: function () {
+                table.rows().deselect();
+              }
+            },
+            {
+              text: 'Delete Selected',
+              class: 'btn btn-sm btn-outline-secondary',
+              action: function () {
+                const data = table.rows({selected: true}).data().toArray()
+                let deleteIDs = ''
+                data.forEach(function(key) {
+                  deleteIDs += `, ${key[1]}`
+                })
+                deleteIDs = deleteIDs.replace(', ', '')
+                if (deleteIDs !== '') {
+                  $('input[name="delete_ids"]').val(deleteIDs)
+                  $('#delete-requests').submit()
+                } else {
+                  alert('No rows selected.')
+                }
+              }
+            }
+          ]
+        })
+
+        tippy('.tippy', {
+          duration: 0,
+          theme: 'light',
+          arrow: false,
+          maxWidth: '700px',
+          content(reference) {
+            const id = reference.getAttribute('data-template');
+            const template = document.getElementById(id);
+            return template.innerHTML;
+          }
+        })
+
+        tippy('.tippyColumn', {
+          duration: 0,
+          theme: 'light',
+          arrow: false,
+          maxWidth: '700px'
+        })
+      })
+    </script>
   </body>
 </html>

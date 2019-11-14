@@ -1,0 +1,21 @@
+<link href="https://fonts.googleapis.com/css?family=Kalam&display=swap" rel="stylesheet">
+<div class="container welcome">
+  <div class="card-block p-5">
+    <h1 class="text-center"><strong><%= @successHeadline.html_safe %></strong></h1>
+    <h3 class="text-center"><small class="text-muted welcome-success"><%= @successMessage.html_safe %></small></h3>
+    <div style="welcome-content <%= @successShow %>">
+      <hr class="mt-4 mb-4">
+      <p>Here's the next steps to take:</p>
+      <p><strong>Step 1: Connect Domain to Heroku -</strong> Login to your domain registrar provider (GoDaddy, NameCheap, etc) and <strong><a href="https://webhookdb.com/docs/getting-started" target="_blank">check out the documentation</a></strong> to learn how to quickly connect your domain.</p>
+      <p><strong>Step 2: Login to WebhookDB -</strong> You can use the email and password you inputted during the installation to login, for extra security you can change you password.</p>
+      <a href="/" class="btn btn-primary btn-lg mb-3">Login to Your Account</a>
+      <p><strong>Step 3: Collect Webhook Data -</strong> You can follow the tutorials in the <strong><a target="_blank" href="https://webhookdb.com/docs/getting-started">Documentation</a></strong> on how to connect to Zapier to collect customized data or simply connect using a webhook URL to any third party service you want.</p>
+      <div class="card-block p-4 mt-5 text-muted welcome-message">
+        <img src="https://webhookdb.com/images/wynter.png" alt="Wynter Jones" />
+        <p>Thank you for your support,</p>
+        <p>If you have any questions, spot a bug or anything else please use the <a target="_blank" href="https://webhookdb.com/contact"><strong>Contact form</strong></a> to send a message and we'll get back to as soon as possible.</p>
+        <p>Wynter Jones, Founder</p>
+      </div>
+    </div>
+  </div>
+</div>

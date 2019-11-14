@@ -1,0 +1,11 @@
+<div class="input-group search-group">
+  <input type="search" autocomplete="off" class="form-control" id="search" placeholder="<%= placeholder %>" data-type="<%= type %>" />
+  <div class="input-group-append">
+    <select class="custom-select" id="searchDB" style="display:">
+      <option value="" disabled selected hidden>Select a Database</option>
+      <% Webhook.order(id: :desc).all.each do |webhook| %>
+        <option value="<%= webhook.slug %>"><%= webhook.name %></option>
+      <% end %>
+    </select>
+  </div>
+</div>

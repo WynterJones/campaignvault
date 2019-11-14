@@ -1,0 +1,20 @@
+<%= form_with(model: users, local: true, html: {autocomplete: 'off'}) do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, required: true, autofocus: true, autocomplete: "email", class: 'form-control', autocomplete: 'off' %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true, autocomplete: "new-password", class: 'form-control', autocomplete: 'off' %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="card-block-footer clearfix">
+    <button class="btn btn-primary float-right">Save</button>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 class Campaign < ApplicationRecord
   validates_uniqueness_of :name
-  has_many :webhooks
+  has_many :apps
   has_many :requests
 
   before_create :set_access_token

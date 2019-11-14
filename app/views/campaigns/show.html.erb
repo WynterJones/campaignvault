@@ -1,0 +1,47 @@
+<h2 class="headline-title"><strong><%= @campaign.name %></strong></h2>
+
+<div class="webhook-options float-right clearfix mb-3">
+  <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-warning mr-2"><i class="fas fa-plus mr-0"></i></a>
+  <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-outline-light"><i class="fas fa-cog mr-0"></i></a>
+</div>
+
+<hr>
+
+<div class="table-simple">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="table-name">Name</th>
+        <th class="table-total">Rows</th>
+        <th class="table-url">Webhook URL</th>
+        <th class="table-total">Zapier</th>
+        <th style="width: 50px"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @webhooks.each do |webhook| %>
+        <tr>
+          <td>
+            <%= image_tag("apps/#{webhook.name}.png", style: 'width: 15px;margin-right: 5px') %>
+            <a href="/database/<%= webhook.slug %>"><%= appSingle(webhook.name)['displayName'] %></a>
+          </td>
+          <td class="table-total text-center">
+            <%= number_to_human(Request.where(webhook_id: webhook.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
+          </td>
+          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/#{@campaign.slug}/#{webhook.slug}" %>" /></td>
+          <td class="table-total">
+            <% if webhook.connected.present? %>
+              <i class="far fa-check-circle" style="color: #a6ca46"></i>
+            <% else %>
+              <a href="https://zapier.com/zapbook/create/<%= appSingle(webhook.name)['displayName'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
+            <% end %>
+          </td>
+          <td><a href="/webhooks/<%= webhook.slug %>/edit" class="btn btn-outline-light btn-sm btn-block"><i class="fas fa-edit mr-0"></i></a></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%= will_paginate @webhooks, class: 'table_pagination mt-3 mb-3' %>

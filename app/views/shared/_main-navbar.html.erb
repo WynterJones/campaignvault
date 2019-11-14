@@ -1,0 +1,9 @@
+<nav id="main-navbar" class="navbar navbar-dark fixed-top flex-lg-nowrap">
+  <div class="navbar-brand">
+    <%= image_tag "campaignvault-logo.png" %>
+  </div>
+  <a href="#" id="showSidebar" style="display: none;"><i class="fas fa-bars"></i></a>
+  <div id="search-header">
+    <%= render 'shared/search', { placeholder: 'Search...', type: 'table' } %>
+  </div>
+</nav>
