@@ -1,6 +1,17 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
+  has_many :settings
+
+  after_create :set_settings
+
+  def set_settings
+    user = self
+    settings = Setting.new
+    settings.date_format = 'MM/DD/YY HH:MM PM'
+    settings.timezone = 'Eastern Time (US & Canada)'
+    settings.user_id = user.id
+    settings.tooltip = true
+    settings.save!
+  end
 end
