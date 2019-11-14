@@ -1,27 +1,31 @@
 <%= link_to raw('<i class="fas fa-plus mr-0"></i>'), new_campaign_path, class: 'btn btn-warning float-right' %>
-<h2>Campaigns</h2>
+<h2 class="headline-title">Campaigns</h2>
 <hr>
+
+<% if @campaigns.length == 0 %>
+  Create a Campaign
+<% end %>
 
 <% @campaigns.each do |campaign| %>
   <div class="card-block card-campaign-item mb-2">
     <div class="row">
       <div class="col-md-5">
-        <span>Name</span>
+        <span class="text-muted">Name</span>
         <p><a href="/campaigns/<%= campaign.slug %>"><%= campaign.name.capitalize %></a></p>
       </div>
       <div class="col-md-4">
-        <span>Updated</span>
-        <p class="text-muted mb-2">Last updated <%= time_ago_in_words(campaign.created_at) %></p>
+        <span class="text-muted">Updated</span>
+        <p class="mb-2">Last updated <%= time_ago_in_words(campaign.created_at) %></p>
       </div>
       <div class="col-md-1">
-        <span>Apps</span>
+        <span class="text-muted">Apps</span>
         <p><%= number_to_human(App.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
       </div>
       <div class="col-md-1">
-        <span>Rows</span>
+        <span class="text-muted">Rows</span>
         <p>0</p>
       </div>
-      <div class="col-md-1 text-right" style="padding-top: 10px">
+      <div class="col-md-1 text-right" style="padding-top: 10px;padding-right: 20px;">
         <a href="#" class="text-muted" style="font-size: 1.3em;opacity: 0.6"><i class="fas fa-ellipsis-v"></i></a>
       </div>
     </div>

@@ -1,16 +1,15 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit, :destroy]
-  before_action :set_campaign_update, only: [:update]
+  before_action :set_campaign, only: [:show, :edit]
+  before_action :set_campaign_update, only: [:update, :destroy]
+  breadcrumb 'Campaigns', '/campaigns'
 
   def index
     set_meta_tags title: 'Campaigns'
-    breadcrumb 'Campaigns', '/campaigns'
     @campaigns = Campaign.all.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
   def show
     set_meta_tags title: @campaign.name
-    breadcrumb 'Campaigns', '/campaigns#'
     breadcrumb @campaign.name, ''
     @timeframe = timeframe(params[:timeframe])
     @apps = App.where(campaign_id: @campaign.id).order(id: :desc).all.paginate(page: params[:page], per_page: params[:per_page] || 25)
@@ -19,14 +18,12 @@ class CampaignsController < ApplicationController
 
   def new
     set_meta_tags title: 'New Campaign'
-    breadcrumb 'Campaigns', '/campaigns#'
     breadcrumb 'New', ''
     @campaign = Campaign.new
   end
 
   def edit
     set_meta_tags title: "Edit Campaign"
-    breadcrumb 'Campaigns', '/campaigns#'
     breadcrumb @campaign.name, ''
     breadcrumb 'Edit', ''
   end

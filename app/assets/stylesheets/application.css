@@ -31,7 +31,7 @@ a {
 }
 
 .headline-title {
-  float: left
+  font-weight: 700;
 }
 
 .form-control:focus, .custom-select:focus {

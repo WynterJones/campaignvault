@@ -1,5 +1,5 @@
 class App < ApplicationRecord
-  before_destroy :destroy_requests
+  after_destroy :destroy_requests
   has_many :requests
   belongs_to :campaign
 

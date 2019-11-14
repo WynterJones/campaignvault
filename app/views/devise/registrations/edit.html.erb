@@ -1,6 +1,6 @@
 <% set_meta_tags title: 'Account' %>
 
-<h2>Account</h2>
+<h2 class="headline-title">Account</h2>
 <hr>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, autocomplete: 'off' }) do |f| %>
@@ -43,7 +43,7 @@
 
 <div class="sign_in_history mt-5">
   <span class="float-right text-muted mt-2"><strong>Total Logins:</strong> <%= current_user.sign_in_count %></span>
-  <h3>Login History</h3>
+  <h3><strong>Login History</strong></h3>
   <hr>
   <div class="row">
     <div class="col-md-6">

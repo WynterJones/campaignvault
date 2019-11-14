@@ -1,4 +1,4 @@
-<h2 class="headline-title"><strong><%= @campaign.name %></strong></h2>
+<h2 class="headline-title float-left"><%= @campaign.name %></h2>
 
 <div class="webhook-options float-right clearfix mb-3">
   <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-warning mr-2"><i class="fas fa-plus mr-0"></i></a>
@@ -24,7 +24,7 @@
         <tr>
           <td>
             <%= image_tag("apps/#{app.name}.png", style: 'width: 15px;margin-right: 5px') %>
-            <a href="/database/<%= app.slug %>"><%= appSingle(app.name)['displayName'] %></a>
+            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= appSingle(app.name)['displayName'] %></a>
           </td>
           <td class="table-total text-center">
             <%= number_to_human(Request.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>

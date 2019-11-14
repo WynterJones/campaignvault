@@ -5,10 +5,10 @@ class RequestsController < ApplicationController
   def show
     @settings = Setting.find_by_user_id(current_user.id)
     @timeframe = timeframe(params[:timeframe])
-    @app = App.order(id: :desc).find_by(slug: params[:id])
+    @campaign = Campaign.find_by(slug: params[:campaign])
+    @app = App.order(id: :desc).find_by(slug: params[:id], campaign_id: @campaign.id)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(app_id: @app.id).group_by_day(:created_at).count
 
-    @campaign = Campaign.find(@app.campaign_id)
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
     breadcrumb appSingle(@app.name)['displayName'], ''
 
