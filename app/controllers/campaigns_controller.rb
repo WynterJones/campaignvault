@@ -38,7 +38,7 @@ class CampaignsController < ApplicationController
           puts app
           App.create(campaign_id: @campaign.id, name: app, slug: app.parameterize, structure: appSingle(app)['structure'], column_keys: appSingle(app)['column_keys'])
         end
-        format.html { redirect_to campaigns_url, notice: 'Campaign was successfully created.' }
+        format.html { redirect_to "/campaigns/#{@campaign.slug}", notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else
         format.html { render :new }
@@ -50,7 +50,7 @@ class CampaignsController < ApplicationController
   def update
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to campaigns_url, notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to "/campaigns/#{@campaign.slug}", notice: 'Campaign was successfully updated.' }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }

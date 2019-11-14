@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # resources
   resources :campaigns, param: :slug
-  resources :apps, param: :slug
+  resources :apps, param: :slug, :except => [:index, :new, :show] 
   resources :settings
 
   # actions
