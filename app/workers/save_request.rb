@@ -1,7 +1,7 @@
 class SaveRequest
   include Sidekiq::Worker
 
-  def perform(data, campaign, app)
+  def perform(data, campaign, slug)
     if data.present?
       newhash = {}
       JSON.parse(data).each do |value|
@@ -10,13 +10,8 @@ class SaveRequest
         newhash[newvalue] = value[1]
       end
       theCampaign = Campaign.find_by_slug(campaign)
-      webhook = Webhook.find_by(slug: app, campaign_id: theCampaign.id)
-      Request.create(body: newhash.to_json, webhook_id: webhook.id, campaign_id: theCampaign.id)
-      if Request.where(webhook_id: webhook.id, campaign_id: theCampaign.id).count == 1
-        editWebhook = Webhook.find_by(slug: app, campaign_id: theCampaign.id)
-        editWebhook.connected = true
-        editedWebhook.save
-      end
+      app = App.find_by(slug: slug, campaign_id: theCampaign.id)
+      Request.create(body: newhash.to_json, app_id: app.id, campaign_id: theCampaign.id)
     else
       puts 'Error: Output from request was blank!'
     end

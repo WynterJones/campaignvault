@@ -10,9 +10,9 @@ class ExportController < ApplicationController
       requests = Request.where(tag_id: params[:id])
       data = tag
     else
-      webhook = Webhook.find_by(id: params[:id])
-      requests = Request.where(webhook_id: webhook.id)
-      data = webhook
+      app = App.find_by(id: params[:id])
+      requests = Request.where(webhook_id: app.id)
+      data = app
     end
 
     headers = data.structure.split(',')

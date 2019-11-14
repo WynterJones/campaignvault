@@ -13,7 +13,7 @@ class CampaignsController < ApplicationController
     breadcrumb 'Campaigns', '/campaigns#'
     breadcrumb @campaign.name, ''
     @timeframe = timeframe(params[:timeframe])
-    @webhooks = Webhook.where(campaign_id: @campaign.id).order(id: :desc).all.paginate(page: params[:page], per_page: params[:per_page] || 25)
+    @apps = App.where(campaign_id: @campaign.id).order(id: :desc).all.paginate(page: params[:page], per_page: params[:per_page] || 25)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(campaign_id: @campaign.id).group_by_day(:created_at).count
   end
 

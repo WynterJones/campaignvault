@@ -5,26 +5,26 @@ class RequestsController < ApplicationController
   def show
     @settings = Setting.find_by_user_id(current_user.id)
     @timeframe = timeframe(params[:timeframe])
-    @webhook = Webhook.order(id: :desc).find_by(slug: params[:id])
-    @request_activity = Request.where('created_at >= ?', @timeframe).where(webhook_id: @webhook.id).group_by_day(:created_at).count
+    @app = App.order(id: :desc).find_by(slug: params[:id])
+    @request_activity = Request.where('created_at >= ?', @timeframe).where(webhook_id: @app.id).group_by_day(:created_at).count
 
-    @campaign = Campaign.find(@webhook.campaign_id)
+    @campaign = Campaign.find(@app.campaign_id)
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
-    breadcrumb appSingle(@webhook.name)['displayName'], ''
+    breadcrumb appSingle(@app.name)['displayName'], ''
 
-    set_meta_tags title: "#{appSingle(@webhook.name)['displayName']} in #{@campaign.name}"
+    set_meta_tags title: "#{appSingle(@app.name)['displayName']} in #{@campaign.name}"
 
     @search = params["search"]
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(webhook_id: @webhook.id).where("body ILIKE ?", "%#{@search}%")
+      @requests = all_requests.where(webhook_id: @app.id).where("body ILIKE ?", "%#{@search}%")
       @search_count = number_with_delimiter(@requests.count)
     else
-      @requests = all_requests.where('created_at >= ?', @timeframe).where(webhook_id: @webhook.id)
+      @requests = all_requests.where('created_at >= ?', @timeframe).where(webhook_id: @app.id)
     end
 
-    buildTable(@webhook, @settings)
+    buildTable(@app, @settings)
   end
 
   def delete
