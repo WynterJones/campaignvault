@@ -1,6 +1,8 @@
-# CampaignVault
+# CampaignVault.com
 
-##### Open Source Ruby Gems
+Please purchase an unlimited website license: https://campaignvault.com/pricing
+
+#### Open Source Ruby Gems
 
 - `gem 'passenger'` - https://github.com/phusion/passenger
 - `gem 'sidekiq'` - https://github.com/mperham/sidekiq
