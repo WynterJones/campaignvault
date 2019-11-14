@@ -44,6 +44,20 @@ a {
   float: right;
 }
 
+.dropdown-menu {
+  padding: 0;
+  overflow: hidden
+}
+
+.dropdown-item {
+  padding: .5em 1em;
+}
+
+.dropdown-item:active,
+.dropdown-item:focus {
+  background: #fff;
+}
+
 .form-control:focus, .custom-select:focus {
   border-color: rgba(210, 214, 221, 1.000);
   box-shadow: none;

@@ -22,7 +22,7 @@
     <tbody>
       <% @apps.each do |app| %>
         <tr>
-          <td>
+          <td style="font-size: 1.08em">
             <%= image_tag("apps/#{app.name}.png", style: 'width: 15px;margin-right: 5px') %>
             <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= appSingle(app.name)['displayName'] %></a>
           </td>
@@ -32,9 +32,9 @@
           <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/#{@campaign.slug}/#{app.slug}" %>" /></td>
           <td class="table-total">
             <% if app.connected.present? %>
-              <i class="far fa-check-circle" style="color: #a6ca46"></i>
+              <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="color: #a6ca46"></i> Connected</strong>
             <% else %>
-              <a href="https://zapier.com/zapbook/create/<%= appSingle(app.name)['displayName'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
+              <a href="https://zapier.com/zapbook/create/<%= appSingle(app.name)['zapierAPI'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
             <% end %>
           </td>
           <td class="text-right">

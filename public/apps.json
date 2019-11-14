@@ -10,7 +10,7 @@
     {
       "name": "mailchimp",
       "displayName": "MailChimp",
-      "zapierAPI": "MailChimpAPI",
+      "zapierAPI": "MailchimpCLIAPI@1.2.1",
       "structure": "First Name,Last Name,Email",
       "column_keys": "merges.FNAME,merges.LNAME,email"
     },

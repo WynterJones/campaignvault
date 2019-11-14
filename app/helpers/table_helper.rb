@@ -11,18 +11,11 @@ module TableHelper
       end
       @thead += '</tr></thead>'
       @tbody = '<tbody>'
-      @tooltips = ''
 
       @requests.find_each do |request|
         selected = JSON.parse(request.body)
 
-        if settings.tooltip == true
-          @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'>#{request.id}</td>"
-          tooltip = parse_json_for_tooltip(selected, 0, request, settings)
-          @tooltips += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"
-        else
-          @tbody += "<tr><td class='table-selector'></td><td class='hide'></td>"
-        end
+        @tbody += "<tr><td class='table-selector'></td><td class='hide'></td>"
 
         @column_keys.each do |column_key|
           value = selected["#{column_key.strip}"]
@@ -41,7 +34,7 @@ module TableHelper
       end
 
       @tbody += '</tbody></table></div>'
-      @results = @thead + @tbody + @tooltips
+      @results = @thead + @tbody
     else
       @results = '<p class="text-muted table-no-data">No table columns are setup yet.</p>'
     end

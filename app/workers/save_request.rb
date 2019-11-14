@@ -12,6 +12,10 @@ class SaveRequest
       theCampaign = Campaign.find_by_slug(campaign)
       app = App.find_by(slug: slug, campaign_id: theCampaign.id)
       Request.create(body: newhash.to_json, app_id: app.id, campaign_id: theCampaign.id)
+      if app.connected == false
+        app.connected = true
+        app.save
+      end
     else
       puts 'Error: Output from request was blank!'
     end
