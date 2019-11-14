@@ -1,0 +1,45 @@
+{
+  "name": "CampaignVault",
+  "description": "Private Self-Hosted Webhook Database Software",
+  "logo": "https://campaignvault.com/images/logo-heroku.png",
+  "website": "https://campaignvault.com",
+  "success_url": "/welcome",
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "heroku-redis:hobby-dev"
+  ],
+  "stack": "heroku-18",
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ruby"
+    }
+  ],
+  "env": {
+    "LICENSE_KEY": {
+      "description": "License key available within the CampaignVault Members Area",
+      "value": ""
+    },
+    "USER_EMAIL": {
+      "description": "Your login email for account creation.",
+      "value": ""
+    },
+    "USER_PASSWORD": {
+      "description": "Your login password for account creation.",
+      "value": ""
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    },
+    "worker": {
+      "quantity": 1
+    }
+  },
+  "scripts": {
+    "postdeploy": "rails db:migrate; rails db:seed"
+  }
+}

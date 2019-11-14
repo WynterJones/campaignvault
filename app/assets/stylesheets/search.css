@@ -1,0 +1,39 @@
+#search-wrapper {
+  margin: 5px 0;
+  position: relative;
+}
+
+#search-wrapper i {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  color: rgba(96, 122, 160, 0.5)
+}
+
+#search-header {
+  width: 100%;
+  padding: 0 10px;
+}
+
+#search {
+  margin: 0;
+  width: 300px;
+}
+
+.search-group {
+  padding: 5px 0
+}
+
+.searching-for {
+  background: #f2f3f8;
+  display: none;
+  font-size: 0.9em;
+  font-weight: 400
+}
+
+#searchDB {
+  color: #607aa0;
+  font-weight: 400;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0
+}

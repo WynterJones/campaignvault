@@ -1,0 +1,126 @@
+.table-simple {
+  border: 1px solid #d2d6dc;
+  border-bottom: 2px solid #d2d6dc;
+  clear: both;
+}
+
+.table-row-250 {
+  width: 250px
+}
+
+.table-no-data {
+  text-align: center;
+  padding: 30px
+}
+
+.table-name {
+  width: 250px
+}
+
+.table-id {
+  width: 100px
+}
+
+.table-total {
+  text-align: center;
+  width: 100px
+}
+
+.table-simple.scrollable {
+  overflow-x: scroll;
+}
+
+.table-control {
+  width: 100px;
+}
+
+.table-simple table {
+  margin-bottom: 0
+}
+
+.table-simple thead {
+  background: #f9fbfd;
+  color: #607aa0
+}
+
+.table-simple thead th {
+  border-top: none;
+  border-bottom: none;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  font-weight: 600;
+  letter-spacing: .06em;
+  padding: 10px !important;
+}
+
+.table-simple tbody tr {
+  background: #fff;
+  border-color: #edf2fa;
+}
+
+.table-simple tbody tr td {
+  vertical-align: middle;
+}
+
+.table-simple tbody tr td {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-simple.scrollable tr td {
+  font-size: 0.9em
+}
+
+.table-simple tbody tr:hover {
+  background: #fafbfd
+}
+
+.table-simple tbody tr td span.blank-td {
+  display: block;
+  width: 100%;
+  height: 24px;
+  background: #fafbfd;
+  border-radius: 5px;
+}
+
+.table-column-badge {
+  font-size: 15px;
+  margin: 5px;
+  background: #f2f3f8;
+  color: #607aa0;
+  padding: 10px;
+  text-transform: uppercase;
+  border: 1px solid #d2d6de;
+  cursor: default;
+}
+
+.delete-column-badge {
+  font-size: 12px;
+  border-radius: 100%;
+  border: 1px solid #d2d6de;
+  margin-left: 5px;
+  cursor: pointer;
+  padding: 3px 5px;
+  opacity: 0.5;
+  background: #fff;
+}
+
+.delete-column-badge:hover {
+  opacity: 0.8
+}
+
+span.tooltip-info {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#table-column-list {
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #d2d6dd
+}

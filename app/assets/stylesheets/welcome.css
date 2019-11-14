@@ -1,0 +1,27 @@
+.container.welcome {
+  padding-top: 100px;
+  max-width: 800px
+}
+
+.welcome-content {
+  font-size: 1.1em;
+}
+
+.welcome-message {
+  font-family: 'Kalam', Georgia, serif;
+  background: linear-gradient(0deg, rgba(242, 243, 248, 1) 0%, rgba(255, 255, 255, 1) 44%, rgba(255, 255, 255, 1) 100%);
+}
+
+.welcome-success {
+  font-size: 0.7em
+}
+
+.welcome-message img {
+  float: left;
+  border-radius: 100%;
+  margin-right: 30px;
+  margin-bottom: 50px;
+  width: 90px;
+  box-shadow: 0 2px 4px #d2d6de;
+  border: 2px solid #fff;
+}

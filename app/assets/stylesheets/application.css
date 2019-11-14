@@ -1,15 +1,220 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
+ *= require bootstrap.4.3.1
  *= require_tree .
  *= require_self
- */
+*/
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Roboto', "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  background: #f2f3f8;
+  color: #12263f;
+  padding-left: 220px;
+}
+
+hr {
+  border-top: 1px solid #d2d6dd;
+  border-bottom: 1px solid #fff;
+  clear: both;
+}
+
+a {
+  color: #0574d8;
+  font-weight: 500;
+}
+
+.hide, .dt-buttons {
+  display: none
+}
+
+.headline-title {
+  float: left
+}
+
+.form-control:focus, .custom-select:focus {
+  border-color: rgba(210, 214, 221, 1.000);
+  box-shadow: none;
+}
+
+.text-muted {
+  color: #607aa0 !important;
+}
+
+.text-small {
+  font-size: 0.9em
+}
+
+.add-column-wrapper {
+  width: 500px;
+}
+
+.hr-dashboard {
+  margin-top: 15px;
+}
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 4px;
+  font-weight: 500;
+  width: 500px;
+  padding: 15px;
+}
+
+.breadcrumb {
+  background: none;
+  padding: 0;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.login {
+  padding-top: 250px;
+}
+
+.login-logo {
+  width: 275px;
+  display: block;
+  margin: 20px auto;
+}
+
+.login-box {
+  width: 400px;
+  padding: 30px;
+  margin: 0 auto;
+}
+
+form label {
+  font-weight: 500;
+  color: #607aa0;
+  width: 100%;
+  display: block
+}
+
+.input-group-text {
+  background: #f2f3f8;
+  color: #607aa0;
+}
+
+.click-to-copy {
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  font-size: 1em;
+  background: #fff;
+  font-weight: 400;
+  color: #607aa0
+}
+
+#notice.notification {
+  background: #0275d8;
+  color: #fff;
+}
+
+#alert.notification {
+  background: rgba(226, 95, 105, 1.000);
+  color: #fff;
+}
+
+.card-block {
+  background: #fff;
+  border: 1px solid #d2d6dc;
+  border-bottom: 2px solid #d2d6dc;
+  padding: 15px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-block.chartjs {
+  padding: 30px;
+}
+
+.card-block.has-footer {
+  padding-bottom: 65px;
+}
+
+.card-block-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 15px;
+  background: #fafbfd;
+  border-top: 1px solid #d2d6dd;
+}
+
+.card-block.statistic {
+  padding: 25px
+}
+
+.card-block.statistic h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.9em
+}
+
+.card-block.statistic span {
+  display: block;
+  font-weight: 500;
+}
+
+.card-select-app {
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.card-select-app * {
+  cursor: pointer;
+}
+
+.card-block.card-select-app {
+  border-radius: 8px;
+}
+
+.card-app-selected {
+  box-shadow: 0 0 0 2px #0574d8
+}
+
+.card-select-app img {
+  border-radius: 4px;
+}
+
+.card-select-app p {
+  font-weight: bold;
+  font-size: 0.9em;
+  padding-top: 5px
+}
+
+.card-campaign-item span {
+  font-size: 0.8em;
+  display: block;
+  opacity: 0.7
+}
+
+.card-campaign-item p {
+  margin: 0
+}
+
+.badge-light {
+  background: #f2f3f8;
+  color: #607aa0
+}
+
+.webhook-options select {
+  width: 200px;
+}
+
+/* Layout */
+[role="main"] {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 30px;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
