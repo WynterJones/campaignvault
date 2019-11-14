@@ -37,7 +37,18 @@
               <a href="https://zapier.com/zapbook/create/<%= appSingle(app.name)['displayName'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
             <% end %>
           </td>
-          <td class="text-right pr-3"><a href="#" class="text-muted" style="font-size: 1.3em;opacity: 0.6"><i class="fas fa-ellipsis-v"></i></a></td>
+          <td class="text-right">
+            <div class="dropdown dropleft">
+              <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= app.slug %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= app.slug %>">
+                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><i class="far fa-eye mr-1"></i> View</a>
+                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>/edit"><i class="far fa-edit mr-1"></i> Edit</a>
+                <a class="dropdown-item text-muted" href="/export?id=<%= app.id %>" download><i class="fas fa-download mr-1"></i> Export</a>
+                <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), app, method: :delete, data: { confirm: 'Are you sure this will also delete all associated records?' }, class: 'dropdown-item text-muted' %>
+              </div>
+          </td>
         </tr>
       <% end %>
     </tbody>

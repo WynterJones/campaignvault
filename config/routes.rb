@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # resources
   resources :campaigns, param: :slug
-  resources :apps, param: :slug, :except => [:index, :new, :show] 
+  resources :apps, param: :slug, :except => [:index, :new, :edit, :show]
   resources :settings
 
   # actions
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   # app view
   get '/campaigns/:campaign/:id', to: 'requests#show', as: 'request'
+  get '/campaigns/:campaign/:slug/edit', to: 'apps#edit'
 
   # webhook url
   put '/:campaign/:app', to: 'save_request#receive'
