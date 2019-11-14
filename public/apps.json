@@ -1,0 +1,67 @@
+{
+  "apps": [
+    {
+      "name": "aweber",
+      "displayName": "AWeber",
+      "zapierAPI": "AWeberAPI",
+      "structure": "Name,Email,Country,City",
+      "column_keys": "name,email,country,city"
+    },
+    {
+      "name": "mailchimp",
+      "displayName": "MailChimp",
+      "zapierAPI": "MailChimpAPI",
+      "structure": "First Name,Last Name,Email",
+      "column_keys": "merges.FNAME,merges.LNAME,email"
+    },
+    {
+      "name": "stripe",
+      "displayName": "Stripe",
+      "zapierAPI": "StripeAPI",
+      "structure": "Email,Amount,Currency,Status,Card,Refunded",
+      "column_keys": "cust.email,transaction.amount,transaction.currency,transaction.status,source.brand,refunded"
+    },
+    {
+      "name": "recurly",
+      "displayName": "Recurly",
+      "zapierAPI": "RecurlyAPI",
+      "structure": "",
+      "column_keys": ""
+    },
+    {
+      "name": "paypal",
+      "displayName": "PayPal",
+      "zapierAPI": "PayPalAPI",
+      "structure": "",
+      "column_keys": ""
+    },
+    {
+      "name": "gotowebinar",
+      "displayName": "GoToWebinar",
+      "zapierAPI": "GoToWebinarAPI",
+      "structure": "",
+      "column_keys": ""
+    },
+    {
+      "name": "shopify",
+      "displayName": "Shopify",
+      "zapierAPI": "ShopifyAPI",
+      "structure": "",
+      "column_keys": ""
+    },
+    {
+      "name": "salesforce",
+      "displayName": "Salesforce",
+      "zapierAPI": "SalesforceAPI",
+      "structure": "",
+      "column_keys": ""
+    },
+    {
+      "name": "airtable",
+      "displayName": "Airtable",
+      "zapierAPI": "AirtableDevAPI",
+      "structure": "",
+      "column_keys": ""
+    }
+  ]
+}
