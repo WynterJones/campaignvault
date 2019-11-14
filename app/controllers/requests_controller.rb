@@ -6,7 +6,7 @@ class RequestsController < ApplicationController
     @settings = Setting.find_by_user_id(current_user.id)
     @timeframe = timeframe(params[:timeframe])
     @app = App.order(id: :desc).find_by(slug: params[:id])
-    @request_activity = Request.where('created_at >= ?', @timeframe).where(webhook_id: @app.id).group_by_day(:created_at).count
+    @request_activity = Request.where('created_at >= ?', @timeframe).where(app_id: @app.id).group_by_day(:created_at).count
 
     @campaign = Campaign.find(@app.campaign_id)
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
@@ -18,10 +18,10 @@ class RequestsController < ApplicationController
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(webhook_id: @app.id).where("body ILIKE ?", "%#{@search}%")
+      @requests = all_requests.where(app_id: @app.id).where("body ILIKE ?", "%#{@search}%")
       @search_count = number_with_delimiter(@requests.count)
     else
-      @requests = all_requests.where('created_at >= ?', @timeframe).where(webhook_id: @app.id)
+      @requests = all_requests.where('created_at >= ?', @timeframe).where(app_id: @app.id)
     end
 
     buildTable(@app, @settings)

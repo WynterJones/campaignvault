@@ -20,28 +20,28 @@
     </thead>
 
     <tbody>
-      <% @webhooks.each do |webhook| %>
+      <% @apps.each do |app| %>
         <tr>
           <td>
-            <%= image_tag("apps/#{webhook.name}.png", style: 'width: 15px;margin-right: 5px') %>
-            <a href="/database/<%= webhook.slug %>"><%= appSingle(webhook.name)['displayName'] %></a>
+            <%= image_tag("apps/#{app.name}.png", style: 'width: 15px;margin-right: 5px') %>
+            <a href="/database/<%= app.slug %>"><%= appSingle(app.name)['displayName'] %></a>
           </td>
           <td class="table-total text-center">
-            <%= number_to_human(Request.where(webhook_id: webhook.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
+            <%= number_to_human(Request.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
           </td>
-          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/#{@campaign.slug}/#{webhook.slug}" %>" /></td>
+          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/#{@campaign.slug}/#{app.slug}" %>" /></td>
           <td class="table-total">
-            <% if webhook.connected.present? %>
+            <% if app.connected.present? %>
               <i class="far fa-check-circle" style="color: #a6ca46"></i>
             <% else %>
-              <a href="https://zapier.com/zapbook/create/<%= appSingle(webhook.name)['displayName'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
+              <a href="https://zapier.com/zapbook/create/<%= appSingle(app.name)['displayName'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
             <% end %>
           </td>
-          <td><a href="/webhooks/<%= webhook.slug %>/edit" class="btn btn-outline-light btn-sm btn-block"><i class="fas fa-edit mr-0"></i></a></td>
+          <td><a href="/apps/<%= app.slug %>/edit" class="btn btn-outline-light btn-sm btn-block"><i class="fas fa-edit mr-0"></i></a></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 
-<%= will_paginate @webhooks, class: 'table_pagination mt-3 mb-3' %>
+<%= will_paginate @apps, class: 'table_pagination mt-3 mb-3' %>

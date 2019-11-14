@@ -39,7 +39,7 @@ class CampaignsController < ApplicationController
         apps = params[:apps].split(',')
         apps.each do |app|
           puts app
-          Webhook.create(campaign_id: @campaign.id, name: app, slug: app.parameterize, structure: appSingle(app)['structure'], column_keys: appSingle(app)['column_keys'])
+          App.create(campaign_id: @campaign.id, name: app, slug: app.parameterize, structure: appSingle(app)['structure'], column_keys: appSingle(app)['column_keys'])
         end
         format.html { redirect_to campaigns_url, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }

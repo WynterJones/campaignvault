@@ -1,8 +1,8 @@
 module TableHelper
-  def buildTable(webhook, settings)
-    if webhook.structure.present? && webhook.column_keys.present?
-      @structure = webhook.structure.split(',')
-      @column_keys = webhook.column_keys.split(',')
+  def buildTable(app, settings)
+    if app.structure.present? && app.column_keys.present?
+      @structure = app.structure.split(',')
+      @column_keys = app.column_keys.split(',')
 
       @thead = "<div class='table-simple scrollable'><table class='table datatables'>"
       @thead += "<thead><tr class='text-small'><th></th><th class='hide'></th>"

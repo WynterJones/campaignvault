@@ -11,7 +11,7 @@ class ExportController < ApplicationController
       data = tag
     else
       app = App.find_by(id: params[:id])
-      requests = Request.where(webhook_id: app.id)
+      requests = Request.where(app_id: app.id)
       data = app
     end
 

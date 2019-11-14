@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-1">
         <span>Apps</span>
-        <p><%= number_to_human(Webhook.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
+        <p><%= number_to_human(App.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
       </div>
       <div class="col-md-1">
         <span>Rows</span>
@@ -27,34 +27,5 @@
     </div>
   </div>
 <% end %>
-
-<!--
-<div class="table-simple">
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="table-name">Name</th>
-        <th class="table-description">Description</th>
-        <th class="table-total">Apps</th>
-        <th class="table-total">Rows</th>
-        <th class="table-control"></th>
-        <th class="table-control"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @campaigns.each do |campaign| %>
-        <tr>
-          <td><%= campaign.name %></td>
-          <td class="table-description"><span class="text-muted"><%= campaign.description %></span></td>
-          <td class="table-total text-center"><%= number_to_human(Webhook.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></td>
-          <td class="table-total text-center">0</td>
-          <td><a href="/campaigns/<%= campaign.slug %>" class="btn btn-outline-secondary btn-sm btn-block">View</a></td>
-          <td><a href="/campaigns/<%= campaign.slug %>/edit" class="btn btn-outline-secondary btn-sm btn-block">Edit</a></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div> -->
 
 <%= will_paginate @campaigns, class: 'table_pagination mt-3 mb-3' %>

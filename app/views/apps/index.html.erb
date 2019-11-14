@@ -1,8 +1,8 @@
-<%= link_to 'New Webhook', new_webhook_path, class: 'btn btn-warning float-right' %>
+<%= link_to 'New App', new_app_path, class: 'btn btn-warning float-right' %>
 <h2>Apps</h2>
 <hr>
 
-<%= will_paginate @webhooks, class: 'table_pagination mt-3 mb-3' %>
+<%= will_paginate @apps, class: 'table_pagination mt-3 mb-3' %>
 
 <div class="table-simple">
   <table class="table">
@@ -17,15 +17,15 @@
     </thead>
 
     <tbody>
-      <% @webhooks.each do |webhook| %>
+      <% @apps.each do |app| %>
         <tr>
-          <td><%= webhook.name %></td>
-          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/webhook/#{webhook.slug}" %>" /></td>
+          <td><%= app.name %></td>
+          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/app/#{app.slug}" %>" /></td>
           <td class="table-total text-center">
-            <%= number_to_human(Request.where(webhook_id: webhook.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
+            <%= number_to_human(Request.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
           </td>
-          <td><a href="/database/<%= webhook.slug %>" class="btn btn-outline-secondary btn-sm btn-block">View</a></td>
-          <td><a href="/webhooks/<%= webhook.slug %>/edit" class="btn btn-outline-secondary btn-sm btn-block">Edit</a></td>
+          <td><a href="/database/<%= app.slug %>" class="btn btn-outline-secondary btn-sm btn-block">View</a></td>
+          <td><a href="/apps/<%= app.slug %>/edit" class="btn btn-outline-secondary btn-sm btn-block">Edit</a></td>
         </tr>
       <% end %>
     </tbody>

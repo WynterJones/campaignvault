@@ -10,13 +10,9 @@ module JsonHelper
     output = ""
     iteration += 1
     if request.present?
-      # timestamp = request.created_at.in_time_zone(settings.timezone).strftime(settings.date_format)
-      # output += "<span class='tooltip-info'><strong>Created At:</strong> #{timestamp}</span>"
       if request.tag_id.present?
         tag = Tag.find(request.tag_id)
         output += "<span class='tooltip-info'><strong>Tag:</strong> #{tag.name}</span> <hr class='tippy-hr' />"
-      else
-        # output += "<hr class='tippy-hr' />"
       end
     end
     hash.each do |key, value|
@@ -37,7 +33,7 @@ module JsonHelper
         if iteration > 1
           output += "<span class='tooltip-info' style='#{padding}'><strong>#{key.capitalize()}</strong><br>#{value}</span>"
         else
-          if key != 'webhookdb_tag' && key != '' && value != ''
+          if key != '' && value != ''
             output += "<div class='card-block mb-2'><strong class='possible-table-key'>#{key}</strong><span class='float-right'>#{value}</span></div>"
           elsif key != '' && value == ''
             output += "<div class='card-block mb-2'><strong class='possible-table-key'>#{key}</strong><span class='float-right' style='opacity: 0.2'>null</span></div>"

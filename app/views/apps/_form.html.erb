@@ -1,9 +1,9 @@
-<%= form_with(model: webhook, local: true, html: {autocomplete: 'off'}) do |form| %>
-  <% if webhook.errors.any? %>
+<%= form_with(model: app, local: true, html: {autocomplete: 'off'}) do |form| %>
+  <% if app.errors.any? %>
     <div class="alert alert-danger mb-3">
-      <h5>Uh oh, you need to fix <%= pluralize(webhook.errors.count, "error") %>:</h5>
+      <h5>Uh oh, you need to fix <%= pluralize(app.errors.count, "error") %>:</h5>
       <ul>
-        <% webhook.errors.full_messages.each do |message| %>
+        <% app.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

@@ -3,8 +3,8 @@
   <div class="input-group-append">
     <select class="custom-select" id="searchDB" style="display:">
       <option value="" disabled selected hidden>Select a Database</option>
-      <% Webhook.order(id: :desc).all.each do |webhook| %>
-        <option value="<%= webhook.slug %>"><%= webhook.name %></option>
+      <% App.order(id: :desc).all.each do |app| %>
+        <option value="<%= app.slug %>"><%= app.name %></option>
       <% end %>
     </select>
   </div>
