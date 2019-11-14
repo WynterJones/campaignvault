@@ -20,14 +20,11 @@ class DashboardController < ApplicationController
     set_meta_tags title: 'Dashboard'
     @timeframe = timeframe(params[:timeframe])
     requests = Request.all
-    tags = Tag.all
-    webhooks = Webhook.all
+    apps = App.all
     @all_requests = number_with_delimiter(requests.where('created_at >= ?', @timeframe).count)
-    @all_tags = number_with_delimiter(tags.where('created_at >= ?', @timeframe).count)
-    @all_webhooks = number_with_delimiter(webhooks.where('created_at >= ?', @timeframe).count)
+    @all_apps = number_with_delimiter(apps.where('created_at >= ?', @timeframe).count)
     @all_requests_total = number_with_delimiter(requests.count)
-    @all_tags_total = number_with_delimiter(tags.count)
-    @all_webhooks_total = number_with_delimiter(webhooks.count)
+    @all_apps_total = number_with_delimiter(apps.count)
     @all_activity = requests.where('created_at >= ?', @timeframe).group_by_day(:created_at).count
   end
 end

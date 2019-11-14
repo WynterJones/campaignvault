@@ -7,7 +7,7 @@ class User < ApplicationRecord
   def set_settings
     user = self
     settings = Setting.new
-    settings.date_format = 'MM/DD/YY HH:MM PM'
+    settings.date_format = '%m/%d/%y - %l:%M %p'
     settings.timezone = 'Eastern Time (US & Canada)'
     settings.user_id = user.id
     settings.save!

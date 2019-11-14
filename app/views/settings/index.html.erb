@@ -20,13 +20,6 @@
           <option <% if @settings.date_format == '%b %d, %m - %l:%M %p' %>selected<% end %> value="%b %d, %m - %l:%M %p">Month Day, Year  - HH:MM PM (abbr.)</option>
         </select>
       </div>
-      <div class="col-md-6">
-        <label>Tooltip Hover <small class="text-muted float-right">Show full JSON in tooltip.</small></label>
-        <select name="settings[tooltip]" class="form-control">
-          <option <% if @settings.tooltip == true %>selected<% end %> value="true">Show</option>
-          <option <% if @settings.tooltip == false %>selected<% end %> value="false">Hide</option>
-        </select>
-      </div>
     </div>
     <br>
     <div class="card-block-footer clearfix">
