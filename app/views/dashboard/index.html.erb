@@ -16,7 +16,7 @@
   <div class="col-md-4">
     <div class="card-block statistic">
       <h3><%= @all_requests %></h3>
-      <span class="text-muted">Requests <small class="badge badge-light float-right"><%= @all_requests_total %></small></span>
+      <span class="text-muted">Rows <small class="badge badge-light float-right"><%= @all_requests_total %></small></span>
     </div>
   </div>
   <div class="col-md-4 dashboard-extra-stat">
@@ -25,12 +25,18 @@
       <span class="text-muted">Apps <small class="badge badge-light float-right"><%= @all_apps_total %></small></span>
     </div>
   </div>
+  <div class="col-md-4 dashboard-extra-stat">
+    <div class="card-block statistic">
+      <h3><%= @all_campaigns %></h3>
+      <span class="text-muted">Campaigns <small class="badge badge-light float-right"><%= @all_campaigns_total %></small></span>
+    </div>
+  </div>
 </div>
 
 <hr class="hr-dashboard" />
 
 <div class="card-block chartjs">
-  <p class="text-muted"><strong>All Request Activity</strong></p>
+  <p class="text-muted"><strong>All App Activity</strong></p>
   <br>
   <%= line_chart @all_activity %>
 </div>
