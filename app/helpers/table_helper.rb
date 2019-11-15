@@ -18,7 +18,7 @@ module TableHelper
         selected = JSON.parse(request.body)
 
         @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'></td>"
-        tooltip = parse_json_for_sidebar(selected, 0, request, settings)
+        tooltip = parse_json_for_sidebar(selected, 0, request, settings, @column_keys)
         @tooltips += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"
 
         @column_keys.each do |column_key|

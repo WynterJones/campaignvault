@@ -70,11 +70,10 @@
   height: calc(100vh - 50px);
   overflow-y: scroll;
   padding: 15px;
-  padding-top: 5px;
 }
 
 #popup-manage-table {
-  height: calc(100vh - 50px);
+  height: calc(100vh - 55px);
   overflow-y: scroll;
   padding: 15px;
   padding-top: 15px;
@@ -91,9 +90,17 @@
 }
 
 .table-row-info {
-  border-bottom: 1px solid #eee;
-  padding: 10px 0;
-  font-size: 0.9em
+  border: 1px solid #fff;
+  padding: 15px;
+  font-size: 0.9em;
+  cursor: pointer
+}
+
+.table-row-info.active {
+  background: #fafafa;
+  border: 1px solid #d2d6dd;
+  border-radius: 4px;
+  margin-bottom: 5px;
 }
 
 .table-row-info strong {

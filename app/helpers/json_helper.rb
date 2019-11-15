@@ -6,7 +6,7 @@ module JsonHelper
       return false
   end
 
-  def parse_json_for_sidebar(hash, iteration = 0, request = '', settings = '')
+  def parse_json_for_sidebar(hash, iteration = 0, request = '', settings = '', table_keys)
     output = ""
     iteration += 1
     hash.each do |key, value|
@@ -25,12 +25,18 @@ module JsonHelper
         end
       else
         if iteration > 1
-          output += "<span class='table-row-info'><strong>#{key.capitalize()}</strong><br>#{value}</span>"
+          output += "<span class='table-row-info3'><strong>#{key.capitalize()}</strong><br>#{value}</span>"
         else
           if key != '' && value == ''
             value = '<span style="opacity: 0.4">null</span>'
           end
-          output += "<div class='table-row-info'>
+          is_active = ''
+          table_keys.each do |value3|
+            if value3 == key
+              is_active = 'active'
+            end
+          end
+          output += "<div class='table-row-info #{is_active}'>
                       <strong class='popup-table-key'>#{key}</strong>
                       <span class='popup-table-value text-truncate'>#{value}</span>
                     </div>"

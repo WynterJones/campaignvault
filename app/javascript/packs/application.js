@@ -52,6 +52,7 @@ $(document).on('turbolinks:load', () => {
 
   // Table columns
   tableColumns.init(Sortable)
+  $(document).on('click', '.table-row-info', function(e) { tableColumns.addColumnFromData(this) })
   $(document).on('click', '#close-table-column', function(e) { tableColumns.close(e) })
   $(document).on('click', '#add-table-column', function(e) { tableColumns.add(e) })
   $(document).on('click', '#update-table-column', function(e) { tableColumns.update(e, this, Sortable) })

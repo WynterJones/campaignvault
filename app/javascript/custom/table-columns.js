@@ -97,6 +97,18 @@ const tableColumns = {
     }
   },
 
+  addColumnFromData: (element) => {
+    if (!$(element).hasClass('active')) {
+      $(element).addClass('active')
+      const key = $(element).find('.popup-table-key').text()
+      const keyArray = key.split('.')
+      const keyName = keyArray[keyArray.length-1].replace(/\_/g, ' ')
+      $('#table-column-name').val(keyName)
+      $('#table-column-key').val(key)
+      $('#add-table-column').trigger('click')
+    }
+  },
+
   saveColumnPositions: () => {
     const all_structure = []
     const all_column_keys = []
