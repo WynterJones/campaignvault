@@ -1,6 +1,12 @@
-$(document).on('turbolinks:load', () => {
-  $('#showSidebar').click(function(e) {
+'use strict'
+
+const mobileSidebar = {
+
+  show: (e) => {
     e.preventDefault()
     $('.sidebar').toggle()
-  })
-})
+  }
+
+}
+
+module.exports = mobileSidebar

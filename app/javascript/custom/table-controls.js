@@ -1,13 +1,19 @@
-$(document).on('turbolinks:load', () => {
-  $('#table-selectAll').click(function() {
+'use strict'
+
+const tableControls = {
+
+  selectAll: () => {
     $('.dt-buttons .dt-button').eq(0).trigger('click')
-  })
+  },
 
-  $('#table-deselectAll').click(function() {
+  deselectAll: () => {
     $('.dt-buttons .dt-button').eq(1).trigger('click')
-  })
+  },
 
-  $('#table-deleteSelected').click(function() {
+  deleteSelected: () => {
     $('.dt-buttons .dt-button').eq(2).trigger('click')
-  })
-})
+  }
+
+}
+
+module.exports = tableControls

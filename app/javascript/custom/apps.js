@@ -1,10 +1,16 @@
-$(document).on('turbolinks:load', () => {
-  $('.card-select-app').click(function() {
+'use strict'
+
+const apps = {
+
+  select: (element) => {
     let type = ''
-    $(this).toggleClass('card-app-selected')
+    $(element).toggleClass('card-app-selected')
     $('.card-app-selected').each(function() {
-      type += `,${$(this).attr('data-type')}`
+      type += `,${$(element).attr('data-type')}`
     })
     $('#apps-input').val(type.replace(',', ''))
-  })
-})
+  }
+
+}
+
+module.exports = apps

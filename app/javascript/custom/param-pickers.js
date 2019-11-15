@@ -1,41 +1,43 @@
-$(document).on('turbolinks:load', () => {
-  if (getUrlParameter('timeframe') !== '') {
-    $('#activity-date-picker').children(`option[value='?timeframe=${getUrlParameter('timeframe')}']`).prop('selected','selected')
-  }
+'use strict'
 
-  $('#activity-date-picker').change(function() {
-    const value = parseURL($(this).val(), 'per_page')
+const component = require("custom/components")
+
+const paramPicker = {
+
+  init: () => {
+    if (component.getUrlParameter('timeframe') !== '') {
+      $('#activity-date-picker').children(`option[value='?timeframe=${component.getUrlParameter('timeframe')}']`).prop('selected','selected')
+    }
+    if (component.getUrlParameter('per_page') !== '') {
+      $('#table-show-amount').children(`option[value='?per_page=${component.getUrlParameter('per_page')}']`).prop('selected','selected')
+    }
+  },
+
+  dateChange: (element) => {
+    const value = parseURL($(element).val(), 'timeframe')
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
-  })
+  },
 
-  if (getUrlParameter('per_page') !== '') {
-    $('#table-show-amount').children(`option[value='?per_page=${getUrlParameter('per_page')}']`).prop('selected','selected')
-  }
-
-  $('#table-show-amount').change(function() {
-    const value = parseURL($(this).val(), 'timeframe')
+  perPageChange: (element) => {
+    const value = parseURL($(element).val(), 'per_page')
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
-  })
-})
+  },
 
-function parseURL(value, extra) {
-  if (getUrlParameter('page') !== '') {
-    value += `&page=${getUrlParameter('page')}`
+  parseURL: (value, extra) => {
+    if (component.getUrlParameter('page') !== '') {
+      value += `&page=${component.getUrlParameter('page')}`
+    }
+    if (component.getUrlParameter('search') !== '') {
+      value += `&search=${component.getUrlParameter('search')}`
+    }
+    if (component.getUrlParameter(extra) !== '') {
+      value += `&${extra}=${component.getUrlParameter(extra)}`
+    }
+    return value
   }
-  if (getUrlParameter('search') !== '') {
-    value += `&search=${getUrlParameter('search')}`
-  }
-  if (getUrlParameter(extra) !== '') {
-    value += `&${extra}=${getUrlParameter(extra)}`
-  }
-  return value
+
 }
 
-function getUrlParameter(name) {
-    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]')
-    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
-    const results = regex.exec(location.search)
-    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '))
-}
+module.exports = paramPicker
