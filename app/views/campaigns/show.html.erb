@@ -34,7 +34,7 @@
           </td>
           <td class="table-total">
             <% if app.connected.present? %>
-              <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="color: #a6ca46"></i> Connected</strong>
+              <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="color: #a6ca46"></i></strong>
             <% else %>
               <a href="https://zapier.com/zapbook/create/<%= appSingle(app.name)['zapierAPI'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
             <% end %>

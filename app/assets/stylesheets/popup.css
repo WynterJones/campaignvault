@@ -9,11 +9,14 @@
 }
 
 #popup {
-  width: 400px;
+  transition: all 0.4s;
+  width: 500px;
   height: 100vh;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -500px;
   z-index: 999999;
   overflow-y: scroll;
+  border-radius: 0 !important;
+  box-shadow: 0 10px 7px 0 #4f617bc7;
 }

@@ -4,14 +4,18 @@ const appPopup = {
 
   show: (element) => {
     if ($(element).index() != 0) {
-      $('#popup-wrapper').show()
       let template = $(element).parent().attr('data-template')
       $('#row-data-popup').html($(`#${template}`).html())
+      $('#popup-wrapper').fadeIn(200)
+      $('#popup').attr('style', 'right: 0')
     }
   },
 
   hide: () => {
-    $('#popup-wrapper').hide()
+    $('#popup').attr('style', 'right: -500px')
+    setTimeout(function() {
+      $('#popup-wrapper').fadeOut(300)
+    }, 100)
   },
 
   popupClick: (e) => {
