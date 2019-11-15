@@ -9,10 +9,11 @@
 }
 
 #popup {
-  max-width: 960px;
-  max-height: 75%;
-  margin: 0 auto;
-  margin-top: 140px;
+  width: 400px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
   z-index: 999999;
   overflow-y: scroll;
 }

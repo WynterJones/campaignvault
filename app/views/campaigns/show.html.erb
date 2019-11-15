@@ -29,7 +29,9 @@
           <td class="table-total text-center">
             <%= number_to_human(Request.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
           </td>
-          <td class="table-url"><input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/#{@campaign.slug}/#{app.slug}" %>" /></td>
+          <td class="table-url">
+            <input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/cv/#{@campaign.slug}/#{app.slug}" %>" />
+          </td>
           <td class="table-total">
             <% if app.connected.present? %>
               <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="color: #a6ca46"></i> Connected</strong>

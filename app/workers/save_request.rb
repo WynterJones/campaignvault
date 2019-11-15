@@ -6,8 +6,12 @@ class SaveRequest
       newhash = {}
       JSON.parse(data).each do |value|
         newvalue = value[0].dup
-        newvalue = newvalue.gsub! '__', '.'
-        newhash[newvalue] = value[1]
+        if newvalue.include? '__'
+          newvalue = newvalue.gsub! '__', '.'
+          newhash[newvalue] = value[1]
+        else
+          newhash[newvalue] = value[1]
+        end
       end
       theCampaign = Campaign.find_by_slug(campaign)
       app = App.find_by(slug: slug, campaign_id: theCampaign.id)

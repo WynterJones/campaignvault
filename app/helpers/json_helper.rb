@@ -9,12 +9,6 @@ module JsonHelper
   def parse_json_for_tooltip(hash, iteration = 0, request = '', settings = '')
     output = ""
     iteration += 1
-    if request.present?
-      if request.tag_id.present?
-        tag = Tag.find(request.tag_id)
-        output += "<span class='tooltip-info'><strong>Tag:</strong> #{tag.name}</span> <hr class='tippy-hr' />"
-      end
-    end
     hash.each do |key, value|
       padding = "padding-left: #{iteration - 1}em;"
       if value.is_a?(Hash)
