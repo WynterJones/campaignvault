@@ -3,22 +3,19 @@
 const tableColumns = {
 
   init: (sortable) => {
-    if ($('#final-structure').length > 0) {
-      const all_structure = $('#final-structure').val().split(',')
-      const all_final_keys = $('#final-column-keys').val().split(',')
-
+    if ($('#table_column_save_form').length > 0) {
+      const table_columns = JSON.parse($('#final-table-columns').val())
+      const all_structure = table_columns['structure']
+      const all_final_keys = table_columns['keys']
       $('#table-column-list').html('')
-
       all_structure.forEach(function(title, index) {
         if (title !== '') {
-          $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${all_final_keys[index]}" data-key="${all_final_keys[index]}"><div class="column-grip" style='cursor: move;float: left;padding: 7px 5px;margin-right: 10px;font-size: 1.1em'><i class='fas fa-grip-lines'></i></div><i class="fas fa-times delete-column-badge"></i> <span class="edit-column-badge">${title}</span><br /><small style="text-transform: lowercase">${all_final_keys[index]}</small></span>`)
+          $('#table-column-list').append(tableColumns.buildColumnTag(title, all_final_keys[index]))
         }
       })
-
       if ($('#final-structure').val() === '') {
-        $('#table-column-list').html('<span class="no-table-columns text-muted p-2" style="text-align: center;display:block">Add columns to represent your data in the table.</span>')
+        $('#table-column-list').html(tableColumns.buildNoData())
       }
-
       sortable.create(document.getElementById('table-column-list'), {
         handle: '.column-grip',
         onUpdate: function(evt) {
@@ -34,7 +31,7 @@ const tableColumns = {
     const title = $('#table-column-name').val()
     const key = $('#table-column-key').val()
     if (title !== '' && key !== '') {
-      $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${key}" data-key="${key}"><i class="fas fa-times delete-column-badge"></i> <span class="edit-column-badge">${title}</span><br /><small style="text-transform: lowercase">${key}</small></span>`)
+      $('#table-column-list').append(tableColumns.buildColumnTag(title, key))
       $('#table-column-name, #table-column-key').val('')
       tableColumns.saveColumnPositions()
       $('#table-new-column').hide()
@@ -59,6 +56,7 @@ const tableColumns = {
   },
 
   delete: (e, element) => {
+    e.stopPropagation()
     $(element).parent().remove()
     tableColumns.saveColumnPositions()
   },
@@ -82,8 +80,8 @@ const tableColumns = {
   editTableColumn: (element) => {
     $('#table-new-column').show()
     $('#table-new-column label').text('Edit Table Column')
-    $('#table-column-name').val($(element).find('span').text())
-    $('#table-column-key').val($(element).find('small').text())
+    $('#table-column-name').val($(element).attr('data-title'))
+    $('#table-column-key').val($(element).attr('data-key'))
     $('#update-table-column').show()
     const index = $(element).index()
     $('#update-table-column').attr('data-index', index)
@@ -100,37 +98,50 @@ const tableColumns = {
   },
 
   saveColumnPositions: () => {
-    let all_structure = ''
-    let all_column_keys = ''
+    const all_structure = []
+    const all_column_keys = []
     $('#table-column-list .table-column-badge').each(function(index) {
-      const key = $(this).attr('data-key')
-      const title = $(this).find('span').text().trim()
-      if (index === 0) {
-        all_structure += `${title}`
-        all_column_keys += `${key}`
-      } else {
-        all_structure += `,${title}`
-        all_column_keys += `,${key}`
-      }
+      all_structure.push($(this).attr('data-title'))
+      all_column_keys.push($(this).attr('data-key'))
     })
-    $('#final-structure').val(all_structure)
-    $('#final-column-keys').val(all_column_keys)
-
-    if ($('#final-structure').val() === '') {
-      $('#table-column-list').html('<span class="no-table-columns text-muted p-2" style="text-align: center;display:block">Add columns to represent your data in the table.</span>')
+    const table_columns = {
+      "structure": all_structure,
+      "keys": all_column_keys
+    }
+    $('#final-table-columns').val(JSON.stringify(table_columns))
+    if ($('#final-table-columns').val() === '{}') {
+      $('#table-column-list').html(tableColumns.buildNoData())
     }
   },
 
   updateColumnPositions: (title, key, index, sortable) => {
-    let all_structure = $('#final-structure').val().split(',')
-    let all_column_keys = $('#final-column-keys').val().split(',')
+    const table_columns = JSON.parse($('#final-table-columns').val())
+    const all_structure = table_columns['structure']
+    const all_column_keys = table_columns['keys']
     all_structure[index] = title
     all_column_keys[index] = key
-    $('#final-structure').val(all_structure)
-    $('#final-column-keys').val(all_column_keys)
+    const updated_table_columns = {
+      "structure": all_structure,
+      "keys": all_column_keys
+    }
+    $('#final-table-columns').val(JSON.stringify(table_columns))
     tableColumns.init(sortable)
-    console.log(all_structure, all_column_keys)
-    console.log(title, key, index)
+  },
+
+  buildColumnTag: (title, key) => {
+    return `<span class="table-column-badge badge badge-outline-secondary" data-key="${key}" data-title="${title}">
+      <div class="column-grip">
+        <i class='fas fa-grip-lines'></i>
+      </div>
+      <i class="fas fa-times delete-column-badge"></i>
+      <span class="edit-column-badge">${title}</span>
+      <br />
+      <small style="text-transform: lowercase">${key}</small>
+    </span>`
+  },
+
+  buildNoData: () => {
+    return `<div class="no-table-columns text-muted text-center p-2">Add columns to represent your data in the table.</div>`
   }
 
 }

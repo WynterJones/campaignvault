@@ -1,8 +1,9 @@
 module TableHelper
   def buildTable(app, settings)
-    if app.structure.present? && app.column_keys.present?
-      @structure = app.structure.split(',')
-      @column_keys = app.column_keys.split(',')
+    @table_columns = JSON.parse(app.table_columns)
+    if @table_columns['structure'].present?
+      @structure = @table_columns['structure']
+      @column_keys = @table_columns['keys']
 
       @thead = "<div class='table-simple scrollable'><table class='table datatables'>"
       @thead += "<thead><tr class='text-small'><th></th><th class='hide'></th>"

@@ -36,6 +36,6 @@ class AppsController < ApplicationController
     end
 
     def app_params
-      params.require(:app).permit(:name, :slug, :structure, :column_keys)
+      params.require(:app).permit(:name, :slug, :structure, :column_keys, :table_columns)
     end
 end

@@ -17,7 +17,6 @@
   <%= line_chart @request_activity, height: '200px' %>
 </div>
 
-
 <div id="search-table" class="float-right">
   <input type="search" autocomplete="off" class="form-control form-control-sm" id="search" placeholder="Search <%= appSingle(@app.name)['displayName'] %>..." data-type="<%= @app.slug %>" />
 </div>
@@ -58,11 +57,10 @@
             <a href="#" class="btn btn-sm btn-outline-light" id="update-table-column" style="display: none">Update</a>
           </div>
         </div>
-        <div id="table-column-list" class="mb-2"></div>
+        <div id="table-column-list"></div>
         <div style="display: none">
           <%= form_with(model: @app, local: true, html: {id: 'table_column_save_form'}) do |form| %>
-            <%= form.text_field :structure, id: 'final-structure' %>
-            <%= form.text_field :column_keys, id: 'final-column-keys' %>
+            <%= form.text_field :table_columns, id: 'final-table-columns' %>
           <% end %>
         </div>
       </div>

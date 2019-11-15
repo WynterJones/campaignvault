@@ -30,6 +30,14 @@ a {
   display: none
 }
 
+.column-grip {
+  cursor: move;
+  float: left;
+  padding: 7px 5px;
+  margin-right: 10px;
+  font-size: 1.1em
+}
+
 .headline-title {
   font-weight: 700;
 }

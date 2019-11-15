@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_14_054745) do
+ActiveRecord::Schema.define(version: 2019_11_15_220111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_054745) do
     t.boolean "connected"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "table_columns", default: "{}", null: false
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 2019_11_14_054745) do
     t.integer "app_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "data", default: "{}", null: false
   end
 
   create_table "settings", force: :cascade do |t|

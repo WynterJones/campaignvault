@@ -8,6 +8,7 @@ class RequestsController < ApplicationController
     @campaign = Campaign.find_by(slug: params[:campaign])
     @app = App.order(id: :desc).find_by(slug: params[:id], campaign_id: @campaign.id)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(app_id: @app.id).group_by_day(:created_at).count
+    @table_columns = JSON.parse(@app.table_columns)
 
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
     breadcrumb appSingle(@app.name)['displayName'], ''
