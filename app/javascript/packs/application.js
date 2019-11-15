@@ -22,6 +22,9 @@ $(document).on('turbolinks:load', () => {
   // Campaigns
   $(document).on('click', '.card-select-app', function() { apps.select(this) })
 
+  // Row Popup
+  $(document).on('click', '#popup-nav a', function() { appPopup.tab(this) })
+
   // Mobile
   $(document).on('click', '#showSidebar', function(e) { mobileSidebar.show(e) })
 
@@ -49,7 +52,9 @@ $(document).on('turbolinks:load', () => {
 
   // Table columns
   tableColumns.init(Sortable)
-  $(document).on('click', '#add-table-column', function(e) { tableColumns.add() })
-  $(document).on('click', '.delete-column-badge', function(e) { tableColumns.delete() })
-  $(document).on('keydown', '#table-column-key', function(e) { tableColumns.enterOnKey() })
+  $(document).on('click', '#add-table-column', function(e) { tableColumns.add(e) })
+  $(document).on('click', '.delete-column-badge', function(e) { tableColumns.delete(e, this) })
+  $(document).on('keydown', '#table-column-key', function(e) { tableColumns.enterOnKey(e) })
+  $(document).on('click', '#showAddColumn', function(e) { tableColumns.showAddColumn() })
+  $(document).on('click', '#saveTableColumns', function(e) { tableColumns.saveTableColumns() })
 })

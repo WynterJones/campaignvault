@@ -459,12 +459,12 @@ table.dataTable, table.dataTable th, table.dataTable td {
 }
 
 table.dataTable tbody>tr.selected, table.dataTable tbody>tr>.selected {
-  background-color: #f2f3f8
+  background-color: #fffde2
 }
 
 table.dataTable tbody>tr.selected .blank-td,
 table.dataTable tbody>tr>.selected .blank-td {
-  background: #f1f3f8;
+  background: #fffde2;
 }
 
 table.dataTable.stripe tbody>tr.odd.selected, table.dataTable.stripe tbody>tr.odd>.selected, table.dataTable.display tbody>tr.odd.selected, table.dataTable.display tbody>tr.odd>.selected {

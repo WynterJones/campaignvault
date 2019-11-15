@@ -6,46 +6,15 @@ const appPopup = {
     if ($(element).index() != 0) {
       let template = $(element).parent().attr('data-template')
       $('#row-data-popup').html($(`#${template}`).html())
-
-
-      var list, i, switching, b, shouldSwitch;
-        list = document.getElementById("row-data-popup");
-        switching = true;
-        /* Make a loop that will continue until
-        no switching has been done: */
-        while (switching) {
-          // Start by saying: no switching is done:
-          switching = false;
-          b = list.getElementsByTagName("DIV");
-          // Loop through all list items:
-          for (i = 0; i < (b.length - 1); i++) {
-            // Start by saying there should be no switching:
-            shouldSwitch = false;
-            /* Check if the next item should
-            switch place with the current item: */
-            if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-              /* If next item is alphabetically lower than current item,
-              mark as a switch and break the loop: */
-              shouldSwitch = true;
-              break;
-            }
-          }
-          if (shouldSwitch) {
-            /* If a switch has been marked, make the switch
-            and mark the switch as done: */
-            b[i].parentNode.insertBefore(b[i + 1], b[i]);
-            switching = true;
-          }
-        }
-
-
-
       $('#popup-wrapper').fadeIn(200)
       $('#popup').attr('style', 'right: 0')
+      $('body').attr('style', 'overflow: hidden')
+      $('#popup-nav a').first().trigger('click')
     }
   },
 
   hide: () => {
+    $('body').removeAttr('style')
     $('#popup').attr('style', 'right: -500px')
     setTimeout(function() {
       $('#popup-wrapper').fadeOut(300)
@@ -55,6 +24,14 @@ const appPopup = {
   popupClick: (e) => {
     e.stopPropagation()
     e.preventDefault()
+  },
+
+  tab: (element) => {
+    const tab = $(element).attr('data-tab')
+    $('#popup-nav a').removeClass('active')
+    $(element).addClass('active')
+    $('.tab').hide()
+    $(`#${tab}`).fadeIn(100)
   }
 
 }

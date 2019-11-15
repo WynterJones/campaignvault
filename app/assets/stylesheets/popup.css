@@ -16,7 +16,6 @@
   top: 0;
   right: -500px;
   z-index: 999999;
-  overflow-y: scroll;
   background: #fff;
   box-shadow: 0 10px 7px 0 #4f617bc7;
 }
@@ -31,23 +30,24 @@
 }
 
 #popup-content {
-  padding: 15px;
+  position: relative;
 }
 
 #popup-nav {
-  border-bottom: 1px solid #d2d6de
+  border-bottom: 1px solid #d2d6de;
 }
 
 #popup-nav a {
   width: 50%;
   float: left;
-  padding: 10px;
-  font-size: 1.2em;
+  padding: 15px;
   color: #607aa0;
   background: #f2f3f8;
   text-align: center;
   border-right: 1px solid #d2d6de;
   border-left: 1px solid #fafafa;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 #popup-nav a:first-child {
@@ -64,6 +64,20 @@
 
 #popup-nav a.active {
   background: #fff;
+}
+
+#row-data-popup {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+  padding: 15px;
+  padding-top: 5px;
+}
+
+#popup-manage-table {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+  padding: 15px;
+  padding-top: 15px;
 }
 
 .row-data-popup-header {
@@ -84,4 +98,19 @@
 
 .table-row-info strong {
   font-weight: 500;
+  display: block;
+  color: #607aa0;
+  font-size: 0.9em;
+}
+
+#popup-manage-table label {
+  font-weight: 500;
+  display: block;
+  color: #607aa0;
+  font-size: 0.9em
+}
+
+.table-row-info span {
+  display: block;
+  width: 100%
 }

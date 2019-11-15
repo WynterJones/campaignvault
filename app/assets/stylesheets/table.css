@@ -66,6 +66,7 @@
   max-width: 300px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  cursor: pointer
 }
 
 .table-simple.scrollable tr td {
@@ -86,13 +87,15 @@
 
 .table-column-badge {
   font-size: 15px;
-  margin: 5px;
   background: #f2f3f8;
   color: #607aa0;
   padding: 10px;
   text-transform: uppercase;
   border: 1px solid #d2d6de;
-  cursor: default;
+  cursor: move;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
 .delete-column-badge {
@@ -104,6 +107,7 @@
   padding: 3px 5px;
   opacity: 0.5;
   background: #fff;
+  float: right;
 }
 
 .delete-column-badge:hover {
@@ -116,10 +120,4 @@ span.tooltip-info {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-#table-column-list {
-  border-radius: 4px;
-  padding: 10px;
-  border: 1px solid #d2d6dd
 }

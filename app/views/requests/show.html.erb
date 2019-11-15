@@ -1,7 +1,6 @@
 <h2 class="headline-title float-left"><%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %></h2>
 
 <div class="webhook-options clearfix">
-  <a href="/campaigns/<%= @campaign.slug %>/<%= @app.slug %>/edit" class="btn btn-outline-light float-right"><i class="fas fa-edit mr-0"></i></a>
   <a href="/export?id=<%= @app.id %>" download class="btn btn-outline-light mr-2 float-right"><i class="fas fa-download mr-0"></i></a>
   <select id="activity-date-picker" data-url="<%= request.base_url %>/database/<%= @app.slug %>" class="form-control float-right mr-2">
     <option value="?timeframe=7-days">Last 7 Days</option>
@@ -20,7 +19,7 @@
 
 
 <div id="search-table" class="float-right">
-  <input type="search" autocomplete="off" class="form-control form-control-sm" id="search" placeholder="Search <%= @app.name %>..." data-type="<%= @app.slug %>" />
+  <input type="search" autocomplete="off" class="form-control form-control-sm" id="search" placeholder="Search <%= appSingle(@app.name)['displayName'] %>..." data-type="<%= @app.slug %>" />
 </div>
 
 <%= render 'shared/table_controls' %>
@@ -41,18 +40,31 @@
 <div id="popup-wrapper" style="display: none">
   <div id="popup">
     <div id="popup-nav" class="clearfix">
-      <a href="#" class="active">Row Data</a>
-      <a href="#">Table Columns</a>
+      <a href="#" data-tab="row-data-popup" class="active"><i class="fas fa-table mr-1"></i> Row Data</a>
+      <a href="#" data-tab="popup-manage-table"><i class="fas fa-columns mr-1"></i> Table Columns</a>
     </div>
     <div id="popup-content">
-      <div id="popup-manage-table"></div>
-
-
-      <div class="row-data-popup-header clearfix">
-        <strong class="float-right">Key</strong>
-        <strong>Value</strong>
+      <div id="popup-manage-table" class="tab" style="display: none">
+        <a href="#" class="btn btn-sm btn-primary float-right" id="saveTableColumns">Save</a>
+        <a href="#" class="btn btn-sm btn-secondary" id="showAddColumn"><i class="fas fa-plus mr-1"></i> Add Column</a>
+        <hr>
+        <div id="table-new-column" class="card-block clearfix mb-3" style="display: none">
+          <label>Add Column</label>
+          <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
+          <input id="table-column-key" type="text" class="form-control mb-2" placeholder="Key">
+          <div class="float-right">
+            <a href="#" class="btn btn-sm btn-outline-light" id="add-table-column"><i class="fas fa-plus mr-1"></i> Add</a>
+          </div>
+        </div>
+        <div id="table-column-list" class="mb-2"></div>
+        <div style="display: none">
+          <%= form_with(model: @app, local: true, html: {id: 'table_column_save_form'}) do |form| %>
+            <%= form.text_field :structure, id: 'final-structure' %>
+            <%= form.text_field :column_keys, id: 'final-column-keys' %>
+          <% end %>
+        </div>
       </div>
-      <div id="row-data-popup"></div>
+      <div id="row-data-popup" class="tab"></div>
     </div>
   </div>
 </div>

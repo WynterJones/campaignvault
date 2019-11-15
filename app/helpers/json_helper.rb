@@ -28,11 +28,11 @@ module JsonHelper
           output += "<span class='table-row-info'><strong>#{key.capitalize()}</strong><br>#{value}</span>"
         else
           if key != '' && value == ''
-            value = 'null'
+            value = '<span style="opacity: 0.4">null</span>'
           end
           output += "<div class='table-row-info'>
-                      <strong class='popup-table-key float-right'>#{key}</strong>
-                      <span class='popup-table-value'>#{value}</span>
+                      <strong class='popup-table-key'>#{key}</strong>
+                      <span class='popup-table-value text-truncate'>#{value}</span>
                     </div>"
         end
       end

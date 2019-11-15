@@ -9,7 +9,7 @@ const tableColumns = {
 
       all_structure.forEach(function(title, index) {
         if (title !== '') {
-          $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${all_final_keys[index]}" data-key="${all_final_keys[index]}">${title} <i class="fas fa-times delete-column-badge"></i></span>`)
+          $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${all_final_keys[index]}" data-key="${all_final_keys[index]}"><i class="fas fa-times delete-column-badge"></i> <span class="edit-column-badge">${title}</span><br /><small style="text-transform: lowercase">${all_final_keys[index]}</small></span>`)
         }
       })
 
@@ -31,9 +31,10 @@ const tableColumns = {
     const title = $('#table-column-name').val()
     const key = $('#table-column-key').val()
     if (title !== '' && key !== '') {
-      $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${key}" data-key="${key}">${title} <i class="fas fa-times delete-column-badge"></i></span>`)
+      $('#table-column-list').append(`<span class="table-column-badge badge badge-outline-secondary tippyColumn" data-tippy-content="<strong>key:</strong> ${key}" data-key="${key}"><i class="fas fa-times delete-column-badge"></i> <span class="edit-column-badge">${title}</span><br /><small style="text-transform: lowercase">${key}</small></span>`)
       $('#table-column-name, #table-column-key').val('')
       tableColumns.saveColumnPositions()
+      $('#table-new-column').hide()
     } else {
       alert('Title and Key cannot be blank.')
     }
@@ -42,6 +43,15 @@ const tableColumns = {
   delete: (e, element) => {
     $(element).parent().remove()
     tableColumns.saveColumnPositions()
+  },
+
+  showAddColumn: () => {
+    $('#table-new-column').show()
+    $('#table-new-column input').val('').first().focus()
+  },
+
+  saveTableColumns: () => {
+    $('#table_column_save_form').submit()
   },
 
   enterOnKey: (e) => {
@@ -58,7 +68,7 @@ const tableColumns = {
     let all_column_keys = ''
     $('#table-column-list .table-column-badge').each(function(index) {
       const key = $(this).attr('data-key')
-      const title = $(this).text().trim()
+      const title = $(this).find('span').text().trim()
       if (index === 0) {
         all_structure += `${title}`
         all_column_keys += `${key}`

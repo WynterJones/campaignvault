@@ -11,7 +11,7 @@ class AppsController < ApplicationController
   def update
     respond_to do |format|
       if @app.update(app_params)
-        format.html { redirect_to '/', notice: 'App was successfully updated.' }
+        format.html { redirect_to "/campaigns/#{Campaign.find(@app.campaign_id).slug}/#{@app.slug}", notice: 'App was successfully updated.' }
       else
         format.html { render :edit }
       end
