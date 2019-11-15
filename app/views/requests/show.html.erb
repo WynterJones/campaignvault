@@ -39,8 +39,20 @@
 <% end %>
 
 <div id="popup-wrapper" style="display: none">
-  <div id="popup" class="card-block">
-    <p class="text-muted">You can use the bold text as key for Table columns.</p>
-    <div id="row-data-popup"></div>
+  <div id="popup">
+    <div id="popup-nav" class="clearfix">
+      <a href="#" class="active">Row Data</a>
+      <a href="#">Table Columns</a>
+    </div>
+    <div id="popup-content">
+      <div id="popup-manage-table"></div>
+
+
+      <div class="row-data-popup-header clearfix">
+        <strong class="float-right">Key</strong>
+        <strong>Value</strong>
+      </div>
+      <div id="row-data-popup"></div>
+    </div>
   </div>
 </div>
