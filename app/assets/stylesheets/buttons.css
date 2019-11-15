@@ -11,7 +11,7 @@
 .btn-primary {
   background: #19a3e1;
   color: #fff;
-  border: 1px solid #0574d8;
+  border: 1px solid #19a3e1;
 }
 
 .btn-primary:hover {
@@ -22,7 +22,7 @@
 .btn-warning {
   background: #ffc266;
   color: #4a2d00;
-  border: 1px solid #ff9900;
+  border: 1px solid #ffc266;
 }
 
 .btn-warning:hover {

@@ -52,9 +52,13 @@ $(document).on('turbolinks:load', () => {
 
   // Table columns
   tableColumns.init(Sortable)
+  $(document).on('click', '#close-table-column', function(e) { tableColumns.close(e) })
   $(document).on('click', '#add-table-column', function(e) { tableColumns.add(e) })
+  $(document).on('click', '#update-table-column', function(e) { tableColumns.update(e, this, Sortable) })
   $(document).on('click', '.delete-column-badge', function(e) { tableColumns.delete(e, this) })
   $(document).on('keydown', '#table-column-key', function(e) { tableColumns.enterOnKey(e) })
   $(document).on('click', '#showAddColumn', function(e) { tableColumns.showAddColumn() })
   $(document).on('click', '#saveTableColumns', function(e) { tableColumns.saveTableColumns() })
+  $(document).on('click', '.table-column-badge', function(e) { tableColumns.editTableColumn(this) })
+
 })

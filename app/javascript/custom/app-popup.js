@@ -30,7 +30,7 @@ const appPopup = {
     const tab = $(element).attr('data-tab')
     $('#popup-nav a').removeClass('active')
     $(element).addClass('active')
-    $('.tab').hide()
+    $('.tab, #table-new-column').hide()
     $(`#${tab}`).fadeIn(100)
   }
 

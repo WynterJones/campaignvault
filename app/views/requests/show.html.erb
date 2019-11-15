@@ -46,14 +46,16 @@
     <div id="popup-content">
       <div id="popup-manage-table" class="tab" style="display: none">
         <a href="#" class="btn btn-sm btn-primary float-right" id="saveTableColumns">Save</a>
-        <a href="#" class="btn btn-sm btn-secondary" id="showAddColumn"><i class="fas fa-plus mr-1"></i> Add Column</a>
+        <a href="#" class="btn btn-sm btn-secondary" id="showAddColumn"><i class="fas fa-plus"></i> New Column</a>
         <hr>
         <div id="table-new-column" class="card-block clearfix mb-3" style="display: none">
-          <label>Add Column</label>
+          <label>New Table Column</label>
           <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
           <input id="table-column-key" type="text" class="form-control mb-2" placeholder="Key">
+          <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Close</a>
           <div class="float-right">
-            <a href="#" class="btn btn-sm btn-outline-light" id="add-table-column"><i class="fas fa-plus mr-1"></i> Add</a>
+            <a href="#" class="btn btn-sm btn-outline-light" id="add-table-column">Add</a>
+            <a href="#" class="btn btn-sm btn-outline-light" id="update-table-column" style="display: none">Update</a>
           </div>
         </div>
         <div id="table-column-list" class="mb-2"></div>

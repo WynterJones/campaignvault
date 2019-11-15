@@ -25,7 +25,7 @@ module TableHelper
           if value
             @tbody += "<td>#{value}</td>"
           else
-            if column_key == 'timestamp'
+            if column_key == 'created_at'
               created_at = request.created_at.in_time_zone(settings.timezone).strftime(settings.date_format)
               @tbody += "<td class='table-row-250'>#{created_at}</td>"
             else
