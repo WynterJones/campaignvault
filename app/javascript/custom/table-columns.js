@@ -18,6 +18,10 @@ const tableColumns = {
       }
       sortable.create(document.getElementById('table-column-list'), {
         handle: '.column-grip',
+        onMove: function () {
+          $('#table-update-column').remove()
+          $('#table-new-column').remove()
+        },
         onUpdate: function(evt) {
       		tableColumns.saveColumnPositions()
       	}
@@ -37,7 +41,7 @@ const tableColumns = {
       for (let match of matches) {
         taggedKeys = taggedKeys.replace(match, `[[${match[0].replace('[[{"value":"', '').replace('"}]]', '').replace("value", '')}]]`)
       }
-      $('#table-column-list').append(tableColumns.buildColumnTag(title, taggedKeys))
+      $('#table-column-list').append(tableColumns.buildColumnTag(title, taggedKeys.replace('[[[[', '[[').replace(']]]]', ']]')))
       $('#table-column-name, #table-column-key').val('')
       tableColumns.saveColumnPositions()
       $('#table-column-list .table-column-badge').last().find('#hidden-keys').val(JSON.stringify(taggedKeys))
@@ -56,6 +60,7 @@ const tableColumns = {
     const matches = taggedKeys.matchAll(regex);
     for (let match of matches) {
       taggedKeys = taggedKeys.replace(match, `[[${match[0].replace('[[{"value":"', '').replace('"}]]', '').replace("value", '')}]]`)
+      taggedKeys.replace('[[[[', '[[').replace(']]]]', ']]')
     }
     const index = $(element).attr('data-index')
     if (title !== '' && key !== '') {
@@ -68,6 +73,7 @@ const tableColumns = {
     e.stopPropagation()
     $(element).parent().remove()
     tableColumns.saveColumnPositions()
+    $('#table-update-column').remove()
   },
 
   close: () => {
@@ -82,7 +88,7 @@ const tableColumns = {
       $('#table-new-column').remove()
     }
     const addHTML = `<div id="table-new-column" class="card-block clearfix mb-3">
-      <label>New Table Column</label>
+      <label>New Column</label>
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
       <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key"></textarea>
       <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
@@ -136,8 +142,8 @@ const tableColumns = {
     }
     const index = $(element).index()
     const cloned = $('#table-new-column').clone()
-    const updateHTML = `<div id="table-update-column" class="card-block clearfix mb-3">
-      <label>Edit Table Column</label>
+    const updateHTML = `<div id="table-update-column" class="card-block clearfix mb-3"  style="margin-top: -10px;z-index: 2">
+      <label>Edit Column</label>
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
       <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key">${$(element).find('#hidden-key').val()}</textarea>
       <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
@@ -190,15 +196,13 @@ const tableColumns = {
   },
 
   addColumnFromData: (element) => {
-    if (!$(element).hasClass('active')) {
-      $(element).addClass('active')
-      const key = $(element).find('.popup-table-key').text()
-      const keyArray = key.split('.')
-      const keyName = keyArray[keyArray.length-1].replace(/\_/g, ' ')
-      $('#table-column-name').val(keyName)
-      $('#table-column-key').val(key)
-      $('#add-table-column').trigger('click')
-    }
+    const key = $(element).find('.popup-table-key').text()
+    const keyArray = key.split('.')
+    const keyName = keyArray[keyArray.length-1].replace(/\_/g, ' ')
+    $('#showAddColumn').trigger('click')
+    $('#table-column-name').val(keyName)
+    $('#table-column-key').val(`[[${key}]]`)
+    $('#add-table-column').trigger('click')
   },
 
   saveColumnPositions: () => {

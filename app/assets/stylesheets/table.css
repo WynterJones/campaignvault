@@ -96,6 +96,7 @@
   width: 100%;
   text-align: left;
   margin-bottom: 10px;
+  position: relative;
 }
 
 .delete-column-badge {

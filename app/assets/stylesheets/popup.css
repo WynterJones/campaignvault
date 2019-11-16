@@ -96,11 +96,10 @@
   cursor: pointer
 }
 
-.table-row-info.active {
+.table-row-info:hover {
   background: #fafafa;
   border: 1px solid #d2d6dd;
   border-radius: 4px;
-  margin-bottom: 5px;
 }
 
 .table-row-info strong {
