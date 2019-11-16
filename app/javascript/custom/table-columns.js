@@ -74,10 +74,46 @@ const tableColumns = {
     $('#table-update-column').remove()
   },
 
-  showAddColumn: () => {
-    $('#table-new-column').show()
-    $('#update-table-column').hide()
-    $('#add-table-column').show()
+  showAddColumn: (tagifyApp) => {
+    const addHTML = `<div id="table-new-column" class="card-block clearfix mb-3">
+      <label>New Table Column</label>
+      <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
+      <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key"></textarea>
+      <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
+      <div class="float-right">
+        <a href="#" class="btn btn-sm btn-warning" id="add-table-column">Add</a>
+      </div>
+    </div>`
+    $('#addTableHTML').html(addHTML)
+    let whitelist_columns = []
+    $('.popup-table-key').each(function() {
+      if ($(this).text() != '') {
+        whitelist_columns.push($(this).text())
+      }
+    })
+    whitelist_columns = [...new Set(whitelist_columns)]
+    const tagifyInput = $('.tagifier')[0]
+    const tagify = new tagifyApp(tagifyInput, {
+      mixTagsInterpolator: ['[[', ']]'],
+      mode: 'mix',
+      pattern: /#/,
+      whitelist: whitelist_columns,
+      dropdown: {
+        enabled: 1,
+        maxItems: 15,
+        highlightFirst: true,
+        fuzzySearch: true
+      }
+    })
+    tagify.on('input', function(e) {
+      let prefix = e.detail.prefix
+      if(prefix) {
+        if(prefix == '#') {
+          tagify.settings.whitelist = whitelist_columns
+          tagify.dropdown.show.call(tagify, e.detail.value)
+        }
+      }
+    })
     $('#table-new-column input').val('').first().focus()
   },
 
@@ -103,10 +139,13 @@ const tableColumns = {
     $(element).after(updateHTML)
     $(document).find('#table-update-column #table-column-name').val(JSON.parse($(element).find('#hidden-title').val()))
     $('#update-table-column').attr('data-index', index)
-    const whitelist_columns = []
+    let whitelist_columns = []
     $('.popup-table-key').each(function() {
-      whitelist_columns.push($(this).text())
+      if ($(this).text() != '') {
+        whitelist_columns.push($(this).text())
+      }
     })
+    whitelist_columns = [...new Set(whitelist_columns)]
     const tagifyInput = $('#table-update-column #table-column-key')[0]
     const editTagify = new tagifyApp(tagifyInput, {
       mixTagsInterpolator: ['[[', ']]'],
@@ -115,7 +154,7 @@ const tableColumns = {
       whitelist: whitelist_columns,
       dropdown: {
         enabled: 1,
-        maxItems: 5,
+        maxItems: 15,
         highlightFirst: true,
         fuzzySearch: true
       }

@@ -12,33 +12,32 @@ module TableHelper
       end
       @thead += '</tr></thead>'
       @tbody = '<tbody>'
-      @tooltips = ''
+      @row_data = ''
 
       @requests.find_each do |request|
-        selected = JSON.parse(request.body)
-
+        requestBody = JSON.parse(request.body)
         @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'></td>"
-        tooltip = parse_json_for_sidebar(selected, 0, request, settings, @column_keys)
-        @tooltips += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"
+        tooltip = parse_json_for_sidebar(requestBody, 0, request, settings, @column_keys)
+        @row_data += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"
 
         @column_keys.each do |column_key|
-          value = selected["#{column_key.strip}"]
-          if value
-            @tbody += "<td>#{value}</td>"
+          column_data = column_key
+          regex = /[[(.*?)]]/
+          allkeys =  column_data.scan(/\[\[.*?\]\]/)
+          allkeys.each_with_index do |value, index|
+            column_data = column_data.gsub(value, "#{requestBody["#{value.gsub('[[', '').gsub(']]', '')}"]}")
+          end
+          if column_data != ''
+            @tbody += "<td>#{column_data}</td>"
           else
-            if column_key == 'created_at'
-              created_at = request.created_at.in_time_zone(settings.timezone).strftime(settings.date_format)
-              @tbody += "<td class='table-row-250'>#{created_at}</td>"
-            else
-              @tbody += "<td><span class='blank-td'></span></td>"
-            end
+            @tbody += "<td><span class='blank-td'></span></td>"
           end
         end
         @tbody += '</tr>'
       end
 
       @tbody += '</tbody></table></div>'
-      @results = @thead + @tbody + @tooltips
+      @results = @thead + @tbody + @row_data
     else
       @results = '<p class="text-muted table-no-data">No table columns are setup yet.</p>'
     end

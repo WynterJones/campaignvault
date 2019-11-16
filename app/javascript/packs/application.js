@@ -22,36 +22,6 @@ const paramPicker = require("custom/param-pickers")
 $(document).on('turbolinks:load', () => {
   // Tagify
   if ($('.tagifier').length > 0) {
-    let whitelist_columns = []
-    $('.popup-table-key').each(function() {
-      if ($(this).text() != '') {
-        whitelist_columns.push($(this).text())
-      }
-    })
-    whitelist_columns = [...new Set(whitelist_columns)]
-    const tagifyInput = document.querySelector('.tagifier')
-    const tagify = new Tagify(tagifyInput, {
-      mixTagsInterpolator: ['[[', ']]'],
-      mode: 'mix',
-      pattern: /#/,
-      whitelist: whitelist_columns,
-      dropdown: {
-        enabled: 1,
-        maxItems: 5,
-        highlightFirst: true,
-        fuzzySearch: true
-      }
-    })
-    tagify.on('input', function(e) {
-      let prefix = e.detail.prefix
-      if(prefix) {
-        if(prefix == '#') {
-          tagify.settings.whitelist = whitelist_columns
-          tagify.dropdown.show.call(tagify, e.detail.value)
-        }
-      }
-    })
-
     $(document).find('.tagify__input').keydown(function(e) {
       const keycode = ((typeof e.keyCode !='undefined' && e.keyCode) ? e.keyCode : e.which)
       if (keycode === 9) {
@@ -100,7 +70,7 @@ $(document).on('turbolinks:load', () => {
   $(document).on('click', '#update-table-column', function(e) { tableColumns.update(e, this, Sortable) })
   $(document).on('click', '.delete-column-badge', function(e) { tableColumns.delete(e, this) })
   $(document).on('keydown', '#table-column-key', function(e) { tableColumns.enterOnKey(e) })
-  $(document).on('click', '#showAddColumn', function(e) { tableColumns.showAddColumn() })
+  $(document).on('click', '#showAddColumn', function(e) { tableColumns.showAddColumn(Tagify) })
   $(document).on('click', '#saveTableColumns', function(e) { tableColumns.saveTableColumns() })
   $(document).on('click', '.table-column-badge', function(e) { tableColumns.editTableColumn(this, Tagify) })
 
