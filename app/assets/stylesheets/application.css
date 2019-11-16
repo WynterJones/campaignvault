@@ -26,6 +26,10 @@ a {
   font-weight: 500;
 }
 
+.tagify__dropdown {
+  z-index: 99999
+}
+
 .hide, .dt-buttons {
   display: none
 }

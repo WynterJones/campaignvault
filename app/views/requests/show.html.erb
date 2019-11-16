@@ -50,17 +50,16 @@
         <div id="table-new-column" class="card-block clearfix mb-3" style="display: none">
           <label>New Table Column</label>
           <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
-          <input id="table-column-key" type="text" class="form-control mb-2" placeholder="Key">
+          <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key"></textarea>
           <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
           <div class="float-right">
             <a href="#" class="btn btn-sm btn-warning" id="add-table-column">Add</a>
-            <a href="#" class="btn btn-sm btn-warning" id="update-table-column" style="display: none">Update</a>
           </div>
         </div>
         <div id="table-column-list"></div>
-        <div style="display: none">
+        <div style="display: none2">
           <%= form_with(model: @app, local: true, html: {id: 'table_column_save_form'}) do |form| %>
-            <%= form.text_field :table_columns, id: 'final-table-columns' %>
+            <%= form.text_area :table_columns, id: 'final-table-columns', class: 'form-control' %>
           <% end %>
         </div>
       </div>
