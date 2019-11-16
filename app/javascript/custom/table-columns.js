@@ -35,8 +35,6 @@ const tableColumns = {
       $('#table-column-name, #table-column-key').val('')
       tableColumns.saveColumnPositions()
       $('#table-new-column').hide()
-    } else {
-      alert('Title and Key cannot be blank.')
     }
   },
 
@@ -50,8 +48,6 @@ const tableColumns = {
       $('#table-column-name, #table-column-key').val('')
       tableColumns.updateColumnPositions(title, key, index, sortable)
       $('#table-new-column').hide()
-    } else {
-      alert('Title and Key cannot be blank.')
     }
   },
 
