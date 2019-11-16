@@ -71,10 +71,16 @@ const tableColumns = {
   },
 
   close: () => {
-    $('#table-update-column').remove()
+    $('#table-new-column, #table-update-column').remove()
   },
 
   showAddColumn: (tagifyApp) => {
+    if ($('#table-update-column').length > 0) {
+      $('#table-update-column').remove()
+    }
+    if ($('#table-new-column').length > 0) {
+      $('#table-new-column').remove()
+    }
     const addHTML = `<div id="table-new-column" class="card-block clearfix mb-3">
       <label>New Table Column</label>
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
@@ -124,6 +130,9 @@ const tableColumns = {
   editTableColumn: (element, tagifyApp) => {
     if ($('#table-update-column').length > 0) {
       $('#table-update-column').remove()
+    }
+    if ($('#table-new-column').length > 0) {
+      $('#table-new-column').remove()
     }
     const index = $(element).index()
     const cloned = $('#table-new-column').clone()

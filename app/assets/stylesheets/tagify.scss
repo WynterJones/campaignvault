@@ -1,9 +1,9 @@
 .tagify{
     // SCSS "default" allows overriding variables BEFORE they are set in the below lines of code
     $self: &;
-    $tags-border-color       : #DDD !default;
-    $tags-hover-border-color : #CCC !default;
-    $tags-focus-border-color : #85C8EA !default;
+    $tags-border-color       : #d2d6de !default;
+    $tags-hover-border-color : #d2d6de !default;
+    $tags-focus-border-color : #d2d6de !default;
 
     $tagMargin               : 5px !default;
     $tag-pad                 : .3em .5em !default;
@@ -38,8 +38,10 @@
 
     @mixin placeholder( $show:true, $opacity:.5 ){
         transition:.2s ease-out;
+        padding: 5px;
+        color: #607aa0;
         @if $show == true {
-            opacity:$opacity; transform:none;
+            opacity:1; transform:none;
         }
         @else {
             opacity:0; transform:translatex(6px);
@@ -68,6 +70,7 @@
     border        : 1px solid $tags-border-color;
     border        : 1px solid var(--tags-border-color);
     padding       : 0;
+    border-radius       : 4px;
     line-height   : 1.1;
     cursor        : text;
     position      : relative;
@@ -168,7 +171,7 @@
             &::before{
                 content: '';
                 position: absolute;
-                border-radius: inherit;
+                border-radius: 4px;
                 left:0; top:0; right:0; bottom:0;
                 z-index: -1;
                 pointer-events:none;
