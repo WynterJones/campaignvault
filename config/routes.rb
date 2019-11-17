@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :campaigns, param: :slug
   resources :apps, param: :slug, :except => [:index, :new, :edit, :show]
   resources :settings
+  resources :databases, param: :slug
 
   # actions
   get '/export', to: 'export#export', as: 'export'
@@ -23,7 +24,8 @@ Rails.application.routes.draw do
   post '/database/:id', to: 'requests#delete'
 
   # app view
-  get '/campaigns/:campaign/:id', to: 'requests#show', as: 'request'
+  get '/campaigns/:campaign/:app', to: 'databases#index'
+  get '/campaigns/:campaign/:app/:id', to: 'requests#show', as: 'request'
   get '/campaigns/:campaign/:slug/edit', to: 'apps#edit'
 
   # webhook url

@@ -1,5 +1,7 @@
 <h2 class="headline-title float-left">
-  <%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %>
+  <%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %>
+  <%= appSingle(@app.name)['displayName'] %>
+  <small class="text-muted"><%= @database.name %></small>
 </h2>
 
 <div class="webhook-options clearfix">

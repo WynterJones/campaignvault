@@ -1,5 +1,5 @@
 class ChartComponent < ActionView::Component::Base
-  validates :title, :graph, presence: true
+  validates :title, presence: true
 
   def initialize(title:, graph:)
     @title = title

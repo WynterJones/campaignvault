@@ -1,8 +1,14 @@
 class DatabasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_app, only: [:edit]
+  before_action :set_app, only: [:edit, :index]
   before_action :set_app_update, only: [:update, :destroy]
-  breadcrumb 'Databases', ''
+
+
+  def index
+    breadcrumb 'Campaigns', ''
+    breadcrumb @campaign.name, ''
+    breadcrumb appSingle(@app.name)['displayName'], ''
+  end
 
   def edit
     set_meta_tags title: 'Edit Database'
@@ -29,7 +35,10 @@ class DatabasesController < ApplicationController
   private
 
     def set_app
-      @database = Database.find_by slug: params[:slug]
+      @app = App.find_by slug: params[:app]
+      @databases = Database.where(app_id: @app.id).order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
+      puts @app.inspect
+      @campaign = Campaign.find @app.campaign_id
     end
 
     def set_app_update

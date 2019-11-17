@@ -65,7 +65,10 @@
   max-width: 300px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  cursor: pointer
+}
+
+.table-simple .databases tbody tr td {
+  cursor: pointer !important
 }
 
 .table-simple.scrollable tr td {

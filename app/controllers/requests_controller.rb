@@ -6,12 +6,14 @@ class RequestsController < ApplicationController
     @settings = Setting.find_by_user_id(current_user.id)
     @timeframe = timeframe(params[:timeframe])
     @campaign = Campaign.find_by(slug: params[:campaign])
-    @app = App.order(id: :desc).find_by(slug: params[:id], campaign_id: @campaign.id)
-    @request_activity = Request.where('created_at >= ?', @timeframe).where(app_id: @app.id).group_by_day(:created_at).count
-    @table_columns = JSON.parse(@app.table_columns)
+    @app = App.order(id: :desc).find_by(slug: params[:app], campaign_id: @campaign.id)
+    @database = Database.order(id: :desc).find_by(slug: params[:id])
+    @request_activity = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).group_by_day(:created_at).count
+    @table_columns = JSON.parse(@database.table_columns)
 
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
     breadcrumb appSingle(@app.name)['displayName'], ''
+    breadcrumb @database.name, ''
 
     set_meta_tags title: "#{appSingle(@app.name)['displayName']} in #{@campaign.name}"
 
@@ -19,13 +21,13 @@ class RequestsController < ApplicationController
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(app_id: @app.id).where("body ILIKE ?", "%#{@search}%")
+      @requests = all_requests.where(database_id: @database.id).where("body ILIKE ?", "%#{@search}%")
       @search_count = number_with_delimiter(@requests.count)
     else
-      @requests = all_requests.where('created_at >= ?', @timeframe).where(app_id: @app.id)
+      @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)
     end
 
-    buildTable(@app, @settings)
+    buildTable(@database, @settings)
   end
 
   def delete
