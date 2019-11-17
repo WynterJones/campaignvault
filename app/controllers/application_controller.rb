@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   include TableHelper
   include AppsHelper
 
-  breadcrumb 'Home', :root_path
+  breadcrumb 'Dashboard', :root_path
 
   private
 

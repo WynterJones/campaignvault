@@ -1,15 +1,10 @@
-<h2 class="headline-title float-left">Dashboard</h2>
+<h2 class="headline-title float-left">Overview</h2>
+
 <div class="webhook-options dashboard clearfix">
-  <select id="activity-date-picker" data-url="<%= request.base_url %>" class="form-control float-right">
-    <option value="?timeframe=7-days">Last 7 Days</option>
-    <option value="?timeframe=30-days" selected>Last Month</option>
-    <option value="?timeframe=90-days">Last 3 Months</option>
-    <option value="?timeframe=1-year">Last Year</option>
-    <option value="?timeframe=all-time">All Time</option>
-  </select>
+  <%= render(DatePickerComponent, url: request.base_url) %>
 </div>
 
-<hr>
+<hr />
 
 <div class="row">
   <div class="col-md-4">
@@ -23,10 +18,6 @@
   </div>
 </div>
 
-<hr class="hr-dashboard" />
+<hr />
 
-<div class="card-block chartjs">
-  <p class="text-muted"><strong>All Activity</strong></p>
-  <br>
-  <%= line_chart @all_activity %>
-</div>
+<%= render(ChartComponent, title: 'All Activity', graph: @all_activity) %>

@@ -1,8 +1,6 @@
 <%= link_to 'New User', '/users/new', class: 'btn btn-warning float-right' %>
 <h2 class="headline-title">Users</h2>
-<hr>
-
-<%= will_paginate @users, class: 'table_pagination mt-3 mb-3' %>
+<hr />
 
 <div class="table-simple">
   <table class="table">
@@ -29,3 +27,5 @@
     </tbody>
   </table>
 </div>
+
+<%= will_paginate @users, class: 'table_pagination mt-3 mb-3' %>

@@ -7,7 +7,6 @@ class StatisticComponent < ActionView::Component::Base
     @max_total = max_total
   end
 
-
   private
 
   attr_reader :name, :total, :max_total

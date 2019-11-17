@@ -1,61 +1,22 @@
-<h2 class="headline-title float-left"><%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %></h2>
+<h2 class="headline-title float-left">
+  <%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %>
+</h2>
 
 <div class="webhook-options clearfix">
-  <a href="/export?id=<%= @app.id %>" download class="btn btn-outline-light float-right"><i class="fas fa-download mr-0"></i></a>
-  <select id="activity-date-picker" data-url="<%= request.base_url %>/database/<%= @app.slug %>" class="form-control float-right mr-2">
-    <option value="?timeframe=7-days">Last 7 Days</option>
-    <option value="?timeframe=30-days" selected>Last Month</option>
-    <option value="?timeframe=90-days">Last 3 Months</option>
-    <option value="?timeframe=1-year">Last Year</option>
-    <option value="?timeframe=all-time">All Time</option>
-  </select>
+  <a href="/export?id=<%= @app.id %>" download class="btn btn-outline-light ml-2 float-right"><i class="fas fa-download mr-0"></i></a>
+  <%= render(DatePickerComponent, url: "#{request.base_url}/database/#{@app.slug}") %>
 </div>
 
-<hr>
+<hr />
 
-<div class="card-block chartjs mb-3">
-  <%= line_chart @request_activity %>
-</div>
-
-<div id="search-table" class="float-right">
-  <input type="search" autocomplete="off" class="form-control form-control-sm" id="search" placeholder="Search <%= appSingle(@app.name)['displayName'] %>..." data-type="<%= @app.slug %>" />
-</div>
-
+<%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>
 <%= render 'shared/table_controls' %>
 
-<div class="searching-for text-muted mb-3">
-  Searching for "<strong>Search Term</strong>" with <span><%= @search_count %></span> result(s).
-</div>
-
 <%= @results.html_safe %>
-
 <%= will_paginate @requests, class: 'table_pagination mt-3 mb-3' %>
 
+<%= render 'shared/table_columns' %>
 <%= form_for '/delete_requests', html: {id: 'delete-requests', class: 'hide'} do |form| %>
   <input type="text" name="delete_ids" />
   <input type="text" name="redirect" value="<%= request.url %>" />
 <% end %>
-
-<div id="popup-wrapper" style="display: none">
-  <div id="popup">
-    <div id="popup-nav" class="clearfix">
-      <a href="#" data-tab="row-data-popup" class="active"><i class="fas fa-table mr-1"></i> Row Data</a>
-      <a href="#" data-tab="popup-manage-table"><i class="fas fa-columns mr-1"></i> Table Columns</a>
-    </div>
-    <div id="popup-content">
-      <div id="popup-manage-table" class="tab" style="display: none">
-        <a href="#" class="btn btn-sm btn-primary float-right" id="saveTableColumns">Save</a>
-        <a href="#" class="btn btn-sm btn-secondary" id="showAddColumn"><i class="fas fa-plus"></i> New</a>
-        <hr>
-        <div id="addTableHTML"></div>
-        <div id="table-column-list"></div>
-        <div style="display: none">
-          <%= form_with(model: @app, local: false, remote: true, html: {id: 'table_column_save_form'}) do |form| %>
-            <%= form.text_area :table_columns, id: 'final-table-columns', class: 'form-control' %>
-          <% end %>
-        </div>
-      </div>
-      <div id="row-data-popup" class="tab"></div>
-    </div>
-  </div>
-</div>

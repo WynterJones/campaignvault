@@ -1,0 +1,23 @@
+<div id="popup-wrapper" style="display: none">
+  <div id="popup">
+    <div id="popup-nav" class="clearfix">
+      <a href="#" data-tab="row-data-popup" class="active"><i class="fas fa-table mr-1"></i> Row Data</a>
+      <a href="#" data-tab="popup-manage-table"><i class="fas fa-columns mr-1"></i> Table Columns</a>
+    </div>
+    <div id="popup-content">
+      <div id="popup-manage-table" class="tab" style="display: none">
+        <a href="#" class="btn btn-sm btn-primary float-right" id="saveTableColumns">Save</a>
+        <a href="#" class="btn btn-sm btn-secondary" id="showAddColumn"><i class="fas fa-plus"></i> New</a>
+        <hr>
+        <div id="addTableHTML"></div>
+        <div id="table-column-list"></div>
+        <div style="display: none">
+          <%= form_with(model: @app, local: false, remote: true, html: {id: 'table_column_save_form'}) do |form| %>
+            <%= form.text_area :table_columns, id: 'final-table-columns', class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+      <div id="row-data-popup" class="tab"></div>
+    </div>
+  </div>
+</div>

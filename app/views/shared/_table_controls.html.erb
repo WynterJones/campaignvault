@@ -1,12 +1,21 @@
-<div class="mb-3">
-  <button class="btn btn-sm btn-outline-light" id="table-selectAll"><i class="fas fa-check-circle mr-0"></i></button>
-  <button class="btn btn-sm btn-outline-light" id="table-deselectAll"><i class="far fa-check-circle mr-0"></i></button>
-  <button class="btn btn-sm btn-outline-light" id="table-deleteSelected"><i class="fas fa-trash-alt mr-0"></i></button>
-  <select id="table-show-amount" class="form-control form-control-sm mr-3" style="width: 150px;display:inline-block">
-    <option value="?per_page=25">25 Per Page</option>
-    <option value="?per_page=50">50 Per Page</option>
-    <option value="?per_page=100">100 Per Page</option>
-    <option value="?per_page=500">500 Per Page</option>
-    <option value="?per_page=1000">1,000 Per Page</option>
-  </select>
+<div class="mt-3">
+  <div id="search-table" class="float-right">
+    <input type="search" autocomplete="off" class="form-control form-control-sm" id="search" placeholder="Search <%= appSingle(@app.name)['displayName'] %>..." data-type="<%= @app.slug %>" />
+  </div>
+  <div class="mb-3">
+    <button class="btn btn-sm btn-outline-light" id="table-selectAll"><i class="fas fa-check-circle mr-0"></i></button>
+    <button class="btn btn-sm btn-outline-light" id="table-deselectAll"><i class="far fa-check-circle mr-0"></i></button>
+    <button class="btn btn-sm btn-outline-light" id="table-deleteSelected"><i class="fas fa-trash-alt mr-0"></i></button>
+    <select id="table-show-amount" class="form-control form-control-sm mr-3" style="width: 150px;display:inline-block">
+      <option value="?per_page=25">25 Per Page</option>
+      <option value="?per_page=50">50 Per Page</option>
+      <option value="?per_page=100">100 Per Page</option>
+      <option value="?per_page=500">500 Per Page</option>
+      <option value="?per_page=1000">1,000 Per Page</option>
+    </select>
+  </div>
+
+  <div class="searching-for text-muted mb-3">
+    Searching for "<strong>Search Term</strong>" with <span><%= @search_count %></span> result(s).
+  </div>
 </div>
