@@ -1,5 +1,4 @@
 <h2 class="headline-title float-left">Dashboard</h2>
-
 <div class="webhook-options dashboard clearfix">
   <select id="activity-date-picker" data-url="<%= request.base_url %>" class="form-control float-right">
     <option value="?timeframe=7-days">Last 7 Days</option>
@@ -14,22 +13,13 @@
 
 <div class="row">
   <div class="col-md-4">
-    <div class="card-block statistic">
-      <h3 id="dashboard-all-requests" data-total="<%= @all_requests %>">0</h3>
-      <span class="text-muted">Rows <small class="badge badge-light float-right"><%= @all_requests_total %></small></span>
-    </div>
+    <%= render(StatisticComponent, name: 'Rows', total: @all_requests, max_total: @all_requests_total) %>
   </div>
   <div class="col-md-4 dashboard-extra-stat">
-    <div class="card-block statistic">
-      <h3 id="dashboard-all-apps" data-total="<%= @all_apps %>">0</h3>
-      <span class="text-muted">Apps <small class="badge badge-light float-right"><%= @all_apps_total %></small></span>
-    </div>
+    <%= render(StatisticComponent, name: 'Apps', total: @all_apps, max_total: @all_apps_total) %>
   </div>
   <div class="col-md-4 dashboard-extra-stat">
-    <div class="card-block statistic">
-      <h3 id="dashboard-all-campaigns" data-total="<%= @all_campaigns %>">0</h3>
-      <span class="text-muted">Campaigns <small class="badge badge-light float-right"><%= @all_campaigns_total %></small></span>
-    </div>
+    <%= render(StatisticComponent, name: 'Campaigns', total: @all_campaigns, max_total: @all_campaigns_total) %>
   </div>
 </div>
 

@@ -3,6 +3,14 @@
  *= require_tree .
  *= require_self
 */
+:root {
+  --white: #fff;
+  --border-color: #d2d6dc;
+  --border-radius: 4px;
+  --muted: #607aa0;
+  --bg-color: #f2f3f8;
+}
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,13 +18,13 @@
 
 body {
   font-family: 'Roboto', "San Francisco", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
-  background: #f2f3f8;
+  background: var(--bg-color);
   color: #12263f;
-  padding-left: 220px;
+  /* padding-left: 220px; */
 }
 
 hr {
-  border-top: 1px solid #d2d6dd;
+  border-top: 1px solid var(--border-color);
   border-bottom: 1px solid #fff;
   clear: both;
 }
@@ -24,6 +32,11 @@ hr {
 a {
   color: #0574d8;
   font-weight: 500;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 15px 30px;
 }
 
 .tagify__dropdown {
@@ -45,6 +58,7 @@ a {
 
 .headline-title {
   font-weight: 700;
+  margin: 0;
 }
 
 .dotted-menu {
@@ -77,7 +91,7 @@ a {
 }
 
 .text-muted {
-  color: #607aa0 !important;
+  color: var(--muted) !important;
 }
 
 .text-small {
@@ -133,13 +147,13 @@ form label {
 }
 
 .input-group-text {
-  background: #f2f3f8;
+  background: var(--bg-color);
   color: #607aa0;
 }
 
 .app-image-headline {
   border-radius: 6px;
-  box-shadow: 0 0 3px #d2d6de;
+  box-shadow: 0 0 3px var(--border-color);
   background: #fff;
   border: 3px solid #fff;
   width: 38px;
@@ -169,8 +183,7 @@ form label {
 
 .card-block {
   background: #fff;
-  border: 1px solid #d2d6dc;
-  border-bottom: 2px solid #d2d6dc;
+  border: 1px solid var(--border-color);
   padding: 15px;
   border-radius: 4px;
   position: relative;
@@ -191,22 +204,7 @@ form label {
   width: 100%;
   padding: 10px 15px;
   background: #fafbfd;
-  border-top: 1px solid #d2d6dd;
-}
-
-.card-block.statistic {
-  padding: 25px
-}
-
-.card-block.statistic h3 {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.9em
-}
-
-.card-block.statistic span {
-  display: block;
-  font-weight: 500;
+  border-top: 1px solid var(--border-color);
 }
 
 .card-select-app {
@@ -247,20 +245,10 @@ form label {
 }
 
 .badge-light {
-  background: #f2f3f8;
+  background: var(--bg-color);
   color: #607aa0
 }
 
 .webhook-options select {
   width: 200px;
-}
-
-/* Layout */
-[role="main"] {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1280px;
-  padding: 0 30px;
-  padding-bottom: 30px;
-  padding-top: 20px;
 }

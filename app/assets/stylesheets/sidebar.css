@@ -8,7 +8,7 @@
   width: 220px;
   max-width: 220px;
   min-width: 220px;
-  border-right: 1px solid #d2d6dd;
+  border-right: 1px solid var(--border-color);
   background: #fff;
 }
 
@@ -20,7 +20,7 @@
   color: #c8e8ff !important;
   text-transform: uppercase;
   text-shadow: 1px 1px 2px #005fb0;
-  border-bottom: 1px solid #d2d6de;
+  border-bottom: 1px solid var(--border-color);
   width: 100%;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .hr-sidebar {
-  border-top: 1px solid #d2d6de;
+  border-top: 1px solid var(--border-color);
   margin: 10px 0
 }
 
@@ -52,7 +52,7 @@
 }
 
 #sidebar-databases {
-  border: 1px solid #d2d6dd;
+  border: 1px solid var(--border-color);
   padding: 0;
   padding-top: 35px;
   background: #fff;
@@ -67,7 +67,7 @@
   padding: 10px;
   color: #607aa0;
   background: #f2f3f8;
-  border-bottom: 1px solid #d2d6dd;
+  border-bottom: 1px solid var(--border-color);
   margin: 0;
   position: absolute;
   top: 0;
@@ -135,7 +135,7 @@
 
 .sidebar .nav-link.active {
   background: #f2f3f8;
-  box-shadow: 0 0 0 1px #d2d6de
+  box-shadow: 0 0 0 1px var(--border-color)
 }
 
 .sidebar-db-span {

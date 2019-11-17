@@ -23,7 +23,7 @@ const paramPicker = require("custom/param-pickers")
 
 $(document).on('turbolinks:load', () => {
   const is_root = location.pathname == "/"
-  
+
   if (is_root) {
     $('.statistic h3').each(function() {
       components.counter($(this).attr('id'), CountUp)

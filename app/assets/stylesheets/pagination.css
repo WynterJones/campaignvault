@@ -9,7 +9,7 @@
 }
 
 .table_pagination span {
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
   margin-right: -5px;
   background: #f2f3f8;
   color: #607aa0
@@ -20,7 +20,7 @@
 }
 
 .table_pagination .current {
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
   font-style: normal;
   font-weight: bold;
   background: #fff;
@@ -29,7 +29,7 @@
 }
 
 .table_pagination a {
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
   color: #607aa0;
   background: #fff;
   text-decoration: none;

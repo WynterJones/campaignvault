@@ -107,7 +107,7 @@
 .tippy-tooltip.light-theme {
   color: #26323d;
   background-color: #fff;
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
 }
 
 .tippy-tooltip.light-theme .tippy-backdrop {

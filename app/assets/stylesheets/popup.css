@@ -34,7 +34,7 @@
 }
 
 #popup-nav {
-  border-bottom: 1px solid #d2d6de;
+  border-bottom: 1px solid var(--border-color);
 }
 
 #popup-nav a {
@@ -44,7 +44,7 @@
   color: #607aa0;
   background: #f2f3f8;
   text-align: center;
-  border-right: 1px solid #d2d6de;
+  border-right: 1px solid var(--border-color);
   border-left: 1px solid #fafafa;
   text-transform: uppercase;
   font-weight: bold;

@@ -1,6 +1,5 @@
 .table-simple {
-  border: 1px solid #d2d6dc;
-  border-bottom: 2px solid #d2d6dc;
+  border: 1px solid var(--border-color);
   clear: both;
 }
 
@@ -91,7 +90,7 @@
   color: #607aa0;
   padding: 10px;
   text-transform: uppercase;
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   width: 100%;
   text-align: left;
@@ -102,7 +101,7 @@
 .delete-column-badge {
   font-size: 12px;
   border-radius: 100%;
-  border: 1px solid #d2d6de;
+  border: 1px solid var(--border-color);
   margin-left: 5px;
   margin-top: 5px;
   cursor: pointer;

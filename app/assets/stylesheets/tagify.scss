@@ -1,9 +1,9 @@
 .tagify{
     // SCSS "default" allows overriding variables BEFORE they are set in the below lines of code
     $self: &;
-    $tags-border-color       : #d2d6de !default;
-    $tags-hover-border-color : #d2d6de !default;
-    $tags-focus-border-color : #d2d6de !default;
+    $tags-border-color       : var(--border-color) !default;
+    $tags-hover-border-color : var(--border-color) !default;
+    $tags-focus-border-color : var(--border-color) !default;
 
     $tagMargin               : 5px !default;
     $tag-pad                 : .3em .5em !default;
@@ -172,7 +172,7 @@
                 content: '';
                 position: absolute;
                 border-radius: 4px;
-                border: 1px solid #d2d6de;
+                border: 1px solid var(--border-color);
                 left:0; top:0; right:0; bottom:0;
                 z-index: -1;
                 pointer-events:none;

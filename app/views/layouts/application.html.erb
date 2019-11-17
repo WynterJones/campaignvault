@@ -13,24 +13,20 @@
   </head>
   <body>
 
-    <div class="container-fluid">
-      <div class="row">
-        <%= render 'shared/sidebar' %>
-        <main role="main">
-          <nav aria-label="breadcrumb">
-            <ol class='breadcrumb'>
-              <% breadcrumb_trail do |crumb| %>
-                <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
-                  <%= link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'campaign'} : {}) %>
-                </li>
-              <% end %>
-            </ol>
-          </nav>
-          <hr>
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+    <%= render 'shared/header' %>
+    <main class="container" role="main">
+      <nav aria-label="breadcrumb">
+        <ol class='breadcrumb'>
+          <% breadcrumb_trail do |crumb| %>
+            <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
+              <%= link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'campaign'} : {}) %>
+            </li>
+          <% end %>
+        </ol>
+      </nav>
+      <hr>
+      <%= yield %>
+    </main>
 
     <div id="notice" class="notification" style="display: none"><%= notice %></div>
     <div id="alert" class="notification" style="display: none"><%= alert %></div>
