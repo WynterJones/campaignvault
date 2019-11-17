@@ -1,7 +1,7 @@
-class App < ApplicationRecord
+class Database < ApplicationRecord
   after_destroy :destroy_requests
-  has_many :databases
-  belongs_to :campaign
+  has_many :requests
+  belongs_to :app
   before_create :update_connected
 
   def slug=(val)

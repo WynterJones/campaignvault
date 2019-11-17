@@ -3,7 +3,6 @@ class Campaign < ApplicationRecord
   after_destroy :destroy_requests
   after_destroy :destroy_apps
   has_many :apps
-  has_many :requests
 
   before_create :set_access_token
 
