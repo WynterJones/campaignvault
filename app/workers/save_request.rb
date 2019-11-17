@@ -4,12 +4,12 @@ class SaveRequest
   def perform(data, campaign, slug)
     if data.present?
       newhash = {}
-      JSON.parse(data).each do |value|
-        newvalue = value[0].dup
-        if newvalue.include? '__'
-          newvalue = newvalue.gsub! '__', '.'
-          newhash[newvalue] = value[1]
-        else
+      data.each do |value|
+        if value[0].present?
+          newvalue = value[0].dup
+          if newvalue.include?('__')
+            newvalue = newvalue.gsub! '__', '.'
+          end
           newhash[newvalue] = value[1]
         end
       end
@@ -20,12 +20,11 @@ class SaveRequest
         app.connected = true
         app.save
       end
+      requests = Request.where(app_id: app.id, campaign_id: theCampaign.id)
       ActionCable.server.broadcast 'room_channel',
           type: 'dashboard',
           total: Request.all.count,
           graph: Request.where('created_at >= ?', 30.days.ago).group_by_day(:created_at).count
-
-      requests = Request.where(app_id: app.id, campaign_id: theCampaign.id)
       ActionCable.server.broadcast 'room_channel',
           type: 'app',
           name: app.name,

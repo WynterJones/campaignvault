@@ -12,13 +12,20 @@ class SaveRequestController < ApplicationController
       params.delete :slug
       params.delete :campaign
       params.delete :app
-      data = params.to_json
+      data = params.to_enum.to_h
     end
     if data.present?
+      data = data.sort_by { |key, val| key }
       SaveRequest.perform_async(data, campaign, app)
       render :json => {:status => 200}
     else
       render :json => {:status => 400}
     end
+  end
+
+  def my_sort(data, attribute, asc = true)
+    # Convert to string because of possible nil values
+    sorted = data.sort_by { |elem| elem[attribute].to_s }
+    asc ? sorted : sorted.reverse
   end
 end

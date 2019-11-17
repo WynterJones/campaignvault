@@ -13,13 +13,11 @@ module TableHelper
       @thead += '</tr></thead>'
       @tbody = '<tbody>'
       @row_data = ''
-
       @requests.find_each do |request|
         requestBody = JSON.parse(request.body)
         @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'></td>"
         tooltip = parse_json_for_sidebar(requestBody, 0, request, settings, @column_keys)
         @row_data += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"
-
         @column_keys.each do |column_key|
           column_data = column_key
           regex = /[[(.*?)]]/
