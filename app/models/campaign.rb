@@ -18,11 +18,7 @@ class Campaign < ApplicationRecord
         break token unless Campaign.where(slug: token).exists?
       end
     end
-
-    def destroy_requests
-      self.requests.destroy_all
-    end
-
+    
     def destroy_apps
       self.apps.destroy_all
     end

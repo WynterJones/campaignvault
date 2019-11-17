@@ -11,7 +11,7 @@ class App < ApplicationRecord
   private
 
     def destroy_requests
-      self.requests.destroy_all
+      self.databases.destroy_all
     end
 
     def update_connected
