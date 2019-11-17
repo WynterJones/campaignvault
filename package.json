@@ -10,6 +10,7 @@
     "@yaireo/tagify": "^2.31.4",
     "chart.js": "^2.9.1",
     "chartkick": "^3.1.3",
+    "countup.js": "^2.0.4",
     "jquery": "^3.4.1",
     "sortablejs": "^1.10.1",
     "turbolinks": "^5.2.0"

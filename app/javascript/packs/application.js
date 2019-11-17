@@ -8,6 +8,7 @@ require("chart.js")
 require("custom/notifications")
 
 // Custom
+const components = require("custom/components")
 const search = require("custom/search")
 const clipboard = require("custom/click-to-copy")
 const apps = require("custom/apps")
@@ -16,10 +17,19 @@ const mobileSidebar = require("custom/mobile-sidebar")
 const tableControls = require("custom/table-controls")
 import Sortable from 'sortablejs'
 import Tagify from '@yaireo/tagify'
+import { CountUp } from 'countup.js'
 const tableColumns = require("custom/table-columns")
 const paramPicker = require("custom/param-pickers")
 
 $(document).on('turbolinks:load', () => {
+  const is_root = location.pathname == "/"
+  
+  if (is_root) {
+    $('.statistic h3').each(function() {
+      components.counter($(this).attr('id'), CountUp)
+    })
+  }
+
   // Tagify
   if ($('.tagifier').length > 0) {
     $(document).find('.tagify__input').keydown(function(e) {

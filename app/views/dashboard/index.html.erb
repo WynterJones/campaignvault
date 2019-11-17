@@ -15,19 +15,19 @@
 <div class="row">
   <div class="col-md-4">
     <div class="card-block statistic">
-      <h3><%= @all_requests %></h3>
+      <h3 id="dashboard-all-requests" data-total="<%= @all_requests %>">0</h3>
       <span class="text-muted">Rows <small class="badge badge-light float-right"><%= @all_requests_total %></small></span>
     </div>
   </div>
   <div class="col-md-4 dashboard-extra-stat">
     <div class="card-block statistic">
-      <h3><%= @all_apps %></h3>
+      <h3 id="dashboard-all-apps" data-total="<%= @all_apps %>">0</h3>
       <span class="text-muted">Apps <small class="badge badge-light float-right"><%= @all_apps_total %></small></span>
     </div>
   </div>
   <div class="col-md-4 dashboard-extra-stat">
     <div class="card-block statistic">
-      <h3><%= @all_campaigns %></h3>
+      <h3 id="dashboard-all-campaigns" data-total="<%= @all_campaigns %>">0</h3>
       <span class="text-muted">Campaigns <small class="badge badge-light float-right"><%= @all_campaigns_total %></small></span>
     </div>
   </div>
@@ -36,7 +36,7 @@
 <hr class="hr-dashboard" />
 
 <div class="card-block chartjs">
-  <p class="text-muted"><strong>All App Activity</strong></p>
+  <p class="text-muted"><strong>All Activity</strong></p>
   <br>
   <%= line_chart @all_activity %>
 </div>

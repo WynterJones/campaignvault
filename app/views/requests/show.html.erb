@@ -50,7 +50,7 @@
         <div id="addTableHTML"></div>
         <div id="table-column-list"></div>
         <div style="display: none">
-          <%= form_with(model: @app, local: true, html: {id: 'table_column_save_form'}) do |form| %>
+          <%= form_with(model: @app, local: false, remote: true, html: {id: 'table_column_save_form'}) do |form| %>
             <%= form.text_area :table_columns, id: 'final-table-columns', class: 'form-control' %>
           <% end %>
         </div>
