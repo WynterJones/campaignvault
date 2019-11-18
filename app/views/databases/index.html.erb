@@ -2,7 +2,7 @@
   <%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %>
 </h2>
 
-<div class="webhook-options float-right">
+<div class="webhook-options float-right hide">
   <%= form_for :database, method: :post do |form| %>
     <%= form.text_field :name, placeholder: "Database Name", class: "form-control" %>
     <button class="btn btn-primary">Create</button>
@@ -32,7 +32,7 @@
             <%= number_to_human(Request.where(database_id: database.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
           </td>
           <td class="table-url">
-            <input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/cv/#{@campaign.slug}/#{@app.slug}/#{database.slug}" %>" />
+            <input class="form-control form-control-sm click-to-copy" value="<%= "#{request.base_url}/~/#{@campaign.slug}/#{@app.slug}/#{database.slug}" %>" />
           </td>
           <td class="table-total">
             <% if database.connected.present? %>
@@ -50,7 +50,7 @@
                 <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= database.slug %>"><i class="far fa-eye mr-1"></i> View</a>
                 <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= database.slug %>/edit"><i class="far fa-edit mr-1"></i> Edit</a>
                 <a class="dropdown-item text-muted" href="/export?id=<%= database.id %>" download><i class="fas fa-download mr-1"></i> Export</a>
-                <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), database, method: :delete, data: { confirm: 'Are you sure this will also delete all associated records?' }, class: 'dropdown-item text-muted' %>
+                <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), [@campaign, @app, database], method: :delete, data: { confirm: 'Are you sure this will also delete all associated records?' }, class: 'dropdown-item text-muted' %>
               </div>
           </td>
         </tr>

@@ -27,8 +27,8 @@
       "displayName": "Stripe",
       "zapierAPI": "StripeAPI",
       "table_columns": {
-        "structure": "Email,Amount,Currency,Status,Card,Refunded",
-        "keys": "cust.email,transaction.amount,transaction.currency,transaction.status,source.brand,refunded"
+        "structure": "Email,Amount,Currency,Status",
+        "keys": "[[cust.email]],[[transaction.amount]],[[transaction.currency]],[[transaction.status]]"
       }
     },
     {

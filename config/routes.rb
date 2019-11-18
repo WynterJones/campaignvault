@@ -1,41 +1,29 @@
 Rails.application.routes.draw do
 
-  # dashboard
   root 'dashboard#index'
 
-  # actions
-  get '/export', to: 'export#export', as: 'export'
+  put '/~/:campaign/:app/:database', to: 'save_request#receive'
+  post '/~/:campaign/:app/:database', to: 'save_request#receive'
+  get '/~/:campaign/:app/:database', to: 'save_request#receive'
 
-  # users
+  get '/welcome', to: 'dashboard#welcome', as: 'welcome'
+  get '/export', to: 'export#export', as: 'export'
+  post '/database/:id', to: 'requests#delete' # delete row selected via table TODO:FIX
+
+  resources :campaigns, except: [:show], param: :slug do
+    resources :apps, except: [:show], param: :slug, path: '' do
+      resources :databases, except: [:show], param: :slug, path: '' do
+        resources :requests, only: :index, path: ''
+      end
+    end
+  end
+
+  resources :settings
+
   get '/users', to: 'users#index'
   get '/users/new', to: 'users#new'
   get '/users/edit/:id', to: 'users#edit'
 
-  # heroku license setup
-  get '/welcome', to: 'dashboard#welcome', as: 'welcome'
-
-  # delete selected via table
-  post '/database/:id', to: 'requests#delete'
-
-  # app view
-  get '/campaigns/:campaign/', to: 'campaigns#apps'
-  get '/campaigns/:campaign/:app', to: 'campaigns#databases'
-
-
-  get '/campaigns/:campaign/:app/:id', to: 'requests#show', as: 'request'
-  get '/campaigns/:campaign/:slug/edit', to: 'apps#edit'
-
-  # webhook url
-  put '/cv/:campaign/:app/:database', to: 'save_request#receive'
-  post '/cv/:campaign/:app/:database', to: 'save_request#receive'
-  get '/cv/:campaign/:app/:database', to: 'save_request#receive'
-
-  # resources
-  resources :campaigns, param: :slug
-  resources :apps, param: :slug, :except => [:index, :new, :edit, :show]
-  resources :settings
-
-  # devise
   resources :users
   devise_for :users,
     controllers: {
@@ -53,7 +41,6 @@ Rails.application.routes.draw do
       :confirmation =>  'verify'
     }
 
-  # sidekiq
   if Rails.env.development?
     require 'sidekiq/web'
     authenticate :user do

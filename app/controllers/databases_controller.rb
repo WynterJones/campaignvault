@@ -1,25 +1,18 @@
 class DatabasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_database, only: [:edit, :index]
-  before_action :set_database_update, only: [:update, :create, :destroy]
-
+  before_action :set_campaign
+  before_action :set_app
+  before_action :set_database, only: [:edit]
 
   def index
-    breadcrumb 'Campaigns', ''
-    breadcrumb @campaign.name, ''
+    breadcrumb 'Campaigns', campaigns_path
+    breadcrumb @campaign.name, campaign_path(@campaign.slug)
     breadcrumb appSingle(@app.name)['displayName'], ''
+    @databases = @app.databases.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
   def edit
     set_meta_tags title: 'Edit Database'
-  end
-
-  def create
-    if database_params['name'].present?
-      Database.create(name: database_params['name'])
-    end
-    url = "/campaigns/#{@campaign.slug}/#{@app.slug}/#{@database.slug}"
-    format.html { redirect_to url, notice: 'Database was successfully created.' }
   end
 
   def update
@@ -42,16 +35,12 @@ class DatabasesController < ApplicationController
 
   private
 
-    def set_database
-      @campaign = Campaign.find_by slug: params[:campaign]
-      @app = App.find_by campaign_id: @campaign.id, slug: params[:app]
-      @databases = Database.where(app_id: @app.id).order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
+    def set_campaign
+      @campaign = Campaign.find_by(slug: params[:campaign_slug])
     end
 
-    def set_database_update
-      @campaign = Campaign.find_by slug: params[:campaign]
-      @app = App.find_by campaign_id: @campaign.id, slug: params[:app]
-      @database = Database.find_by app_id: @app.id
+    def set_app
+      @app = App.includes(:databases).find_by(slug: params[:app_slug], campaign_id: @campaign.id)
     end
 
     def database_params
