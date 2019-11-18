@@ -4,64 +4,86 @@
       "name": "aweber",
       "displayName": "AWeber",
       "zapierAPI": "AWeberAPI",
-      "structure": "Name,Email,Country,City",
-      "column_keys": "name,email,country,city"
+      "table_columns": {
+        "structure": "Name,Email,Country,City",
+        "keys": "name,email,country,city"
+      },
+      "databases": [
+        "charges",
+        "customers"
+      ]
     },
     {
       "name": "mailchimp",
       "displayName": "MailChimp",
       "zapierAPI": "MailchimpCLIAPI@1.2.1",
-      "structure": "First Name,Last Name,Email",
-      "column_keys": "merges.FNAME,merges.LNAME,email"
+      "table_columns": {
+        "structure": "First Name,Last Name,Email",
+        "keys": "merges.FNAME,merges.LNAME,email"
+      }
     },
     {
       "name": "stripe",
       "displayName": "Stripe",
       "zapierAPI": "StripeAPI",
-      "structure": "Email,Amount,Currency,Status,Card,Refunded",
-      "column_keys": "cust.email,transaction.amount,transaction.currency,transaction.status,source.brand,refunded"
+      "table_columns": {
+        "structure": "Email,Amount,Currency,Status,Card,Refunded",
+        "keys": "cust.email,transaction.amount,transaction.currency,transaction.status,source.brand,refunded"
+      }
     },
     {
       "name": "recurly",
       "displayName": "Recurly",
       "zapierAPI": "RecurlyAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     },
     {
       "name": "paypal",
       "displayName": "PayPal",
       "zapierAPI": "PayPalAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     },
     {
       "name": "gotowebinar",
       "displayName": "GoToWebinar",
       "zapierAPI": "GoToWebinarAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     },
     {
       "name": "shopify",
       "displayName": "Shopify",
       "zapierAPI": "ShopifyAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     },
     {
       "name": "salesforce",
       "displayName": "Salesforce",
       "zapierAPI": "SalesforceAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     },
     {
       "name": "airtable",
       "displayName": "Airtable",
       "zapierAPI": "AirtableDevAPI",
-      "structure": "",
-      "column_keys": ""
+      "table_columns": {
+        "structure": "",
+        "keys": ""
+      }
     }
   ]
 }

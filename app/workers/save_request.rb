@@ -1,7 +1,7 @@
 class SaveRequest
   include Sidekiq::Worker
 
-  def perform(data, campaign, slug)
+  def perform(data, campaign_slug, app_slug, database_slug)
     if data.present?
       newhash = {}
       data.each do |value|
@@ -13,14 +13,16 @@ class SaveRequest
           newhash[newvalue] = value[1]
         end
       end
-      theCampaign = Campaign.find_by_slug(campaign)
-      app = App.find_by(slug: slug, campaign_id: theCampaign.id)
-      Request.create(body: newhash.to_json, app_id: app.id, campaign_id: theCampaign.id)
+      Request.create(data: newhash.to_json, database_id: database.id)
+
+      campaign = Campaign.find_by_slug(campaign_slug)
+      app = App.find_by(campaign_id: campaign.id)
       if app.connected == false
         app.connected = true
         app.save
       end
-      requests = Request.where(app_id: app.id, campaign_id: theCampaign.id)
+      puts 'Wabble!', Redis.new.pubsub("channels", "action_cable/*").count
+      requests = Request.where(app_id: app.id, campaign_id: campaign.id)
       ActionCable.server.broadcast 'room_channel',
           type: 'dashboard',
           total: Request.all.count,

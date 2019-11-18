@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   get '/campaigns/:campaign/:slug/edit', to: 'apps#edit'
 
   # webhook url
-  put '/cv/:campaign/:app', to: 'save_request#receive'
-  post '/cv/:campaign/:app', to: 'save_request#receive'
-  get '/cv/:campaign/:app', to: 'save_request#receive'
+  put '/cv/:campaign/:app/:database', to: 'save_request#receive'
+  post '/cv/:campaign/:app/:database', to: 'save_request#receive'
+  get '/cv/:campaign/:app/:database', to: 'save_request#receive'
 
   # devise
   resources :users

@@ -35,8 +35,7 @@ class CampaignsController < ApplicationController
       if @campaign.save
         apps = params[:apps].split(',')
         apps.each do |app|
-          puts app
-          App.create(campaign_id: @campaign.id, name: app, slug: app.parameterize, structure: appSingle(app)['structure'], column_keys: appSingle(app)['column_keys'])
+          App.create(campaign_id: @campaign.id, name: app, slug: app.parameterize, table_columns: appSingle(app)['table_columns'])
         end
         format.html { redirect_to "/campaigns/#{@campaign.slug}", notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }

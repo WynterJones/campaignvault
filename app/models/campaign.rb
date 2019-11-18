@@ -4,7 +4,12 @@ class Campaign < ApplicationRecord
   after_destroy :destroy_apps
   has_many :apps
 
-  before_create :set_access_token
+  # before_create :set_access_token
+
+  def name=(val)
+    write_attribute(:slug, val.parameterize)
+    write_attribute(:name, val)
+  end
 
   private
 
@@ -18,7 +23,7 @@ class Campaign < ApplicationRecord
         break token unless Campaign.where(slug: token).exists?
       end
     end
-    
+
     def destroy_apps
       self.apps.destroy_all
     end

@@ -30,4 +30,5 @@ class DashboardController < ApplicationController
     @all_campaigns_total = number_with_delimiter(campaigns.count)
     @all_activity = requests.where('created_at >= ?', @timeframe).group_by_day(:created_at).count
   end
+
 end
