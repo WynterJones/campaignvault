@@ -12,7 +12,7 @@ class RequestsController < ApplicationController
     @table_columns = JSON.parse(@database.table_columns)
 
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
-    breadcrumb appSingle(@app.name)['displayName'], ''
+    breadcrumb appSingle(@app.name)['displayName'], "/campaigns/#{@campaign.slug}/#{@app.slug}"
     breadcrumb @database.name, ''
 
     set_meta_tags title: "#{appSingle(@app.name)['displayName']} in #{@campaign.name}"
