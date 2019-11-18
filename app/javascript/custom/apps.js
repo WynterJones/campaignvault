@@ -3,12 +3,14 @@
 const apps = {
 
   select: (element) => {
-    let type = ''
+    const types = []
     $(element).toggleClass('card-app-selected')
     $('.card-app-selected').each(function() {
-      type += `,${$(element).attr('data-type')}`
+      const data_type = $(this).attr('data-type')
+      types.push(data_type)
     })
-    $('#apps-input').val(type.replace(',', ''))
+    const all_apps = [...new Set(types)];
+    $('#apps-input').val(all_apps.sort())
   }
 
 }
