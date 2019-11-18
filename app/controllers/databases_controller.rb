@@ -36,13 +36,13 @@ class DatabasesController < ApplicationController
 
     def set_app
       @campaign = Campaign.find_by slug: params[:campaign]
-      @app = App.find_by campaign_id: @campaign.id
+      @app = App.find_by campaign_id: @campaign.id, slug: params[:app]
       @databases = Database.where(app_id: @app.id).order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
     end
 
     def set_app_update
       @campaign = Campaign.find_by slug: params[:campaign]
-      @app = App.find_by campaign_id: @campaign.id
+      @app = App.find_by campaign_id: @campaign.id, slug: params[:app]
       @database = Database.find_by app_id: @app.id
     end
 
