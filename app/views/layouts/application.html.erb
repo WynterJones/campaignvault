@@ -17,10 +17,18 @@
     <main class="container" role="main">
       <nav aria-label="breadcrumb">
         <ol class='breadcrumb'>
+          <% counter = 0 %>
           <% breadcrumb_trail do |crumb| %>
-            <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
-              <%= link_to_unless crumb.current?, crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'campaign'} : {}) %>
-            </li>
+            <% counter += 1 %>
+            <% if breadcrumb_trail.count == counter %>
+              <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
+                <%= crumb.name %>
+              </li>
+            <% else %>
+              <li class="breadcrumb-item <%= crumb.current? ? 'active' : '' %>">
+                <%= link_to crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'campaign'} : {}) %>
+              </li>
+            <% end %>
           <% end %>
         </ol>
       </nav>
