@@ -3,12 +3,6 @@ Rails.application.routes.draw do
   # dashboard
   root 'dashboard#index'
 
-  # resources
-  resources :campaigns, param: :slug
-  resources :apps, param: :slug, :except => [:index, :new, :edit, :show]
-  resources :settings
-  resources :databases, param: :slug
-
   # actions
   get '/export', to: 'export#export', as: 'export'
 
@@ -24,7 +18,10 @@ Rails.application.routes.draw do
   post '/database/:id', to: 'requests#delete'
 
   # app view
-  get '/campaigns/:campaign/:app', to: 'databases#index'
+  get '/campaigns/:campaign/', to: 'campaigns#apps'
+  get '/campaigns/:campaign/:app', to: 'campaigns#databases'
+
+
   get '/campaigns/:campaign/:app/:id', to: 'requests#show', as: 'request'
   get '/campaigns/:campaign/:slug/edit', to: 'apps#edit'
 
@@ -32,6 +29,11 @@ Rails.application.routes.draw do
   put '/cv/:campaign/:app/:database', to: 'save_request#receive'
   post '/cv/:campaign/:app/:database', to: 'save_request#receive'
   get '/cv/:campaign/:app/:database', to: 'save_request#receive'
+
+  # resources
+  resources :campaigns, param: :slug
+  resources :apps, param: :slug, :except => [:index, :new, :edit, :show]
+  resources :settings
 
   # devise
   resources :users

@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :edit]
+  before_action :set_campaign, only: [:edit]
   before_action :set_campaign_update, only: [:update, :destroy]
   breadcrumb 'Campaigns', '/campaigns'
 
@@ -8,12 +8,22 @@ class CampaignsController < ApplicationController
     @campaigns = Campaign.all.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
-  def show
+  def apps
+    @campaign = Campaign.find_by(slug: params[:campaign])
     set_meta_tags title: @campaign.name
     breadcrumb @campaign.name, ''
     @timeframe = timeframe(params[:timeframe])
     @apps = App.where(campaign_id: @campaign.id).order(id: :desc).all.paginate(page: params[:page], per_page: params[:per_page] || 25)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(campaign_id: @campaign.id).group_by_day(:created_at).count
+  end
+
+  def databases
+    @campaign = Campaign.find_by(slug: params[:campaign])
+    @app = App.find_by(campaign_id: @campaign.id, slug: params[:app])
+    @databases = Database.where(app_id: @app.id).order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
+    set_meta_tags title: @campaign.name
+    breadcrumb @campaign.name, ''
+    breadcrumb appSingle(@app.name)['displayName'], ''
   end
 
   def new
