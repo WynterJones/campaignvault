@@ -1,21 +1,30 @@
 Rails.application.routes.draw do
   root 'dashboard#index'
 
+  # Webhooks
   put '~/:campaign/:app/:database', to: 'save_request#receive'
   post '~/:campaign/:app/:database', to: 'save_request#receive'
   get '~/:campaign/:app/:database', to: 'save_request#receive'
 
+  # Misc
   get 'welcome', to: 'dashboard#welcome', as: 'welcome'
   get 'export', to: 'export#export', as: 'export'
   post 'database/:id', to: 'requests#delete'
 
-  get 'new/:campaign_slug/:app_slug/database', to: 'databases#new'
-  post 'create/:campaign_slug/:app_slug/database', to: 'databases#create'
-  get 'edit/:campaign_slug/:app_slug/:database_slug', to: 'databases#edit'
+  # Campaigns
+  get 'new_campaign', to: 'campaigns#new'
+  post 'create_campaign', to: 'campaigns#create'
+  get 'edit/:campaign_slug/campaign', to: 'campaigns#edit'
 
+  # Apps
   get 'new/:campaign_slug/app', to: 'apps#new'
   post 'create/:campaign_slug/app', to: 'apps#create'
   get 'edit/:campaign_slug/:app_slug', to: 'apps#edit'
+
+  # Databases
+  get 'new/:campaign_slug/:app_slug/database', to: 'databases#new'
+  post 'create/:campaign_slug/:app_slug/database', to: 'databases#create'
+  get 'edit/:campaign_slug/:app_slug/:database_slug', to: 'databases#edit'
 
   # Campaigns > Apps > Databases > Requests
   resources :campaigns, except: [:show], param: :slug do
@@ -26,12 +35,15 @@ Rails.application.routes.draw do
     end
   end
 
+  # Settings
   resources :settings
 
+  # Users
   get 'users', to: 'users#index'
   get 'users/new', to: 'users#new'
   get 'users/edit/:id', to: 'users#edit'
 
+  # Devise
   resources :users
   devise_for :users,
     controllers: {

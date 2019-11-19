@@ -1,9 +1,0 @@
-<h2 class="headline-title float-left">Edit Campaign</h2>
-<div class="webhook-options delete-option clearfix">
-  <%= link_to 'Delete', @campaign, method: :delete, data: { confirm: 'Are you sure this will also delete all associated apps and records?' }, class: 'btn btn-outline-secondary float-right' %>
-</div>
-<hr>
-
-<div class="card-block has-footer">
-  <%= render 'form', campaign: @campaign %>
-</div>

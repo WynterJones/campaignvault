@@ -27,15 +27,19 @@ class CampaignsController < ApplicationController
   end
 
   def new
-    set_meta_tags title: 'New Campaign'
-    breadcrumb 'New', ''
     @campaign = Campaign.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
-    set_meta_tags title: "Edit Campaign"
-    breadcrumb @campaign.name, ''
-    breadcrumb 'Edit', ''
+    @campaign = Campaign.find_by(slug: params[:campaign_slug])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -47,7 +51,8 @@ class CampaignsController < ApplicationController
         apps.each do |app|
           App.create(campaign_id: @campaign.id, name: app, slug: app.parameterize)
         end
-        format.html { redirect_to "/campaigns/#{@campaign.slug}", notice: 'Campaign was successfully created.' }
+        url = "/campaigns/#{@campaign.slug}"
+        format.html { redirect_to url, notice: 'Campaign was successfully created.' }
         format.json { render :show, status: :created, location: @campaign }
       else
         format.html { render :new }
@@ -57,9 +62,10 @@ class CampaignsController < ApplicationController
   end
 
   def update
+    url = "/campaigns"
     respond_to do |format|
       if @campaign.update(campaign_params)
-        format.html { redirect_to "/campaigns/#{@campaign.slug}", notice: 'Campaign was successfully updated.' }
+        format.html { redirect_to url, notice: 'Campaign was successfully updated.' }
         format.json { render :show, status: :ok, location: @campaign }
       else
         format.html { render :edit }
