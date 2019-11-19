@@ -3,10 +3,11 @@
 </h2>
 
 <div class="webhook-options float-right">
-  <%= link_to 'Add Database', "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add Database'), "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary mr-2', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-outline-light"><i class="fas fa-cog mr-1"></i> Edit</a>
 </div>
 
-<hr>
+<hr />
 
 <div class="table-simple">
   <table class="table">
