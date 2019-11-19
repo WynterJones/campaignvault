@@ -31,7 +31,7 @@
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= campaign.slug %>">
-            <a class="dropdown-item text-muted" href="/campaigns/<%= campaign.slug %>/apps"><i class="far fa-eye mr-1"></i> View</a>
+            <a class="dropdown-item text-muted" href="/campaigns/<%= campaign.slug %>"><i class="far fa-eye mr-1"></i> View</a>
             <a class="dropdown-item text-muted" href="/edit/<%= campaign.slug %>/campaign"  data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit mr-1"></i> Edit</a>
             <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), campaign, method: :delete, data: { confirm: 'Are you sure this will also delete all associated apps and records?' }, class: 'dropdown-item text-muted' %>
           </div>
