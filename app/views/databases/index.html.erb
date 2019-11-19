@@ -44,9 +44,8 @@
                 <i class="fas fa-ellipsis-v"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= database.slug %>">
-                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= database.slug %>"><i class="far fa-eye mr-1"></i> View</a>
-                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= database.slug %>/edit"><i class="far fa-edit mr-1"></i> Edit</a>
-                <a class="dropdown-item text-muted" href="/export?id=<%= database.id %>" download><i class="fas fa-download mr-1"></i> Export</a>
+                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>"><i class="far fa-eye mr-1"></i> View</a>
+                <a class="dropdown-item text-muted" href="/edit/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit mr-1"></i> Edit</a>
                 <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), [@campaign, @app, database], method: :delete, data: { confirm: 'Are you sure this will also delete all associated records?' }, class: 'dropdown-item text-muted' %>
               </div>
           </td>

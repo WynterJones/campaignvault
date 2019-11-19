@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   post 'database/:id', to: 'requests#delete' # delete row selected via table TODO:FIX
 
   get "new/:campaign_slug/:app_slug/database" => 'databases#new'
-  post "create/:campaign_slug/:app_slug/database" => 'databases#create', as: 'database'
+  get "edit/:campaign_slug/:app_slug/:database_slug" => 'databases#edit'
+  post "create/:campaign_slug/:app_slug/database" => 'databases#create'
 
   resources :campaigns, except: [:show], param: :slug do
     resources :apps, except: [:show], param: :slug, path: '' do

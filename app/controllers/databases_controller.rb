@@ -1,13 +1,13 @@
 class DatabasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_campaign
-  before_action :set_app
-  before_action :set_database, only: [:edit]
+  before_action :set_campaign, except: [:destroy, :update]
+  before_action :set_app, except: [:destroy, :update]
 
   def index
     breadcrumb 'Campaigns', campaigns_path
     breadcrumb @campaign.name, campaign_path(@campaign.slug)
     breadcrumb appSingle(@app.name)['displayName'], ''
+    set_meta_tags title: "#{appSingle(@app.name)['displayName']} Databases"
     @databases = @app.databases.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
@@ -20,41 +20,48 @@ class DatabasesController < ApplicationController
   end
 
   def edit
-    set_meta_tags title: 'Edit Database'
+    @database = Database.find_by(slug: params[:database_slug], app_id: @app.id)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @database = Database.new(database_params)
     @database.app_id = @app.id
-    puts database_params
-    puts 'hey'
-    puts @database.inspect
+    url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
     respond_to do |format|
       if @database.save
-        format.html { redirect_to '/', notice: 'Database was successfully created.' }
-        format.js { redirect_to '/', notice: 'Database was successfully created.' }
+        format.html { redirect_to url, notice: 'Database was successfully created.' }
       else
-        format.html { redirect_to '/', notice: 'Erro was successfully errorred.' }
-        format.js { redirect_to '/', notice: 'Erro was successfully created.' }
+        format.html { redirect_to url, error: 'Error: Database was not created.' }
       end
     end
   end
 
   def update
+    @campaign = Campaign.find(params[:campaign_slug])
+    @app = App.find_by(id: params[:app_slug], campaign_id: @campaign.id)
+    @database = Database.find_by(id: params[:slug], app_id: @app.id)
+    url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
     respond_to do |format|
       if @database.update(database_params)
-        url = "/campaigns/#{@campaign.slug}/#{@app.slug}/#{@database.slug}"
         format.html { redirect_to url, notice: 'Database was successfully updated.' }
       else
-        format.html { render :edit }
+        format.html { redirect_to url, error: 'Error: Database was not edited.' }
       end
     end
   end
 
   def destroy
+    @database = Database.find(params[:slug])
     @database.destroy
+    @campaign = Campaign.find(params[:campaign_slug])
+    @app = App.find_by(id: params[:app_slug], campaign_id: @campaign.id)
+    url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
     respond_to do |format|
-      format.html { redirect_to '/', notice: 'Database was successfully deleted.' }
+      format.html { redirect_to url, notice: 'Database was successfully deleted.' }
     end
   end
 
