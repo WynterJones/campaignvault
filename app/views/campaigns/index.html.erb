@@ -1,5 +1,5 @@
 <%= link_to raw('<i class="fas fa-plus mr-1"></i> New Campaign'), new_campaign_path, class: 'btn btn-primary float-right' %>
-<h2 class="headline-title">Campaigns</h2>
+<h2 class="headline-title">All Campaigns</h2>
 <hr />
 
 <% if @campaigns.length == 0 %>
@@ -27,7 +27,7 @@
       </div>
       <div class="col-md-1 text-right">
         <div class="dropdown dropleft">
-          <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= campaign.slug %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= campaign.slug %>" data-toggle="dropdown">
             <i class="fas fa-ellipsis-v"></i>
           </a>
           <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= campaign.slug %>">

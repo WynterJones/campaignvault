@@ -6,6 +6,10 @@ module AppsHelper
   def appSingle(name)
     data = appsJSON()['apps']
     index = data.find_index{ |item| item['name'] == name }
-    return data[index]
+    if index.present?
+      return data[index]
+    else
+      return 'Unknown'
+    end
   end
 end

@@ -12,10 +12,10 @@ class RequestsController < ApplicationController
     @table_columns = JSON.parse(@database.table_columns)
 
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
-    breadcrumb appSingle(@app.name)['displayName'], "/campaigns/#{@campaign.slug}/#{@app.slug}"
+    breadcrumb @app.name.titleize, "/campaigns/#{@campaign.slug}/#{@app.slug}"
     breadcrumb @database.name, ''
 
-    set_meta_tags title: "#{appSingle(@app.name)['displayName']} in #{@campaign.name}"
+    set_meta_tags title: "#{@app.name.titleize} in #{@campaign.name}"
 
     @search = params["search"]
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)

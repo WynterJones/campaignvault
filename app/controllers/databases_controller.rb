@@ -6,8 +6,8 @@ class DatabasesController < ApplicationController
   def index
     breadcrumb 'Campaigns', campaigns_path
     breadcrumb @campaign.name, campaign_path(@campaign.slug)
-    breadcrumb appSingle(@app.name)['displayName'], ''
-    set_meta_tags title: "#{appSingle(@app.name)['displayName']} Databases"
+    breadcrumb @app.name.capitalize, ''
+    set_meta_tags title: "#{@app.name.capitalize} Databases"
     @databases = @app.databases.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
@@ -76,6 +76,6 @@ class DatabasesController < ApplicationController
     end
 
     def database_params
-      params.require(:database).permit(:name, :slug, :table_columns)
+      params.require(:database).permit(:name, :table_columns)
     end
 end

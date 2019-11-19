@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root 'dashboard#index'
 
   put '~/:campaign/:app/:database', to: 'save_request#receive'
@@ -8,12 +7,17 @@ Rails.application.routes.draw do
 
   get 'welcome', to: 'dashboard#welcome', as: 'welcome'
   get 'export', to: 'export#export', as: 'export'
-  post 'database/:id', to: 'requests#delete' # delete row selected via table TODO:FIX
+  post 'database/:id', to: 'requests#delete'
 
-  get "new/:campaign_slug/:app_slug/database" => 'databases#new'
-  get "edit/:campaign_slug/:app_slug/:database_slug" => 'databases#edit'
-  post "create/:campaign_slug/:app_slug/database" => 'databases#create'
+  get 'new/:campaign_slug/:app_slug/database', to: 'databases#new'
+  post 'create/:campaign_slug/:app_slug/database', to: 'databases#create'
+  get 'edit/:campaign_slug/:app_slug/:database_slug', to: 'databases#edit'
 
+  get 'new/:campaign_slug/app', to: 'apps#new'
+  post 'create/:campaign_slug/app', to: 'apps#create'
+  get 'edit/:campaign_slug/:app_slug', to: 'apps#edit'
+
+  # Campaigns > Apps > Databases > Requests
   resources :campaigns, except: [:show], param: :slug do
     resources :apps, except: [:show], param: :slug, path: '' do
       resources :databases, except: [:show], param: :slug, path: '' do

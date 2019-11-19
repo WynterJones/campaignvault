@@ -1,8 +1,7 @@
 <h2 class="headline-title float-left"><%= @campaign.name %></h2>
 
 <div class="webhook-options float-right clearfix mb-3">
-  <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-primary mr-2"><i class="fas fa-plus mr-1"></i> Add App</a>
-  <a href="/campaigns/<%= @campaign.slug %>/edit" class="btn btn-outline-light"><i class="fas fa-cog mr-1"></i> Edit</a>
+  <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add App'), "/new/#{@campaign.slug}/app", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
 </div>
 
 <hr>
@@ -21,21 +20,22 @@
       <% @apps.each do |app| %>
         <tr>
           <td style="font-size: 1.08em">
-            <%= image_tag("apps/#{app.name}.png", style: 'width: 15px;margin-right: 5px') %>
-            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= appSingle(app.name)['displayName'] %></a>
+            <% if ActionController::Base.helpers.resolve_asset_path("apps/#{app.slug}.png").present? %>
+              <%= image_tag("apps/#{app.slug}.png", style: 'width: 15px;margin-right: 5px') %>
+            <% end %>
+            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= app.name.titleize %></a>
           </td>
           <td class="table-total text-center">
             <%= number_to_human(Database.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>
           </td>
           <td class="text-right">
             <div class="dropdown dropleft">
-              <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= app.slug %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= app.slug %>" data-toggle="dropdown">
                 <i class="fas fa-ellipsis-v"></i>
               </a>
               <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= app.slug %>">
                 <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><i class="far fa-eye mr-1"></i> View</a>
-                <a class="dropdown-item text-muted" href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>/edit"><i class="far fa-edit mr-1"></i> Edit</a>
-                <a class="dropdown-item text-muted" href="/export?id=<%= app.id %>" download><i class="fas fa-download mr-1"></i> Export</a>
+                <a class="dropdown-item text-muted" href="/edit/<%= @campaign.slug %>/<%= app.slug %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit mr-1"></i> Edit</a>
                 <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), [@campaign, app], method: :delete, data: { confirm: 'Are you sure this will also delete all associated records?' }, class: 'dropdown-item text-muted' %>
               </div>
           </td>
