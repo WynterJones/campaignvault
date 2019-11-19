@@ -2,11 +2,8 @@
   <%= image_tag("apps/#{@app.name}.png", class: 'app-image-headline') %> <%= appSingle(@app.name)['displayName'] %>
 </h2>
 
-<div class="webhook-options float-right hide">
-  <%= form_for :database, method: :post do |form| %>
-    <%= form.text_field :name, placeholder: "Database Name", class: "form-control" %>
-    <button class="btn btn-primary">Create</button>
-  <% end %>
+<div class="webhook-options float-right">
+  <%= link_to 'Add Database', "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
 </div>
 
 <hr>
@@ -15,7 +12,7 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="table-name">Name</th>
+        <th class="table-name">Database</th>
         <th class="table-total">Rows</th>
         <th class="table-url">Webhook URL</th>
         <th class="table-total">Zapier</th>

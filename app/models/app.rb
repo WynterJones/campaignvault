@@ -4,8 +4,9 @@ class App < ApplicationRecord
   belongs_to :campaign
   before_create :update_connected
 
-  def slug=(val)
+  def name=(val)
     write_attribute(:slug, val.parameterize)
+    write_attribute(:name, val)
   end
 
   private

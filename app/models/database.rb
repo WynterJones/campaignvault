@@ -4,8 +4,9 @@ class Database < ApplicationRecord
   belongs_to :app
   before_create :update_connected
 
-  def slug=(val)
+  def name=(val)
     write_attribute(:slug, val.parameterize)
+    write_attribute(:name, val)
   end
 
   private

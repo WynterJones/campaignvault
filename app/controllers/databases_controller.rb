@@ -11,8 +11,33 @@ class DatabasesController < ApplicationController
     @databases = @app.databases.paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
+  def new
+    @database = Database.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def edit
     set_meta_tags title: 'Edit Database'
+  end
+
+  def create
+    @database = Database.new(database_params)
+    @database.app_id = @app.id
+    puts database_params
+    puts 'hey'
+    puts @database.inspect
+    respond_to do |format|
+      if @database.save
+        format.html { redirect_to '/', notice: 'Database was successfully created.' }
+        format.js { redirect_to '/', notice: 'Database was successfully created.' }
+      else
+        format.html { redirect_to '/', notice: 'Erro was successfully errorred.' }
+        format.js { redirect_to '/', notice: 'Erro was successfully created.' }
+      end
+    end
   end
 
   def update
