@@ -18,8 +18,6 @@ class SaveRequestController < ApplicationController
     end
     if data.present?
       data = data.sort_by { |key, val| key }
-      puts 'HEREEEE'
-      puts data, campaign_slug, app_slug, database_slug
       SaveRequest.perform_async(data, campaign_slug, app_slug, database_slug)
       render :json => {:status => 200}
     else
