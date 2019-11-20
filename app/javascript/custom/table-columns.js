@@ -3,7 +3,7 @@
 const tableColumns = {
 
   init: (sortable, tagifyApp) => {
-    if ($('#table_column_save_form').length > 0) {
+    if ($('#table_column_save_form').length > 0 && $('#final-table-columns').val() !== '{}' && $('#final-table-columns').val() !== '') {
       const table_columns = JSON.parse($('#final-table-columns').val())
       const all_structure = table_columns['structure']
       const all_final_keys = table_columns['keys']
@@ -81,12 +81,14 @@ const tableColumns = {
   },
 
   showAddColumn: (tagifyApp) => {
+    tableColumns.close()
     if ($('#table-update-column').length > 0) {
       $('#table-update-column').remove()
     }
     if ($('#table-new-column').length > 0) {
       $('#table-new-column').remove()
     }
+    const added_keys = $('body').attr('data-table-column-key')
     const addHTML = `<div id="table-new-column" class="card-block clearfix mb-3">
       <label>New Column</label>
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
@@ -97,6 +99,7 @@ const tableColumns = {
       </div>
     </div>`
     $('#addTableHTML').html(addHTML)
+    $('#addTableHTML').find('#table-column-key').val(added_keys)
     let whitelist_columns = []
     $('.popup-table-key').each(function() {
       if ($(this).text() != '') {
@@ -127,6 +130,10 @@ const tableColumns = {
       }
     })
     $('#table-new-column input').val('').first().focus()
+    tagify.parseMixTags($(document).find('#table-column-key').val())
+    setTimeout(function() {
+      $('body').removeAttr('data-table-column-key')
+    }, 500)
   },
 
   saveTableColumns: () => {
@@ -195,14 +202,15 @@ const tableColumns = {
     }
   },
 
-  addColumnFromData: (element) => {
+  addColumnFromData: (e, element) => {
     const key = $(element).find('.popup-table-key').text()
     const keyArray = key.split('.')
     const keyName = keyArray[keyArray.length-1].replace(/\_/g, ' ')
+    $('body').attr('data-table-column-key', `[[${key}]]`)
+    $('#popup-nav a[data-tab="popup-manage-table"]').trigger('click')
+    console.log(key, keyArray, keyName)
     $('#showAddColumn').trigger('click')
-    $('#table-column-name').val(keyName)
-    $('#table-column-key').val(`[[${key}]]`)
-    $('#add-table-column').trigger('click')
+    $('#table-column-name').val(keyName.replace(/\b\w/g, l => l.toUpperCase()))
   },
 
   saveColumnPositions: () => {

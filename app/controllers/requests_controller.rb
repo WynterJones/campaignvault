@@ -7,10 +7,11 @@ class RequestsController < ApplicationController
     @timeframe = timeframe(params[:timeframe])
     @campaign = Campaign.find_by(slug: params[:campaign_slug])
     @app = App.order(id: :desc).find_by(slug: params[:app_slug], campaign_id: @campaign.id)
-    @database = Database.order(id: :desc).find_by(slug: params[:database_slug])
+    @database = Database.order(id: :desc).find_by(slug: params[:database_slug], app_id: @app.id)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).group_by_day(:created_at).count
-    @table_columns = JSON.parse(@database.table_columns)
+    @request_count = Request.where(database_id: @database.id).count
 
+    puts @request_count, 'hey!'
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
     breadcrumb @app.name.titleize, "/campaigns/#{@campaign.slug}/#{@app.slug}"
     breadcrumb @database.name, ''
@@ -27,7 +28,7 @@ class RequestsController < ApplicationController
       @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)
     end
 
-    buildTable(@database, @settings)
+    buildTable(@database, @settings, @requests, @request_count)
   end
 
   def delete

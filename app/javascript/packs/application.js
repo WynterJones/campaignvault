@@ -15,11 +15,11 @@ const apps = require("custom/apps")
 const appPopup = require("custom/app-popup")
 const mobileSidebar = require("custom/mobile-sidebar")
 const tableControls = require("custom/table-controls")
+const tableColumns = require("custom/table-columns")
+const paramPicker = require("custom/param-pickers")
 import Sortable from 'sortablejs'
 import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
-const tableColumns = require("custom/table-columns")
-const paramPicker = require("custom/param-pickers")
 
 $(document).on('turbolinks:load', () => {
   const is_root = location.pathname == "/"
@@ -77,7 +77,7 @@ $(document).on('turbolinks:load', () => {
 
   // Table columns
   tableColumns.init(Sortable, Tagify)
-  $(document).on('click', '.table-row-info', function(e) { tableColumns.addColumnFromData(this) })
+  $(document).on('click', '.table-row-info', function(e) { tableColumns.addColumnFromData(e, this) })
   $(document).on('click', '#close-table-column', function(e) { tableColumns.close(e) })
   $(document).on('click', '#add-table-column', function(e) { tableColumns.add(e) })
   $(document).on('click', '#update-table-column', function(e) { tableColumns.update(e, this, Sortable) })

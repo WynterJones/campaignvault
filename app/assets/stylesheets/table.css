@@ -87,6 +87,11 @@
   border-radius: 5px;
 }
 
+.table-simple thead th.select-checkbox {
+  width: 45px !important;
+  max-width: 45px !important;
+}
+
 .table-column-badge {
   font-size: 15px;
   background: #fafafa;

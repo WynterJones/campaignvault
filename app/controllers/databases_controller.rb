@@ -8,7 +8,7 @@ class DatabasesController < ApplicationController
     breadcrumb @campaign.name, campaign_path(@campaign.slug)
     breadcrumb @app.name.capitalize, ''
     set_meta_tags title: "#{@app.name.capitalize} Databases"
-    @databases = @app.databases.paginate(page: params[:page], per_page: params[:per_page] || 25)
+    @databases = @app.databases.order(id: :asc).paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
   def new
@@ -44,7 +44,7 @@ class DatabasesController < ApplicationController
     @campaign = Campaign.find(params[:campaign_slug])
     @app = App.find_by(id: params[:app_slug], campaign_id: @campaign.id)
     @database = Database.find_by(id: params[:slug], app_id: @app.id)
-    url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
+    url = "/campaigns/#{@campaign.slug}/#{@app.slug}/#{@database.slug}"
     respond_to do |format|
       if @database.update(database_params)
         format.html { redirect_to url, notice: 'Database was successfully updated.' }

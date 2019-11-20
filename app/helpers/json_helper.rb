@@ -37,8 +37,8 @@ module JsonHelper
             end
           end
           output += "<div class='table-row-info #{is_active}'>
-                      <strong class='popup-table-key'>#{key}</strong>
                       <span class='popup-table-value text-truncate'>#{value}</span>
+                      <strong class='popup-table-key'>#{key}</strong>
                     </div>"
         end
       end

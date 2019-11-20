@@ -20,6 +20,7 @@
 <%= will_paginate @requests, class: 'table_pagination mt-3 mb-3' %>
 
 <%= render 'shared/table_columns' %>
+
 <%= form_for '/delete_requests', html: {id: 'delete-requests', class: 'hide'} do |form| %>
   <input type="text" name="delete_ids" />
   <input type="text" name="redirect" value="<%= request.url %>" />
