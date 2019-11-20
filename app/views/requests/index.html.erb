@@ -14,6 +14,14 @@
 <hr />
 
 <div id="animate-wrapper">
+  <div class="row mb-3">
+    <div class="col-md-3">
+      <%= render(StatisticComponent, name: 'Rows', total: '0', max_total: '0') %>
+    </div>
+    <div class="col-md-3">
+      <a href="#" class="btn btn-outline-light"><i class="fas fa-plus mr-0"></i></a>
+    </div>
+  </div>
   <%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>
   <%= render 'shared/table_controls' %>
 
