@@ -98,6 +98,17 @@ a {
   font-size: 0.9em
 }
 
+.text-large {
+  font-size: 1.1em !important;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
 .add-column-wrapper {
   width: 100%;
 }

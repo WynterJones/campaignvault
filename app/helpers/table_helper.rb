@@ -8,24 +8,20 @@ module TableHelper
       @structure = @table_columns['structure']
       @column_keys = @table_columns['keys']
       builder(@structure, @column_keys, requests, settings)
-    elsif @table_columns['structure'].nil?
+    else
       data = JSON.parse(requests.first.data)
       structure = []
       column_keys = []
-      if data.length > 4
-        counter = 0
-        data.each do |value|
-          if counter < 4 && value[0].present? && value[1].present?
-            counter += 1
-            value = value[0].dup
-            structure.push(value.gsub('_', ' '))
-            column_keys.push("[[#{value}]]")
-          end
+      counter = 0
+      data.each do |value|
+        if counter < 4 && value[0].present? && value[1].present?
+          counter += 1
+          value = value[0].dup
+          structure.push(value.gsub('_', ' '))
+          column_keys.push("[[#{value}]]")
         end
       end
       builder(structure, column_keys, requests, settings)
-    else
-      @results = '<p class="text-muted table-no-data">No table columns are setup yet.</p>'
     end
   end
 
@@ -33,7 +29,7 @@ module TableHelper
     @thead = "<div class='table-simple scrollable'><table class='table datatables'>"
     @thead += "<thead><tr class='text-small'><th></th><th class='hide'></th>"
     structure.each do |structure|
-      @thead += "<th>#{structure.strip}</th>"
+      @thead += "<th><span class='text-truncate'>#{structure.strip}</span></th>"
     end
     @thead += '</tr></thead>'
     @tbody = '<tbody>'
@@ -51,7 +47,7 @@ module TableHelper
           column_data = column_data.gsub(value, "#{requestBody["#{value.gsub('[[', '').gsub(']]', '')}"]}")
         end
         if column_data != ''
-          @tbody += "<td>#{column_data}</td>"
+          @tbody += "<td><span class='text-truncate'>#{column_data}</span></td>"
         else
           @tbody += "<td><span class='blank-td'></span></td>"
         end

@@ -39,6 +39,7 @@ module JsonHelper
           output += "<div class='table-row-info #{is_active}'>
                       <span class='popup-table-value text-truncate'>#{value}</span>
                       <strong class='popup-table-key'>#{key}</strong>
+                      <i class='fas fa-plus-square add_column_icon'></i>
                     </div>"
         end
       end

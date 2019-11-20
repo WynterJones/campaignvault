@@ -69,7 +69,6 @@
 #row-data-popup {
   height: calc(100vh - 50px);
   overflow-y: scroll;
-  padding: 15px;
 }
 
 #popup-manage-table {
@@ -90,23 +89,39 @@
 }
 
 .table-row-info {
-  border: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   padding: 15px;
+  padding-right: 45px;
   font-size: 0.9em;
-  cursor: pointer
+  cursor: pointer;
+  position: relative
 }
 
 .table-row-info:hover {
   background: #fafafa;
-  border: 1px solid #d2d6dd;
-  border-radius: 4px;
+  border-top: 1px solid #d2d6dd;
+  border-bottom: 1px solid #d2d6dd;
+}
+
+.add_column_icon {
+  display: none;
+  position: absolute;
+  top: 23px;
+  right: 15px;
+  font-size: 2em;
+  color: #607aa0;
+}
+
+.table-row-info:hover .add_column_icon {
+  display: block;
 }
 
 .table-row-info strong {
   font-weight: 500;
   display: block;
   color: #607aa0;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 #popup-manage-table label {
@@ -116,7 +131,14 @@
   font-size: 0.9em
 }
 
+.edit-column-badge {
+  font-size: 1.2em;
+  padding-top: 7px;
+  display: block;
+}
+
 .table-row-info span {
   display: block;
-  width: 100%
+  width: 100%;
+  font-size: 1.1em
 }

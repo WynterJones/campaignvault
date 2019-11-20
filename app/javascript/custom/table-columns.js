@@ -3,7 +3,7 @@
 const tableColumns = {
 
   init: (sortable, tagifyApp) => {
-    if ($('#table_column_save_form').length > 0 && $('#final-table-columns').val() !== '{}' && $('#final-table-columns').val() !== '') {
+    if ($('#table_column_save_form').length > 0 && $('#final-table-columns').val() !== '' && $('#final-table-columns').val() !== '{}' && $('#final-table-columns').val() !== '{"structure":[],"keys":[]}') {
       const table_columns = JSON.parse($('#final-table-columns').val())
       const all_structure = table_columns['structure']
       const all_final_keys = table_columns['keys']
@@ -19,13 +19,14 @@ const tableColumns = {
       sortable.create(document.getElementById('table-column-list'), {
         handle: '.column-grip',
         onMove: function () {
-          $('#table-update-column').remove()
-          $('#table-new-column').remove()
+          tableColumns.close()
         },
         onUpdate: function(evt) {
       		tableColumns.saveColumnPositions()
       	}
       })
+    } else {
+      $('#table-column-list').html('<div class="card-block" id="table_columns_explainer"><h5>Setup Table Columns</h5><p class="text-muted text-small mb-0">You can add custom table columns to show the data you want. Click new and add tags by using "#" to search. You can also click on a piece of data in the Row Data panel.</p></div>')
     }
   },
 
@@ -47,6 +48,7 @@ const tableColumns = {
       $('#table-column-list .table-column-badge').last().find('#hidden-keys').val(JSON.stringify(taggedKeys))
       $('#table-new-column').hide()
       $('.tagify__input').html('')
+      $('#table_columns_explainer').remove()
     }
   },
 
@@ -78,6 +80,7 @@ const tableColumns = {
 
   close: () => {
     $('#table-new-column, #table-update-column').remove()
+    $('.table-column-badge').removeAttr('style')
   },
 
   showAddColumn: (tagifyApp) => {
@@ -90,10 +93,10 @@ const tableColumns = {
     }
     const added_keys = $('body').attr('data-table-column-key')
     const addHTML = `<div id="table-new-column" class="card-block clearfix mb-3">
-      <label>New Column</label>
+      <span class="text-large mb-2 d-block font-weight-bold">New Column</span>
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
-      <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key"></textarea>
-      <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
+      <textarea id="table-column-key" type="text" class="tagifier mb-3" placeholder="Key"></textarea>
+      <a href="#" class="btn btn-sm btn-secondary" id="close-table-column">Cancel</a>
       <div class="float-right">
         <a href="#" class="btn btn-sm btn-warning" id="add-table-column">Add</a>
       </div>
@@ -141,6 +144,8 @@ const tableColumns = {
   },
 
   editTableColumn: (element, tagifyApp) => {
+    $('.table-column-badge').removeAttr('style')
+    $(element).attr('style', 'background: #f2f3f8;border-bottom-left-radius: 0;border-bottom-right-radius: 0;')
     if ($('#table-update-column').length > 0) {
       $('#table-update-column').remove()
     }
@@ -149,11 +154,10 @@ const tableColumns = {
     }
     const index = $(element).index()
     const cloned = $('#table-new-column').clone()
-    const updateHTML = `<div id="table-update-column" class="card-block clearfix mb-3"  style="margin-top: -10px;z-index: 2">
-      <label>Edit Column</label>
+    const updateHTML = `<div id="table-update-column" class="card-block clearfix mb-3"  style="margin-top: -11px;border-top-left-radius:0;border-top-right-radius:0;z-index: 2">
       <input id="table-column-name" type="text" class="form-control mb-2" placeholder="Title">
-      <textarea id="table-column-key" type="text" class="tagifier mb-2" placeholder="Key">${$(element).find('#hidden-key').val()}</textarea>
-      <a href="#" class="btn btn-sm btn-outline-light" id="close-table-column">Cancel</a>
+      <textarea id="table-column-key" type="text" class="tagifier mb-3" placeholder="Key">${$(element).find('#hidden-key').val()}</textarea>
+      <a href="#" class="btn btn-sm btn-secondary" id="close-table-column">Cancel</a>
       <div class="float-right">
         <a href="#" class="btn btn-sm btn-warning" id="update-table-column">Update</a>
       </div>
@@ -253,8 +257,6 @@ const tableColumns = {
       </div>
       <i class="fas fa-times delete-column-badge"></i>
       <span class="edit-column-badge">${title}</span>
-      <br />
-      <small style="text-transform: lowercase">${key}</small>
     </span>`
   },
 

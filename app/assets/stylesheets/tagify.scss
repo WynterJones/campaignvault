@@ -61,7 +61,7 @@
     }
 
     @keyframes tags--bump{
-        30% { transform: scale(1.2); }
+        // 30% { transform: scale(1.2); }
     }
 
     display       : flex;
@@ -187,9 +187,9 @@
         &:hover:not([readonly]){
             div{  // :not([contenteditable])
                 &::before{
-                    $size: -$tagMargin/2;
-                    $size: -2px;
-                    top:$size; right:$size; bottom:$size; left:$size;
+                    // $size: -$tagMargin/2;
+                    // $size: -2px;
+                    // top:$size; right:$size; bottom:$size; left:$size;
                     // box-shadow: 0 0 0 $tag-inset-shadow-size $tag-hover inset;
                     // box-shadow: 0 0 0 var(--tag-inset-shadow-size) var(--tag-hover) inset;
                   //  box-shadow: 0 0 0 0 $tag-remove inset

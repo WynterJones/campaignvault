@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(database_id: @database.id).where("body ILIKE ?", "%#{@search}%")
+      @requests = all_requests.where(database_id: @database.id).where("data ILIKE ?", "%#{@search}%")
       @search_count = number_with_delimiter(@requests.count)
     else
       @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)

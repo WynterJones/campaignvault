@@ -23,7 +23,7 @@ class ExportController < ApplicationController
       csv << headers
 
       requests.each do |request|
-        selected = JSON.parse(request.body)
+        selected = JSON.parse(request.data)
 
         column_keys.each do |column_key|
           value = selected["#{column_key.strip}"]
