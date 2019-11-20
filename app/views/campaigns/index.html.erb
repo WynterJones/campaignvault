@@ -6,39 +6,43 @@
   Create a Campaign
 <% end %>
 
-<% @campaigns.each do |campaign| %>
-  <div class="card-block card-campaign-item mb-2">
-    <div class="row">
-      <div class="col-md-5">
-        <span class="text-muted">Name</span>
-        <p><a href="/campaigns/<%= campaign.slug %>"><%= campaign.name.titleize %></a></p>
-      </div>
-      <div class="col-md-4">
-        <span class="text-muted">Updated</span>
-        <p class="text-small text-muted pt-1"><%= time_ago_in_words(campaign.created_at).capitalize %> ago</p>
-      </div>
-      <div class="col-md-1">
-        <span class="text-muted">Apps</span>
-        <p><%= number_to_human(App.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
-      </div>
-      <div class="col-md-1">
-        <span class="text-muted">Databases</span>
-        <p><%= number_to_human(App.includes(:databases).find_by(campaign_id: campaign.id).databases.count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
-      </div>
-      <div class="col-md-1 text-right">
-        <div class="dropdown dropleft">
-          <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= campaign.slug %>" data-toggle="dropdown">
-            <i class="fas fa-ellipsis-v"></i>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= campaign.slug %>">
-            <a class="dropdown-item text-muted" href="/campaigns/<%= campaign.slug %>"><i class="far fa-eye mr-1"></i> View</a>
-            <a class="dropdown-item text-muted" href="/edit/<%= campaign.slug %>/campaign"  data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit mr-1"></i> Edit</a>
-            <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), campaign, method: :delete, data: { confirm: 'Are you sure this will also delete all associated apps and records?' }, class: 'dropdown-item text-muted' %>
+<div class="row" id="animate-wrapper">
+  <% @campaigns.each do |campaign| %>
+    <div class="col-md-12">
+      <div class="card-block card-campaign-item mb-2">
+        <div class="row">
+          <div class="col-md-5">
+            <span class="text-muted">Name</span>
+            <p><a href="/campaigns/<%= campaign.slug %>"><%= campaign.name.titleize %></a></p>
+          </div>
+          <div class="col-md-4">
+            <span class="text-muted">Updated</span>
+            <p class="text-small text-muted pt-1"><%= time_ago_in_words(campaign.created_at).capitalize %> ago</p>
+          </div>
+          <div class="col-md-1">
+            <span class="text-muted">Apps</span>
+            <p><%= number_to_human(App.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
+          </div>
+          <div class="col-md-1">
+            <span class="text-muted">Databases</span>
+            <p><%= number_to_human(App.includes(:databases).find_by(campaign_id: campaign.id).databases.count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
+          </div>
+          <div class="col-md-1 text-right">
+            <div class="dropdown dropleft">
+              <a href="#" role="button" class="dotted-menu" id="campaign-edit-list-<%= campaign.slug %>" data-toggle="dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="campaign-edit-list-<%= campaign.slug %>">
+                <a class="dropdown-item text-muted" href="/campaigns/<%= campaign.slug %>"><i class="far fa-eye mr-1"></i> View</a>
+                <a class="dropdown-item text-muted" href="/edit/<%= campaign.slug %>/campaign"  data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit mr-1"></i> Edit</a>
+                <%= link_to raw('<i class="far fa-trash-alt mr-1"></i> Delete'), campaign, method: :delete, data: { confirm: 'Are you sure this will also delete all associated apps and records?' }, class: 'dropdown-item text-muted' %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <%= will_paginate @campaigns, class: 'table_pagination mt-3 mb-3' %>

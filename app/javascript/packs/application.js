@@ -7,6 +7,8 @@ require("chartkick")
 require("chart.js")
 require("custom/notifications")
 
+var turbolinksAnimate = require("turbolinks-animate")
+
 // Custom
 const components = require("custom/components")
 const search = require("custom/search")
@@ -22,6 +24,8 @@ import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
 
 $(document).on('turbolinks:load', () => {
+  TurbolinksAnimate.init({ element: $('#animate-wrapper')[0], animation: 'fadein' })
+
   const is_root = location.pathname == "/"
 
   if (is_root) {

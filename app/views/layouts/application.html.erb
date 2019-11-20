@@ -11,10 +11,10 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
+  <body >
 
     <%= render 'shared/header' %>
-    <main class="container" role="main">
+    <main id="app-wrapper" class="container" role="main">
       <nav aria-label="breadcrumb">
         <ol class='breadcrumb'>
           <% counter = 0 %>

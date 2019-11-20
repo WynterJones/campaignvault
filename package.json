@@ -13,7 +13,8 @@
     "countup.js": "^2.0.4",
     "jquery": "^3.4.1",
     "sortablejs": "^1.10.1",
-    "turbolinks": "^5.2.0"
+    "turbolinks": "^5.2.0",
+    "turbolinks-animate": "^3.2.1"
   },
   "version": "0.1.0",
   "devDependencies": {
