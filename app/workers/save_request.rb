@@ -13,12 +13,13 @@ class SaveRequest
           newhash[newvalue] = value[1]
         end
       end
-      Request.create(data: newhash.to_json, database_id: database.id)
       campaign = Campaign.find_by_slug(campaign_slug)
       app = App.find_by(campaign_id: campaign.id)
-      if app.connected == false
-        app.connected = true
-        app.save
+      database = Database.find_by(app_id: app.id, slug: database_slug)
+      Request.create(data: newhash.to_json, database_id: database.id)
+      if database.connected == false
+        database.connected = true
+        database.save
       end
     else
       puts 'Error: Output from request was blank!'

@@ -4,86 +4,20 @@
       "name": "aweber",
       "displayName": "AWeber",
       "zapierAPI": "AWeberAPI",
-      "table_columns": {
-        "structure": "Name,Email,Country,City",
-        "keys": "name,email,country,city"
-      },
-      "databases": [
-        "charges",
-        "customers"
-      ]
+      "databases": []
     },
     {
       "name": "mailchimp",
       "displayName": "MailChimp",
       "zapierAPI": "MailchimpCLIAPI@1.2.1",
-      "table_columns": {
-        "structure": "First Name,Last Name,Email",
-        "keys": "merges.FNAME,merges.LNAME,email"
-      }
+      "databases": []
     },
     {
       "name": "stripe",
       "displayName": "Stripe",
       "zapierAPI": "StripeAPI",
-      "table_columns": {
-        "structure": "Email,Amount,Currency,Status",
-        "keys": "[[cust.email]],[[transaction.amount]],[[transaction.currency]],[[transaction.status]]"
-      }
-    },
-    {
-      "name": "recurly",
-      "displayName": "Recurly",
-      "zapierAPI": "RecurlyAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
-    },
-    {
-      "name": "paypal",
-      "displayName": "PayPal",
-      "zapierAPI": "PayPalAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
-    },
-    {
-      "name": "gotowebinar",
-      "displayName": "GoToWebinar",
-      "zapierAPI": "GoToWebinarAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
-    },
-    {
-      "name": "shopify",
-      "displayName": "Shopify",
-      "zapierAPI": "ShopifyAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
-    },
-    {
-      "name": "salesforce",
-      "displayName": "Salesforce",
-      "zapierAPI": "SalesforceAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
-    },
-    {
-      "name": "airtable",
-      "displayName": "Airtable",
-      "zapierAPI": "AirtableDevAPI",
-      "table_columns": {
-        "structure": "",
-        "keys": ""
-      }
+      "databases": ["Charges", "Customers", "Refunds", "Coupons", "Events", "Plans", "Invoices", "Invoice Item", "Orders"],
+      "databaseInfo": ["Triggers when someone's credit card is charged."]
     }
   ]
 }

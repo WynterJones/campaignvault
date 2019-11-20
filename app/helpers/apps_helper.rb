@@ -12,4 +12,13 @@ module AppsHelper
       return 'Unknown'
     end
   end
+
+  def all_apps_as_options()
+    data = appsJSON()['apps']
+    options = ''
+    data.each do |value|
+      options += "<option value='#{value['displayName']}' data-zapierapi='#{value['zapierAPI']}' data-dbs='#{value['databases']}'>#{value['displayName']}</option>"
+    end
+    return options.html_safe
+  end
 end

@@ -33,6 +33,10 @@ class AppsController < ApplicationController
     url = "/campaigns/#{@campaign.slug}"
     respond_to do |format|
       if @app.save
+        databases = params[:db_list].split(',')
+        databases.each do |database|
+          Database.create(app_id: @app.id, name: database, slug: database.parameterize)
+        end
         format.html { redirect_to url, notice: 'App was successfully created.' }
       else
         format.html { redirect_to url, error: 'Error: App was not created.' }
@@ -76,6 +80,6 @@ class AppsController < ApplicationController
     end
 
     def app_params
-      params.require(:app).permit(:name)
+      params.require(:app).permit(:name, :zapierapi)
     end
 end

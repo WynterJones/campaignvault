@@ -22,8 +22,28 @@
           <% end %>
 
           <div class="col-md-12">
-            <%= form.label :name %>
-            <%= form.text_field :name, class: 'form-control', autocomplete: 'off', required: true, autofocus: true %>
+            <select id="new_select_an_app" class="form-control">
+              <option disabled selected value> -- Select an App -- </option>
+              <%= all_apps_as_options() %>
+              <option value="custom">Custom</option>
+            </select>
+
+            <div id="apps_database_list" class="card-block mt-3 hide">
+              <h4>
+                <% if ActionController::Base.helpers.resolve_asset_path("apps/stripe.png").present? %>
+                  <%= image_tag("apps/stripe.png", style: 'width: 30px;margin-right: 5px;') %>
+                <% end %>
+                <strong class="change_app_name">Stripe</strong>
+              </h4>
+              <p class="text-muted mb-2 mt-3"><strong><span class="change_app_name">Stripe</span> collects <span id="change_app_count">0</span> types of data:</strong></p>
+              <ul id="change_app_db_list" class="mb-0 text-muted"></ul>
+            </div>
+          </div>
+
+          <div id="new-app-options">
+            <%= form.text_field :name, class: 'form-control', autocomplete: 'off', required: true %>
+            <%= form.text_field :zapierapi, class: 'form-control', autocomplete: 'off', required: true %>
+            <input type="text" name="db_list" id="app_db_list" />
           </div>
         </div>
       </div>

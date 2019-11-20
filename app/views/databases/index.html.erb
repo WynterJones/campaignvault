@@ -38,7 +38,7 @@
             <% if database.connected.present? %>
               <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="color: #a6ca46"></i></strong>
             <% else %>
-              <a href="https://zapier.com/zapbook/create/<%# appSingle(database.name)['zapierAPI'] %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
+              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier btn-block">Connect</a>
             <% end %>
           </td>
           <td class="text-right">
