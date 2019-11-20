@@ -13,7 +13,7 @@ class RequestsController < ApplicationController
 
     puts @request_count, 'hey!'
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
-    breadcrumb @app.name.titleize, "/campaigns/#{@campaign.slug}/#{@app.slug}"
+    breadcrumb @app.name, "/campaigns/#{@campaign.slug}/#{@app.slug}"
     breadcrumb @database.name, ''
 
     set_meta_tags title: "#{@app.name.titleize} in #{@campaign.name}"

@@ -8,7 +8,7 @@ class AppsController < ApplicationController
     set_meta_tags title: @campaign.name
     breadcrumb 'Campaigns', '/campaigns'
     breadcrumb @campaign.name, campaign_path(@campaign.slug)
-    @apps = @campaign.apps.paginate(page: params[:page], per_page: params[:per_page] || 25)
+    @apps = @campaign.apps.order(updated_at: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
   def new

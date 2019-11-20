@@ -31,7 +31,7 @@
             <div id="apps_database_list" class="card-block mt-3 hide">
               <h4>
                 <% if ActionController::Base.helpers.resolve_asset_path("apps/stripe.png").present? %>
-                  <%= image_tag("apps/stripe.png", style: 'width: 30px;margin-right: 5px;') %>
+                  <%= image_tag("apps/stripe.png", class: 'app-image-headline', style: 'width: 30px;margin-right: 5px;') %>
                 <% end %>
                 <strong class="change_app_name">Stripe</strong>
               </h4>

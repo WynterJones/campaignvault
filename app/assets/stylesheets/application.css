@@ -95,7 +95,7 @@ a {
 }
 
 .text-small {
-  font-size: 0.9em
+  font-size: 0.9em !important;
 }
 
 .text-large {
@@ -241,7 +241,7 @@ form label {
 
 .card-select-app p {
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 1em;
   padding-top: 5px
 }
 
@@ -252,7 +252,8 @@ form label {
 }
 
 .card-campaign-item p {
-  margin: 0
+  margin: 0;
+  font-size: 1.1em;
 }
 
 .badge-light {
