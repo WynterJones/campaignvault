@@ -35,12 +35,12 @@
                 <% end %>
                 <strong class="change_app_name">Stripe</strong>
               </h4>
-              <p class="text-muted mb-2 mt-3"><strong><span class="change_app_name">Stripe</span> collects <span id="change_app_count">0</span> types of data:</strong></p>
+              <p class="text-muted mb-2 mt-3"><strong><span class="change_app_name">Stripe</span> can collect <span id="change_app_count">0</span> types of data:</strong></p>
               <ul id="change_app_db_list" class="mb-0 text-muted"></ul>
             </div>
           </div>
 
-          <div id="new-app-options">
+          <div id="new-app-options" class="hide">
             <%= form.text_field :name, class: 'form-control', autocomplete: 'off', required: true %>
             <%= form.text_field :zapierapi, class: 'form-control', autocomplete: 'off', required: true %>
             <input type="text" name="db_list" id="app_db_list" />

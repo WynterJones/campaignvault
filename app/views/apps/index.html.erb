@@ -23,7 +23,7 @@
             <% if ActionController::Base.helpers.resolve_asset_path("apps/#{app.slug}.png").present? %>
               <%= image_tag("apps/#{app.slug}.png", style: 'width: 15px;margin-right: 5px') %>
             <% end %>
-            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= app.name.titleize %></a>
+            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= app.name %></a>
           </td>
           <td class="table-total text-center">
             <%= number_to_human(Database.where(app_id: app.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>

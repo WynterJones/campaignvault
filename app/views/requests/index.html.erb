@@ -2,8 +2,8 @@
   <% if ActionController::Base.helpers.resolve_asset_path("apps/#{@app.slug}.png").present? %>
     <%= image_tag("apps/#{@app.slug}.png", class: 'app-image-headline') %>
   <% end %>
-  <%= @app.name.titleize %>
-  <small class="text-muted"><%= @database.name %></small>
+  <%= @app.name %>
+  <small class="text-muted"><%= @database.name.titleize %></small>
 </h2>
 
 <div class="webhook-options clearfix">

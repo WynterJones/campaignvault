@@ -13,10 +13,13 @@ class SaveRequestController < ApplicationController
       params.delete :slug
       params.delete :campaign
       params.delete :app
+      params.delete :database
       data = params.to_enum.to_h
     end
     if data.present?
       data = data.sort_by { |key, val| key }
+      puts 'HEREEEE'
+      puts data, campaign_slug, app_slug, database_slug
       SaveRequest.perform_async(data, campaign_slug, app_slug, database_slug)
       render :json => {:status => 200}
     else

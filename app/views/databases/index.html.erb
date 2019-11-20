@@ -2,7 +2,7 @@
   <% if ActionController::Base.helpers.resolve_asset_path("apps/#{@app.slug}.png").present? %>
     <%= image_tag("apps/#{@app.slug}.png", class: 'app-image-headline') %>
   <% end %>
-  <%= @app.name.titleize %>
+  <%= @app.name %>
 </h2>
 
 <div class="webhook-options float-right">
@@ -26,7 +26,7 @@
       <% @databases.each do |database| %>
         <tr>
           <td style="font-size: 1.08em">
-            <a href="/campaigns/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>"><%= database.name %></a>
+            <a href="/campaigns/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>"><%= database.name.titleize %></a>
           </td>
           <td class="table-total text-center">
             <%= number_to_human(Request.where(database_id: database.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %>

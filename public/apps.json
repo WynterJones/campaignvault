@@ -4,20 +4,19 @@
       "name": "aweber",
       "displayName": "AWeber",
       "zapierAPI": "AWeberAPI",
-      "databases": []
+      "databases": ["Subscriber", "Field", "Account", "List"]
     },
     {
       "name": "mailchimp",
       "displayName": "MailChimp",
       "zapierAPI": "MailchimpCLIAPI@1.2.1",
-      "databases": []
+      "databases": ["Subscribers", "Unsubscribers", "Subscribers with Tag", "Audiences", "Campaigns"]
     },
     {
       "name": "stripe",
       "displayName": "Stripe",
       "zapierAPI": "StripeAPI",
-      "databases": ["Charges", "Customers", "Refunds", "Coupons", "Events", "Plans", "Invoices", "Invoice Item", "Orders"],
-      "databaseInfo": ["Triggers when someone's credit card is charged."]
+      "databases": ["Charges", "Customers", "Refunds", "Coupons", "Events", "Plans", "Invoices", "Invoice Item", "Orders"]
     }
   ]
 }
