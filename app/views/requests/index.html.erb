@@ -13,11 +13,13 @@
 
 <hr />
 
-<%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>
-<%= render 'shared/table_controls' %>
+<div id="animate-wrapper">
+  <%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>
+  <%= render 'shared/table_controls' %>
 
-<%= @results.html_safe %>
-<%= will_paginate @requests, class: 'table_pagination mt-3 mb-3' %>
+  <%= @results.html_safe %>
+  <%= will_paginate @requests, class: 'table_pagination mt-3 mb-3' %>
+</div>
 
 <%= render 'shared/table_columns' %>
 
