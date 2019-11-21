@@ -21,4 +21,16 @@ module ApplicationHelper
     end
     return output
   end
+
+  def is_integer?
+    self.to_i.to_s == self
+  end
+
+  def is_numeric?(i)
+    i.to_i.to_s == i || i.to_f.to_s == i
+  end
+
+  def is_float?(object)
+    true if Float(object) rescue false
+  end
 end

@@ -44,7 +44,7 @@ $(document).on('turbolinks:load', () => {
 
   // Totals
   $(document).on('change', '#types_of_totals', function() { totalManager.changeType(this) })
-  $(document).on('change', '#total-manager input', function() { totalManager.changeValue(this) })
+  $(document).on('click', '#saveNewTotal', function(e) { totalManager.saveValue(e, this) })
 
   // New App
   $(document).on('change', '#new_select_an_app', function() { apps.newSelector(this) })

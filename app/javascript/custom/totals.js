@@ -8,34 +8,31 @@ const totals = {
     $(`#total-manager .card-block[data-type="${type}"]`).show()
   },
 
-  changeValue: (element) => {
+  saveValue: () => {
+    const type = $('#types_of_totals').val()
+    let newStat = ''
     let stats = $('#database_stats').val()
     if (stats == '{}') {
       stats = { "stats": [] }
     } else {
       stats = JSON.parse(stats)
     }
-    const statCount = stats['stats'].length
-    const type = $(element).attr('data-type')
-    const name = $(element).attr('data-name')
-    const value = $(element).val()
-    let newTotal = ''
-    console.log(statCount)
     if (type == 'sum') {
-      newTotal = { "type": type, "column": value }
-      if (statCount == 0) {
-        stats['stats'].push(newTotal)
-      } else {
-        stats['stats'][(statCount - 1)] = newTotal
-      }
+      const column = $('[data-type="sum"][data-name="column"]').val()
+      const title = $('[data-type="sum"][data-name="title"]').val()
+      newStat = { "type": type, "column": column, "title": title }
     }
-    else if (type == 'countMatch') {
-      
+    else if (type == 'match') {
+      const column = $('[data-type="match"][data-name="column"]').val()
+      const title = $('[data-type="match"][data-name="title"]').val()
+      const string = $('[data-type="match"][data-name="string"]').val()
+      newStat = { "type": type, "column": column, "match": string, "title": title }
     }
-    else if (type == 'countContains') {
-
+    if (newStat != '') {
+      stats['stats'].push(newStat)
     }
     $('#database_stats').val(JSON.stringify(stats))
+    $('.modal-content form').submit()
   }
 
 }

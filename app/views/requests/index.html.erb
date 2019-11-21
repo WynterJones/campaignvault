@@ -14,17 +14,23 @@
 <hr />
 
 <div id="animate-wrapper">
-  <div class="row mb-3">
-    <div class="col-md-3">
-      <%= render(StatisticComponent, name: 'Rows', total: number_with_delimiter(@requests.count)) %>
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <%= render(StatisticComponent, name: 'Total Rows', total: number_with_delimiter(@requests.count)) %>
     </div>
 
     <% @stats['stats'].each do |value| %>
-      <div class="col-md-3">
-        <%= render(StatisticComponent, name: "#{value['type'].titleize} of #{value['column'].titleize}", total: "#{number_with_delimiter(Request.where(database_id: @database.id).pluck("data->>'#{value['column']}'").map(&:to_f).reduce(:+))}") %>
+      <div class="col-md-3 mb-3">
+        <% if value['type'] == 'sum' %>
+          <%= render(StatisticComponent, name: value['title'].titleize, total: "#{Request.where(database_id: @database.id).pluck(Arel.sql("data->>'#{value['column']}'")).map(&:to_f).reduce(:+)}") %>
+        <% end %>
+
+        <% if value['type'] == 'match' %>
+          <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}") %>
+        <% end %>
       </div>
     <% end %>
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <%= link_to raw('<i class="fas fa-plus mr-0"></i>'), "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}", remote: true, class: 'btn btn-outline-light', 'data-toggle':  "modal", 'data-target': '#modal-window'  %>
     </div>
   </div>

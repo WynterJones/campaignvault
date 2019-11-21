@@ -22,11 +22,14 @@ class RequestsController < ApplicationController
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(database_id: @database.id).where("data#>> '{amount}' = ?", @search) # todo: fix
-      @search_count = number_with_delimiter(@requests.count)
+      # TODO FIX
+      @requests = Request.where(database_id: @database.id).where(Arel.sql("data->>'currency' = '#{@search}'")).paginate(page: params[:page], per_page: params[:per_page] || 25)
+      @search_count = Request.where(database_id: @database.id).where(Arel.sql("data->>'currency' = '#{@search}'")).count
     else
       @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)
     end
+
+    puts @requests.inspect
 
     buildTable(@database, @settings, @requests, @request_count)
   end
@@ -42,6 +45,8 @@ class RequestsController < ApplicationController
     @campaign = Campaign.find_by(slug: params[:campaign_slug])
     @app = App.find_by(slug: params[:app_slug], campaign_id: @campaign.id)
     @database = Database.find_by(slug: params[:database_slug], app_id: @app.id)
+    @request = Request.where(database_id: @database.id).select(:data).first
+    @stats = JSON.parse(@database.stats)
     respond_to do |format|
       format.html
       format.js
