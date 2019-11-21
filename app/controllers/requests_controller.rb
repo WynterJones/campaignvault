@@ -6,12 +6,12 @@ class RequestsController < ApplicationController
     @settings = Setting.find_by_user_id(current_user.id)
     @timeframe = timeframe(params[:timeframe])
     @campaign = Campaign.find_by(slug: params[:campaign_slug])
-    @app = App.order(id: :desc).find_by(slug: params[:app_slug], campaign_id: @campaign.id)
-    @database = Database.order(id: :desc).find_by(slug: params[:database_slug], app_id: @app.id)
+    @app = App.find_by(slug: params[:app_slug], campaign_id: @campaign.id)
+    @database = Database.find_by(slug: params[:database_slug], app_id: @app.id)
+    @stats = JSON.parse(@database.stats)
     @request_activity = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).group_by_day(:created_at).count
     @request_count = Request.where(database_id: @database.id).count
 
-    puts @request_count, 'hey!'
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"
     breadcrumb @app.name, "/campaigns/#{@campaign.slug}/#{@app.slug}"
     breadcrumb @database.name, ''
@@ -22,7 +22,7 @@ class RequestsController < ApplicationController
     all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(database_id: @database.id).where("data ILIKE ?", "%#{@search}%")
+      @requests = all_requests.where(database_id: @database.id).where("data#>> '{amount}' = ?", @search) # todo: fix
       @search_count = number_with_delimiter(@requests.count)
     else
       @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)
@@ -35,6 +35,16 @@ class RequestsController < ApplicationController
     Request.delete(params[:delete_ids].split(','))
     respond_to do |format|
       format.html { redirect_to params[:redirect], notice: 'Requests were successfully deleted.' }
+    end
+  end
+
+  def new_total
+    @campaign = Campaign.find_by(slug: params[:campaign_slug])
+    @app = App.find_by(slug: params[:app_slug], campaign_id: @campaign.id)
+    @database = Database.find_by(slug: params[:database_slug], app_id: @app.id)
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 end

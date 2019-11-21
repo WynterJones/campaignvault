@@ -1,0 +1,55 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Add New Total</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <%= form_with(model: [@campaign, @app, @database], local: false, remote: true) do |form| %>
+      <div class="modal-body">
+        <div class="row">
+          <% if @database.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@database.errors.count, "error") %> prohibited this database from being saved:</h2>
+
+              <ul>
+                <% @database.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="col-md-12" id="total-manager">
+            <select id="types_of_totals" name="total_type" class="form-control mb-3">
+              <option disabled selected value> -- Select a Total Type -- </option>
+              <option value="sum">Total sum of column</option>
+              <option value="countMatch">Count all if exact match</option>
+              <option value="countContains">Count all if contains</option>
+            </select>
+            <div class="card-block mb-3 hide" data-type="sum">
+              <label>Total Sum of Column</label>
+              <input type="text" class="form-control" data-type="sum" data-name="column" placeholder="Column Name" />
+            </div>
+            <div class="card-block mb-3 hide" data-type="countMatch">
+              <label>Count All if Exact Match</label>
+              <input type="text" class="form-control mb-2" data-type="countMatch" data-name="column" placeholder="Column Name" />
+              <input type="text" class="form-control" data-type="countMatch" data-name="string" placeholder="Matches String" />
+            </div>
+            <div class="card-block hide" data-type="countContains">
+              <label>Count All if Contains</label>
+              <input type="text" class="form-control mb-2" name="total_contains_column_name" placeholder="Column Name" />
+              <input type="text" class="form-control" name="total_contains_string" placeholder="Contains String" />
+            </div>
+          </div>
+
+          <%= form.text_field :stats, class: 'form-control', autocomplete: 'off', required: true, autofocus: true %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary">Save</button>
+      </div>
+    <% end %>
+  </div>
+</div>

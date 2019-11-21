@@ -18,8 +18,13 @@
     <div class="col-md-3">
       <%= render(StatisticComponent, name: 'Rows', total: '0', max_total: '0') %>
     </div>
+    <% @stats['stats'].each do |value| %>
+      <div class="col-md-3">
+        <%= render(StatisticComponent, name: "#{value['type'].titleize} of #{value['column'].titleize}", total: '0', max_total: '0') %>
+      </div>
+    <% end %>
     <div class="col-md-3">
-      <a href="#" class="btn btn-outline-light"><i class="fas fa-plus mr-0"></i></a>
+      <%= link_to raw('<i class="fas fa-plus mr-0"></i>'), "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}", remote: true, class: 'btn btn-outline-light', 'data-toggle':  "modal", 'data-target': '#modal-window'  %>
     </div>
   </div>
   <%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>

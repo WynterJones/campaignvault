@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   post 'create/:campaign_slug/:app_slug/database', to: 'databases#create'
   get 'edit/:campaign_slug/:app_slug/:database_slug', to: 'databases#edit'
 
+  # Requets
+  get 'new_total/:campaign_slug/:app_slug/:database_slug', to: 'requests#new_total'
+
   # Campaigns > Apps > Databases > Requests
   resources :campaigns, except: [:show], param: :slug do
     resources :apps, except: [:show], param: :slug, path: '' do

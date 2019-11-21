@@ -35,7 +35,7 @@ module TableHelper
     @tbody = '<tbody>'
     @row_data = ''
     requests.find_each do |request|
-      requestBody = JSON.parse(request.data)
+      requestBody = JSON.parse(request.data.to_json)
       @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'></td>"
       tooltip = parse_json_for_sidebar(requestBody, 0, request, settings, column_keys)
       @row_data += "<div id='tooltip-#{request.id}' style='display: none'>#{tooltip}</div>"

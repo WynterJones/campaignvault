@@ -76,6 +76,6 @@ class DatabasesController < ApplicationController
     end
 
     def database_params
-      params.require(:database).permit(:name, :table_columns)
+      params.require(:database).permit(:name, :table_columns, :stats)
     end
 end

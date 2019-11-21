@@ -19,6 +19,7 @@ const mobileSidebar = require("custom/mobile-sidebar")
 const tableControls = require("custom/table-controls")
 const tableColumns = require("custom/table-columns")
 const paramPicker = require("custom/param-pickers")
+const totalManager = require("custom/totals")
 import Sortable from 'sortablejs'
 import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
@@ -44,6 +45,10 @@ $(document).on('turbolinks:load', () => {
       }
     })
   }
+
+  // Totals
+  $(document).on('change', '#types_of_totals', function() { totalManager.changeType(this) })
+  $(document).on('change', '#total-manager input', function() { totalManager.changeValue(this) })
 
   // New App
   $(document).on('change', '#new_select_an_app', function() { apps.newSelector(this) })

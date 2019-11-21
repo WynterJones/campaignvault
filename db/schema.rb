@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_013702) do
+ActiveRecord::Schema.define(version: 2019_11_21_014637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_013702) do
     t.boolean "connected", default: false, null: false
     t.jsonb "table_columns", default: "{}", null: false
     t.integer "app_id"
+    t.jsonb "stats", default: "{}", null: false
   end
 
   create_table "requests", force: :cascade do |t|

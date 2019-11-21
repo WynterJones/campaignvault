@@ -16,7 +16,7 @@ class SaveRequest
       campaign = Campaign.find_by_slug(campaign_slug)
       app = App.find_by(campaign_id: campaign.id, slug: app_slug)
       database = Database.find_by(app_id: app.id, slug: database_slug)
-      Request.create(data: newhash.to_json, database_id: database.id)
+      Request.create(data: newhash, database_id: database.id)
       if database.connected == false
         database.connected = true
         database.save
