@@ -11,6 +11,8 @@
   --bg-color: #f2f3f8;
 }
 
+@import "tailwindcss/base";
+
 * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

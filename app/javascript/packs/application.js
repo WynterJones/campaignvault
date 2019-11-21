@@ -27,13 +27,9 @@ import { CountUp } from 'countup.js'
 $(document).on('turbolinks:load', () => {
   TurbolinksAnimate.init({ element: $('#animate-wrapper')[0], animation: 'fadein' })
 
-  const is_root = location.pathname == "/"
-
-  if (is_root) {
-    $('.statistic h3').each(function() {
-      components.counter($(this).attr('id'), CountUp)
-    })
-  }
+  $('.statistic h3').each(function() {
+    components.counter($(this).attr('id'), CountUp)
+  })
 
   // Tagify
   if ($('.tagifier').length > 0) {

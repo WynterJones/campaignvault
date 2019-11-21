@@ -8,16 +8,16 @@
 
 <div class="row" id="animate-wrapper">
   <div class="col-md-3">
-    <%= render(StatisticComponent, name: 'Rows', total: @all_requests, max_total: @all_requests_total) %>
+    <%= render(StatisticComponent, name: 'Rows', total: @all_requests) %>
   </div>
   <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Campaigns', total: @all_campaigns, max_total: @all_campaigns_total) %>
+    <%= render(StatisticComponent, name: 'Campaigns', total: @all_campaigns) %>
   </div>
   <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Apps', total: @all_apps, max_total: @all_apps_total) %>
+    <%= render(StatisticComponent, name: 'Apps', total: @all_apps) %>
   </div>
   <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Database', total: '0', max_total: '0') %>
+    <%= render(StatisticComponent, name: 'Database', total: '0') %>
   </div>
 </div>
 
