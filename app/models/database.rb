@@ -1,4 +1,5 @@
 class Database < ApplicationRecord
+  validates_uniqueness_of :slug, scope: :app_id
   after_destroy :destroy_requests
   has_many :requests
   belongs_to :app

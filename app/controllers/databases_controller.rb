@@ -35,7 +35,7 @@ class DatabasesController < ApplicationController
       if @database.save
         format.html { redirect_to url, notice: 'Database was successfully created.' }
       else
-        format.html { redirect_to url, error: 'Error: Database was not created.' }
+        format.html { redirect_to url, notice: 'Error: Database was not created.' }
       end
     end
   end
@@ -49,7 +49,7 @@ class DatabasesController < ApplicationController
       if @database.update(database_params)
         format.html { redirect_to url, notice: 'Database was successfully updated.' }
       else
-        format.html { redirect_to url, error: 'Error: Database was not edited.' }
+        format.html { redirect_to url, notice: 'Error: Database was not edited.' }
       end
     end
   end
