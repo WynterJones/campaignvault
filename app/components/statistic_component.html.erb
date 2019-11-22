@@ -1,9 +1,9 @@
 <Statistic class="statistic">
-  <span><%= name %></span>
-  <h3 id="statistic-<%= name.parameterize %>" data-total="<%= total %>">0</h3>
-  <% if @stat.present? %>
+  <span class="statistic-title"><%= name %></span>
+  <h3><%= prepend.present? ? prepend.html_safe : '' %><span id="statistic-<%= name.parameterize %>" data-total="<%= total %>">0</span><%= append.present? ? append.html_safe : '' %></h3>
+  <% if stat.present? %>
     <div class="dropdown dropleft">
-      <a class="dropdown-item text-muted" href="<%= @stat %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit"></i></a>
+      <a class="dropdown-item text-muted" href="<%= stat %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit"></i></a>
     </div>
   <% end %>
 </Statistic>

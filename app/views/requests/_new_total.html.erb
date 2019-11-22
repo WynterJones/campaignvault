@@ -40,11 +40,23 @@
                     <% end %>
                   </select>
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Title</span>
                   </div>
                   <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Prepend</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="sum" data-name="prepend" placeholder="Prepend" />
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Append</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="sum" data-name="append" placeholder="Append" />
                 </div>
               </div>
               <div class="card-block mb-3 hide" data-type="match">
@@ -65,11 +77,23 @@
                   </div>
                   <input type="text" class="form-control" data-type="match" data-name="string" placeholder="String" />
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Title</span>
                   </div>
                   <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Prepend</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="match" data-name="prepend" placeholder="Prepend" />
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Append</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="match" data-name="append" placeholder="Append" />
                 </div>
               </div>
 
@@ -91,11 +115,23 @@
                   </div>
                   <input type="text" class="form-control" data-type="contains" data-name="string" placeholder="String" />
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Title</span>
                   </div>
                   <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Prepend</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="contains" data-name="prepend" placeholder="Prepend" />
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Append</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="contains" data-name="append" placeholder="Append" />
                 </div>
               </div>
               <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>

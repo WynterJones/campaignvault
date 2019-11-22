@@ -10,10 +10,10 @@ Statistic {
 Statistic h3 {
   margin: 0;
   font-weight: 600;
-  font-size: 1.9em
+  font-size: 2.15em
 }
 
-Statistic span {
+Statistic .statistic-title {
   color: var(--muted);
   display: block;
   font-weight: 400;

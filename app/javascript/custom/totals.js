@@ -14,6 +14,8 @@ const totalManager = {
     $(element).show()
     $(element).find('select[data-name="column"]').val(current_stat['column'])
     $(element).find('input[data-name="title"]').val(current_stat['title'])
+    $(element).find('input[data-name="prepend"]').val(current_stat['prepend'])
+    $(element).find('input[data-name="append"]').val(current_stat['append'])
     $(element).find('input[data-name="string"][data-type="match"]').val(current_stat['match'])
     $(element).find('input[data-name="string"][data-type="contains"]').val(current_stat['contains'])
   },
@@ -57,19 +59,25 @@ const totalManager = {
       if (type == 'sum') {
         const column = $('[data-type="sum"][data-name="column"]').val()
         const title = $('[data-type="sum"][data-name="title"]').val()
-        newStat = { "type": type, "column": column, "title": title }
+        const prepend = $('[data-type="sum"][data-name="prepend"]').val()
+        const append = $('[data-type="sum"][data-name="append"]').val()
+        newStat = { "type": type, "column": column, "title": title, "prepend": prepend, "append": append }
       }
       else if (type == 'match') {
         const column = $('[data-type="match"][data-name="column"]').val()
         const title = $('[data-type="match"][data-name="title"]').val()
         const string = $('[data-type="match"][data-name="string"]').val()
-        newStat = { "type": type, "column": column, "match": string, "title": title }
+        const prepend = $('[data-type="match"][data-name="prepend"]').val()
+        const append = $('[data-type="match"][data-name="append"]').val()
+        newStat = { "type": type, "column": column, "match": string, "title": title, "prepend": prepend, "append": append }
       }
       else if (type == 'contains') {
         const column = $('[data-type="contains"][data-name="column"]').val()
         const title = $('[data-type="contains"][data-name="title"]').val()
         const string = $('[data-type="contains"][data-name="string"]').val()
-        newStat = { "type": type, "column": column, "contains": string, "title": title }
+        const prepend = $('[data-type="contains"][data-name="prepend"]').val()
+        const append = $('[data-type="contains"][data-name="append"]').val()
+        newStat = { "type": type, "column": column, "contains": string, "title": title, "prepend": prepend, "append": append }
       }
       if (newStat != '' && !$('#types_of_totals')[0].hasAttribute('data-edit-index')) {
         stats['stats'].push(newStat)

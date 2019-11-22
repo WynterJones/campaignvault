@@ -27,7 +27,7 @@ import { CountUp } from 'countup.js'
 $(document).on('turbolinks:load', () => {
   TurbolinksAnimate.init({ element: $('#animate-wrapper')[0], animation: 'fadein' })
 
-  $('.statistic h3').each(function() {
+  $('.statistic h3 span').each(function() {
     components.counter($(this).attr('id'), CountUp)
   })
 

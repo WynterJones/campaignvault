@@ -22,21 +22,21 @@
     </div>
 
     <div class="col-md-3 mb-3">
-      <%= render(StatisticComponent, name: 'Rows', total: number_with_delimiter(@requests.count), stat: false) %>
+      <%= render(StatisticComponent, name: 'Rows', total: number_with_delimiter(@requests.count), stat: false, prepend: false, append: false) %>
     </div>
     <% if @stats['stats'].present? %>
       <% @stats['stats'].each_with_index do |value, index| %>
         <div class="col-md-3 mb-3">
           <% if value['type'] == 'sum' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).pluck(Arel.sql("data->>'#{value['column']}'")).map(&:to_f).reduce(:+)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).pluck(Arel.sql("data->>'#{value['column']}'")).map(&:to_f).reduce(:+)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", prepend: value['prepend'], append: value['append']) %>
           <% end %>
 
           <% if value['type'] == 'match' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", prepend: value['prepend'], append: value['append']) %>
           <% end %>
 
           <% if value['type'] == 'contains' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).where('values LIKE ?', "%#{value['contains']}%").count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).where('values LIKE ?', "%#{value['contains']}%").count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", prepend: value['prepend'], append: value['append']) %>
           <% end %>
         </div>
       <% end %>
