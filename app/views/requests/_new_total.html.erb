@@ -42,21 +42,21 @@
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Title</span>
+                    <span class="input-group-text">Label</span>
                   </div>
-                  <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+                  <input type="text" class="form-control" data-type="sum" data-name="title" />
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Prepend</span>
                   </div>
-                  <input type="text" class="form-control" data-type="sum" data-name="prepend" placeholder="Prepend" />
+                  <input type="text" class="form-control" data-type="sum" data-name="prepend" />
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Append</span>
                   </div>
-                  <input type="text" class="form-control" data-type="sum" data-name="append" placeholder="Append" />
+                  <input type="text" class="form-control" data-type="sum" data-name="append" />
                 </div>
               </div>
               <div class="card-block mb-3 hide" data-type="match">
@@ -75,25 +75,34 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Matches</span>
                   </div>
-                  <input type="text" class="form-control" data-type="match" data-name="string" placeholder="String" />
+                  <input type="text" class="form-control" data-type="match" data-name="string"  />
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Title</span>
+                    <span class="input-group-text">Type</span>
                   </div>
-                  <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+                  <select class="form-control" data-type="match" data-name="show-as">
+                    <option value="amount">Amount</option>
+                    <option value="percent">Percentage</option>
+                  </select>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Label</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="match" data-name="title" />
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Prepend</span>
                   </div>
-                  <input type="text" class="form-control" data-type="match" data-name="prepend" placeholder="Prepend" />
+                  <input type="text" class="form-control" data-type="match" data-name="prepend" />
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Append</span>
                   </div>
-                  <input type="text" class="form-control" data-type="match" data-name="append" placeholder="Append" />
+                  <input type="text" class="form-control" data-type="match" data-name="append" />
                 </div>
               </div>
 
@@ -113,25 +122,34 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">Contains</span>
                   </div>
-                  <input type="text" class="form-control" data-type="contains" data-name="string" placeholder="String" />
+                  <input type="text" class="form-control" data-type="contains" data-name="string"  />
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">Title</span>
+                    <span class="input-group-text">Type</span>
                   </div>
-                  <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
+                  <select class="form-control" data-type="contains" data-name="show-as">
+                    <option value="amount">Amount</option>
+                    <option value="percent">Percentage</option>
+                  </select>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Label</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="contains" data-name="title" />
                 </div>
                 <div class="input-group mb-2">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Prepend</span>
                   </div>
-                  <input type="text" class="form-control" data-type="contains" data-name="prepend" placeholder="Prepend" />
+                  <input type="text" class="form-control" data-type="contains" data-name="prepend" />
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">Append</span>
                   </div>
-                  <input type="text" class="form-control" data-type="contains" data-name="append" placeholder="Append" />
+                  <input type="text" class="form-control" data-type="contains" data-name="append" />
                 </div>
               </div>
               <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>

@@ -33,4 +33,8 @@ module ApplicationHelper
   def is_float?(object)
     true if Float(object) rescue false
   end
+
+  def percent_of(n)
+    self.to_f / n.to_f * 100.0
+  end
 end

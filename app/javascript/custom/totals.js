@@ -18,6 +18,8 @@ const totalManager = {
     $(element).find('input[data-name="append"]').val(current_stat['append'])
     $(element).find('input[data-name="string"][data-type="match"]').val(current_stat['match'])
     $(element).find('input[data-name="string"][data-type="contains"]').val(current_stat['contains'])
+    $(element).find('select[data-name="show-as"][data-type="contains"]').val(current_stat['show-as'])
+    $(element).find('select[data-name="show-as"][data-type="match"]').val(current_stat['show-as'])
   },
 
   changeType: (element) => {
@@ -69,7 +71,8 @@ const totalManager = {
         const string = $('[data-type="match"][data-name="string"]').val()
         const prepend = $('[data-type="match"][data-name="prepend"]').val()
         const append = $('[data-type="match"][data-name="append"]').val()
-        newStat = { "type": type, "column": column, "match": string, "title": title, "prepend": prepend, "append": append }
+        const show_as = $('[data-type="match"][data-name="show-as"]').val()
+        newStat = { "type": type, "column": column, "match": string, "title": title, "prepend": prepend, "append": append, "show-as": show_as }
       }
       else if (type == 'contains') {
         const column = $('[data-type="contains"][data-name="column"]').val()
@@ -77,7 +80,8 @@ const totalManager = {
         const string = $('[data-type="contains"][data-name="string"]').val()
         const prepend = $('[data-type="contains"][data-name="prepend"]').val()
         const append = $('[data-type="contains"][data-name="append"]').val()
-        newStat = { "type": type, "column": column, "contains": string, "title": title, "prepend": prepend, "append": append }
+        const show_as = $('[data-type="match"][data-name="show-as"]').val()
+        newStat = { "type": type, "column": column, "contains": string, "title": title, "prepend": prepend, "append": append, "show-as": show_as }
       }
       if (newStat != '' && !$('#types_of_totals')[0].hasAttribute('data-edit-index')) {
         stats['stats'].push(newStat)
