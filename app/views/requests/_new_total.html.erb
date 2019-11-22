@@ -26,6 +26,7 @@
               <option disabled selected value> -- Select a Total Type -- </option>
               <option value="sum">Total Sum</option>
               <option value="match">Total Exact Match</option>
+              <option value="contains">Total Contains Match</option>
             </select>
             <div class="card-block mb-3 hide" data-type="sum">
               <select class="form-control mb-2" data-type="sum" data-name="column">
@@ -45,6 +46,17 @@
               </select>
               <input type="text" class="form-control mb-2" data-type="match" data-name="string" placeholder="Matches String" />
               <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+            </div>
+
+            <div class="card-block mb-3 hide" data-type="contains">
+              <select class="form-control mb-2" data-type="contains" data-name="column">
+                <option disabled selected value> -- Select Column -- </option>
+                <% @request.data.each do |value| %>
+                  <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
+                <% end %>
+              </select>
+              <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Matches String" />
+              <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
             </div>
             <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>
           </div>

@@ -15,6 +15,12 @@
 
 <div id="animate-wrapper">
   <div class="row">
+    <div class="col-md-12">
+      <div class="card-block searching-for text-large text-muted mb-3">
+        Searching for "<strong>Search Term</strong>" with <span><%= @search_count %></span> result(s).
+      </div>
+    </div>
+
     <div class="col-md-3 mb-3">
       <%= render(StatisticComponent, name: 'Total Rows', total: number_with_delimiter(@requests.count)) %>
     </div>
@@ -27,6 +33,10 @@
 
         <% if value['type'] == 'match' %>
           <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}") %>
+        <% end %>
+
+        <% if value['type'] == 'contains' %>
+          <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where('values LIKE ?', "%#{value['contains']}%").count)}") %>
         <% end %>
       </div>
     <% end %>
