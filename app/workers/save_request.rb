@@ -15,7 +15,6 @@ class SaveRequest
           newarray.push(value[1]) if value[1].present?
         end
       end
-      puts newarray.inspect, 'howdy'
       campaign = Campaign.find_by_slug(campaign_slug)
       app = App.find_by(campaign_id: campaign.id, slug: app_slug)
       database = Database.find_by(app_id: app.id, slug: database_slug)

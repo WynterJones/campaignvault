@@ -212,7 +212,6 @@ const tableColumns = {
     const keyName = keyArray[keyArray.length-1].replace(/\_/g, ' ')
     $('body').attr('data-table-column-key', `[[${key}]]`)
     $('#popup-nav a[data-tab="popup-manage-table"]').trigger('click')
-    console.log(key, keyArray, keyName)
     $('#showAddColumn').trigger('click')
     $('#table-column-name').val(keyName.replace(/\b\w/g, l => l.toUpperCase()))
   },
