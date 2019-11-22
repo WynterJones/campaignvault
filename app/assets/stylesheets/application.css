@@ -53,6 +53,13 @@ a {
   display: none
 }
 
+.input-group select.form-control {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
 .column-grip {
   cursor: move;
   float: left;

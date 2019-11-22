@@ -49,7 +49,8 @@ class DatabasesController < ApplicationController
       if @database.update(database_params)
         format.html { redirect_to url, notice: 'Database was successfully updated.' }
       else
-        format.html { redirect_to url, notice: 'Error: Database was not edited.' }
+        puts @database.errors.inspect
+        format.html { redirect_to url, notice: "Error: #{@database.errors.messages}" }
       end
     end
   end

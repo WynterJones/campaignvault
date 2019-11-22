@@ -29,34 +29,74 @@
                 <option value="contains">Total Contains Match</option>
               </select>
               <div class="card-block mb-3 hide" data-type="sum">
-                <select class="form-control mb-2" data-type="sum" data-name="column">
-                  <option disabled selected value> -- Select Column -- </option>
-                  <% @request.data.each do |value| %>
-                    <option value="<%= value[0] %>"><%= value[0] %> <%= is_numeric?(value[1]) || is_float?(value[1]) ? "(Number)" : "" %></option>
-                  <% end %>
-                </select>
-                <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Column</span>
+                  </div>
+                  <select class="form-control" data-type="sum" data-name="column">
+                    <option disabled selected value> -- Select Column -- </option>
+                    <% @request.data.each do |value| %>
+                      <option value="<%= value[0] %>"><%= value[0] %> <%= is_numeric?(value[1]) || is_float?(value[1]) ? "(Number)" : "" %></option>
+                    <% end %>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+                </div>
               </div>
               <div class="card-block mb-3 hide" data-type="match">
-                <select class="form-control mb-2" data-type="match" data-name="column">
-                  <option disabled selected value> -- Select Column -- </option>
-                  <% @request.data.each do |value| %>
-                    <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
-                  <% end %>
-                </select>
-                <input type="text" class="form-control mb-2" data-type="match" data-name="string" placeholder="Matches String" />
-                <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Column</span>
+                  </div>
+                  <select class="form-control" data-type="match" data-name="column">
+                    <option disabled selected value> -- Select Column -- </option>
+                    <% @request.data.each do |value| %>
+                      <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
+                    <% end %>
+                  </select>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Matches</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="match" data-name="string" placeholder="String" />
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+                </div>
               </div>
 
               <div class="card-block mb-3 hide" data-type="contains">
-                <select class="form-control mb-2" data-type="contains" data-name="column">
-                  <option disabled selected value> -- Select Column -- </option>
-                  <% @request.data.each do |value| %>
-                    <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
-                  <% end %>
-                </select>
-                <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Contains String" />
-                <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Column</span>
+                  </div>
+                  <select class="form-control" data-type="contains" data-name="column">
+                    <option disabled selected value> -- Select Column -- </option>
+                    <% @request.data.each do |value| %>
+                      <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
+                    <% end %>
+                  </select>
+                </div>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Contains</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="contains" data-name="string" placeholder="String" />
+                </div>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Title</span>
+                  </div>
+                  <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
+                </div>
               </div>
               <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>
             </div>
