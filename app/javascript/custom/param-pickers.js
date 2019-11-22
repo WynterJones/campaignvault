@@ -14,13 +14,13 @@ const paramPicker = {
   },
 
   dateChange: (element) => {
-    const value = parseURL($(element).val(), 'timeframe')
+    const value = paramPicker.parseURL($(element).val(), 'timeframe')
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
   },
 
   perPageChange: (element) => {
-    const value = parseURL($(element).val(), 'per_page')
+    const value = paramPicker.parseURL($(element).val(), 'per_page')
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
   },
