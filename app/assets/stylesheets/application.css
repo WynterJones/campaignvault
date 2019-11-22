@@ -41,6 +41,10 @@ a {
   padding: 15px 30px;
 }
 
+.form-control-sm {
+  font-size: .895rem;
+}
+
 .tagify__dropdown {
   z-index: 99999
 }
