@@ -81,12 +81,13 @@
               class: 'btn btn-sm btn-outline-secondary',
               action: function () {
                 const data = table.rows({selected: true}).data().toArray()
-                let deleteIDs = ''
+                console.log(data)
+                let deleteIDs = []
                 data.forEach(function(key) {
-                  deleteIDs += `, ${key[1]}`
+                  deleteIDs.push(key[1])
                 })
-                deleteIDs = deleteIDs.replace(', ', '')
-                if (deleteIDs !== '') {
+                console.log(deleteIDs)
+                if (deleteIDs.length > 0) {
                   $('input[name="delete_ids"]').val(deleteIDs)
                   $('#delete-requests').submit()
                 } else {

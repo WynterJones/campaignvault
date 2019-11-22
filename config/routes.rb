@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Misc
   get 'welcome', to: 'dashboard#welcome', as: 'welcome'
   get 'export', to: 'export#export', as: 'export'
-  post 'database/:id', to: 'requests#delete'
+  post 'delete_rows/:campaign_slug/:app_slug/:database_slug', to: 'requests#delete'
 
   # Campaigns
   get 'new_campaign', to: 'campaigns#new'

@@ -54,7 +54,7 @@
 
 <%= render 'shared/table_columns' %>
 
-<%= form_for '/delete_requests', html: {id: 'delete-requests', class: 'hide'} do |form| %>
+<%= form_for "/delete_rows/#{@campaign.slug}/#{@app.slug}/#{@database.slug}", url: "/delete_rows/#{@campaign.slug}/#{@app.slug}/#{@database.slug}", html: {id: 'delete-requests', class: 'hide'} do |form| %>
   <input type="text" name="delete_ids" />
   <input type="text" name="redirect" value="<%= request.url %>" />
 <% end %>
