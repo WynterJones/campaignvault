@@ -55,7 +55,7 @@
                   <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
                 <% end %>
               </select>
-              <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Matches String" />
+              <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Contains String" />
               <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
             </div>
             <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>
