@@ -14,28 +14,15 @@ const paramPicker = {
   },
 
   dateChange: (element) => {
-    const value = paramPicker.parseURL($(element).val(), 'timeframe')
+    const value = $(element).val()
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
   },
 
   perPageChange: (element) => {
-    const value = paramPicker.parseURL($(element).val(), 'per_page')
+    const value = $(element).val()
     const redirect_to = `${window.location.protocol}//${window.location.host}${window.location.pathname}${value}`
     window.location = redirect_to
-  },
-
-  parseURL: (value, extra) => {
-    if (component.getUrlParameter('page') !== '') {
-      value += `&page=${component.getUrlParameter('page')}`
-    }
-    if (component.getUrlParameter('search') !== '') {
-      value += `&search=${component.getUrlParameter('search')}`
-    }
-    if (component.getUrlParameter(extra) !== '') {
-      value += `&${extra}=${component.getUrlParameter(extra)}`
-    }
-    return value
   }
 
 }

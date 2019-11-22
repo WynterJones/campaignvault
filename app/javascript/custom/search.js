@@ -25,7 +25,7 @@ const search = {
 
     if (keycode === 13) {
       if (typeof type !='undefined' && type !== 'Select a Database' && type !== '' && type !== null && value !== '') {
-        window.location = `${window.location}?search=${value}`
+        window.location = `${window.location.protocol}//${window.location.host}${window.location.pathname}?search=${value}`
       } else {
         alert('Select a database, it cannot be blank.')
       }
