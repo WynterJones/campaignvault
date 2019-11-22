@@ -28,15 +28,15 @@
       <% @stats['stats'].each_with_index do |value, index| %>
         <div class="col-md-3 mb-3">
           <% if value['type'] == 'sum' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{Request.where(database_id: @database.id).pluck(Arel.sql("data->>'#{value['column']}'")).map(&:to_f).reduce(:+)}", stat: ["/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}&delete=true"]) %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{Request.where(database_id: @database.id).pluck(Arel.sql("data->>'#{value['column']}'")).map(&:to_f).reduce(:+)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
           <% end %>
 
           <% if value['type'] == 'match' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}", stat: ["/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}&delete=true"]) %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where(Arel.sql("data->>'#{value['column']}' = '#{value['match']}'")).count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
           <% end %>
 
           <% if value['type'] == 'contains' %>
-            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where('values LIKE ?', "%#{value['contains']}%").count)}", stat: ["/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}", "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}&delete=true"]) %>
+            <%= render(StatisticComponent, name: value['title'].titleize, total: "#{number_with_delimiter(Request.where(database_id: @database.id).where('values LIKE ?', "%#{value['contains']}%").count)}", stat: "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}?stat_id=#{index}") %>
           <% end %>
         </div>
       <% end %>

@@ -3,7 +3,7 @@
   <h3 id="statistic-<%= name.parameterize %>" data-total="<%= total %>">0</h3>
   <% if @stat.present? %>
     <div class="dropdown dropleft">
-      <a class="dropdown-item text-muted" href="<%= @stat[0] %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit"></i></a>
+      <a class="dropdown-item text-muted" href="<%= @stat %>" data-remote="true" data-toggle="modal" data-target="#modal-window"><i class="far fa-edit"></i></a>
     </div>
   <% end %>
 </Statistic>
