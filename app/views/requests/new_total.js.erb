@@ -1,2 +1,10 @@
 $("#modal-window").html("<%= escape_javascript(render 'requests/new_total') %>")
 $('#modal-window').modal('toggle')
+
+if ($('#types_of_totals').length > 0 && '<%= request.original_url.include?("stat_id=") %>' == 'true') {
+  const index = '<%= request.original_url.split("?")[1].present? ? request.original_url.split("?")[1].gsub("stat_id=","") : '' %>'
+  $('#types_of_totals').attr('data-is-editing', 'true')
+  $('#types_of_totals').attr('data-edit-index', index)
+  $('#types_of_totals').trigger('change')
+  $('.modal-title').text('Edit Total')
+}

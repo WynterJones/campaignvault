@@ -1,14 +1,48 @@
 'use strict'
 
-const totals = {
+const totalManager = {
+
+  initEdit: () => {
+    let stats = $('#database_stats').val()
+    const index = $('#types_of_totals').attr('data-edit-index')
+    stats = JSON.parse(stats)
+    const current_stat = stats['stats'][index]
+    const element = `#total-manager .card-block[data-type="${current_stat['type']}"]`
+    $('#types_of_totals').val(current_stat['type']).hide()
+    $('#total-manager .card-block').hide()
+    $('#delete-current-total').show()
+    $(element).show()
+    $(element).find('select[data-name="column"]').val(current_stat['column'])
+    $(element).find('input[data-name="title"]').val(current_stat['title'])
+    $(element).find('input[data-name="string"][data-type="match"]').val(current_stat['match'])
+    $(element).find('input[data-name="string"][data-type="contains"]').val(current_stat['contains'])
+  },
 
   changeType: (element) => {
     const type = $(element).val()
-    $('#total-manager .card-block').hide()
-    $(`#total-manager .card-block[data-type="${type}"]`).show()
+    if ($('#types_of_totals')[0].hasAttribute('data-edit-index')) {
+      totalManager.initEdit()
+    }
+    else {
+      $('#total-manager .card-block').hide()
+      $(`#total-manager .card-block[data-type="${type}"]`).show()
+    }
   },
 
-  saveValue: (e, element) => {
+  delete: (e, element) => {
+    e.preventDefault()
+    if (!$(element)[0].hasAttribute('disabled')) {
+      let stats = $('#database_stats').val()
+      stats = JSON.parse(stats)
+      const index = $('#types_of_totals').attr('data-edit-index')
+      stats['stats'].splice(index, 1)
+      $('#database_stats').val(JSON.stringify(stats))
+      $('.modal-content form').submit()
+      $(element).attr('disabled', 'disabled')
+    }
+  },
+
+  save: (e, element) => {
     e.preventDefault()
     if (!$(element)[0].hasAttribute('disabled')) {
       const type = $('#types_of_totals').val()
@@ -16,7 +50,8 @@ const totals = {
       let stats = $('#database_stats').val()
       if (stats == '{}') {
         stats = { "stats": [] }
-      } else {
+      }
+      else {
         stats = JSON.parse(stats)
       }
       if (type == 'sum') {
@@ -36,8 +71,11 @@ const totals = {
         const string = $('[data-type="contains"][data-name="string"]').val()
         newStat = { "type": type, "column": column, "contains": string, "title": title }
       }
-      if (newStat != '') {
+      if (newStat != '' && !$('#types_of_totals')[0].hasAttribute('data-edit-index')) {
         stats['stats'].push(newStat)
+      }
+      else if (newStat != '' && $('#types_of_totals')[0].hasAttribute('data-edit-index')) {
+        stats['stats'][$('#types_of_totals').attr('data-edit-index')] = newStat
       }
       $('#database_stats').val(JSON.stringify(stats))
       $('.modal-content form').submit()
@@ -47,4 +85,4 @@ const totals = {
 
 }
 
-module.exports = totals
+module.exports = totalManager

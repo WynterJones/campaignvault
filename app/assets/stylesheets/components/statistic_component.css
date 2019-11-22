@@ -16,5 +16,20 @@ Statistic h3 {
 Statistic span {
   color: var(--muted);
   display: block;
-  font-weight: 500;
+  font-weight: 400;
+}
+
+Statistic .dropdown {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 0;
+}
+
+Statistic .dropdown .dropdown-item:hover {
+  background: none;
+}
+
+Statistic:hover .dropdown {
+  display: block
 }

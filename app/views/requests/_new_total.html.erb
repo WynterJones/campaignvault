@@ -20,49 +20,55 @@
               </ul>
             </div>
           <% end %>
+          <% if @request.present? %>
+            <div class="col-md-12" id="total-manager" data-total="<%= @stats.length %>">
+              <select id="types_of_totals" name="total_type" class="form-control mb-3">
+                <option disabled selected value> -- Select a Total Type -- </option>
+                <option value="sum">Total Sum</option>
+                <option value="match">Total Exact Match</option>
+                <option value="contains">Total Contains Match</option>
+              </select>
+              <div class="card-block mb-3 hide" data-type="sum">
+                <select class="form-control mb-2" data-type="sum" data-name="column">
+                  <option disabled selected value> -- Select Column -- </option>
+                  <% @request.data.each do |value| %>
+                    <option value="<%= value[0] %>"><%= value[0] %> <%= is_numeric?(value[1]) || is_float?(value[1]) ? "(Number)" : "" %></option>
+                  <% end %>
+                </select>
+                <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+              </div>
+              <div class="card-block mb-3 hide" data-type="match">
+                <select class="form-control mb-2" data-type="match" data-name="column">
+                  <option disabled selected value> -- Select Column -- </option>
+                  <% @request.data.each do |value| %>
+                    <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
+                  <% end %>
+                </select>
+                <input type="text" class="form-control mb-2" data-type="match" data-name="string" placeholder="Matches String" />
+                <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+              </div>
 
-          <div class="col-md-12" id="total-manager" data-total="<%= @stats.length %>">
-            <select id="types_of_totals" name="total_type" class="form-control mb-3">
-              <option disabled selected value> -- Select a Total Type -- </option>
-              <option value="sum">Total Sum</option>
-              <option value="match">Total Exact Match</option>
-              <option value="contains">Total Contains Match</option>
-            </select>
-            <div class="card-block mb-3 hide" data-type="sum">
-              <select class="form-control mb-2" data-type="sum" data-name="column">
-                <option disabled selected value> -- Select Column -- </option>
-                <% @request.data.each do |value| %>
-                  <option value="<%= value[0] %>"><%= value[0] %> <%= is_numeric?(value[1]) || is_float?(value[1]) ? "(Number)" : "" %></option>
-                <% end %>
-              </select>
-              <input type="text" class="form-control" data-type="sum" data-name="title" placeholder="Title" />
+              <div class="card-block mb-3 hide" data-type="contains">
+                <select class="form-control mb-2" data-type="contains" data-name="column">
+                  <option disabled selected value> -- Select Column -- </option>
+                  <% @request.data.each do |value| %>
+                    <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
+                  <% end %>
+                </select>
+                <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Contains String" />
+                <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
+              </div>
+              <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>
             </div>
-            <div class="card-block mb-3 hide" data-type="match">
-              <select class="form-control mb-2" data-type="match" data-name="column">
-                <option disabled selected value> -- Select Column -- </option>
-                <% @request.data.each do |value| %>
-                  <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
-                <% end %>
-              </select>
-              <input type="text" class="form-control mb-2" data-type="match" data-name="string" placeholder="Matches String" />
-              <input type="text" class="form-control" data-type="match" data-name="title" placeholder="Title" />
+          <% else %>
+            <div class="col-md-12">
+              <p>You have no data yet. There are no columns of data to query.</p>
             </div>
-
-            <div class="card-block mb-3 hide" data-type="contains">
-              <select class="form-control mb-2" data-type="contains" data-name="column">
-                <option disabled selected value> -- Select Column -- </option>
-                <% @request.data.each do |value| %>
-                  <option value="<%= value[0] %>" data-value="<%= value[1] %>"><%= value[0] %></option>
-                <% end %>
-              </select>
-              <input type="text" class="form-control mb-2" data-type="contains" data-name="string" placeholder="Contains String" />
-              <input type="text" class="form-control" data-type="contains" data-name="title" placeholder="Title" />
-            </div>
-            <%= form.text_area :stats, class: 'form-control hide', autocomplete: 'off', required: true, autofocus: true %>
-          </div>
+          <% end %>
         </div>
       </div>
       <div class="modal-footer">
+        <a href="#" class="btn btn-secondary hide" id="delete-current-total">Delete</a>
         <a href="#" class="btn btn-primary" id="saveNewTotal">Save</a>
       </div>
     <% end %>
