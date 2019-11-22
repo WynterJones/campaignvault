@@ -194,7 +194,7 @@ const tableColumns = {
         }
       }
     })
-    editTagify.parseMixTags($(element).attr('data-key'))
+    editTagify.parseMixTags($('#table-column-key').val())
   },
 
   enterOnKey: (e) => {
