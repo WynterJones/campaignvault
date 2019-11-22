@@ -19,13 +19,13 @@ class RequestsController < ApplicationController
     set_meta_tags title: "#{@app.name.titleize} in #{@campaign.name}"
 
     @search = params["search"]
-    all_requests = Request.order(id: :desc).paginate(page: params[:page], per_page: params[:per_page] || 25)
+    all_requests = Request.order(id: :desc).where(database_id: @database.id).paginate(page: params[:page], per_page: params[:per_page] || 25)
 
     if @search.present?
-      @requests = all_requests.where(database_id: @database.id).where('values LIKE ?', "%#{@search}%")
+      @requests = all_requests.where('values LIKE ?', "%#{@search}%")
       @search_count = number_with_delimiter(@requests.count)
     else
-      @requests = all_requests.where('created_at >= ?', @timeframe).where(database_id: @database.id)
+      @requests = all_requests.where('created_at >= ?', @timeframe)
     end
 
     buildTable(@database, @settings, @requests, @request_count)

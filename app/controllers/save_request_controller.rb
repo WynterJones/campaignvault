@@ -8,12 +8,7 @@ class SaveRequestController < ApplicationController
     if request.headers['Content-Type'] == 'application/json' || valid_json?(request.body.read)
       data = request.body.read
     else
-      params.delete :controller
-      params.delete :action
-      params.delete :slug
-      params.delete :campaign
-      params.delete :app
-      params.delete :database
+      params.delete_if { |key, val| [:controller, :action, :slug, :campaign, :app, :database].include? key }
       data = params.to_enum.to_h
     end
     if data.present?

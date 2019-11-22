@@ -1,7 +1,6 @@
 module TableHelper
   def buildTable(database, settings, requests, request_count)
     @table_columns = JSON.parse(database.table_columns)
-
     if request_count == 0
       @results = '<p class="text-muted table-no-data">No data collected yet. Setup Zapier to send test data.</p>'
     elsif @table_columns['structure'].present?
@@ -34,7 +33,7 @@ module TableHelper
     @thead += '</tr></thead>'
     @tbody = '<tbody>'
     @row_data = ''
-    requests.find_each do |request|
+    requests.each do |request|
       requestBody = JSON.parse(request.data.to_json)
       @tbody += "<tr data-template='tooltip-#{request.id}'><td class='table-selector'></td><td class='hide'>#{request.id}</td>"
       tooltip = parse_json_for_sidebar(requestBody, 0, request, settings, column_keys)
