@@ -6,9 +6,6 @@
     <option <% if params[:chart] == 'column' %>selected<% end %> value="column">Column Chart</option>
     <option <% if params[:chart] == 'pie' %>selected<% end %> value="pie">Pie Chart</option>
   </select>
-  <select id="" class="form-control form-control-sm float-right mr-2" style="width: 150px;margin-top: -5px">
-    <option value="col">Data Column</option>
-  </select>
   <p class="mb-3 text-muted"><strong><%= title %></strong></p>
   <% if params[:chart].present? %>
     <% if params[:chart] == 'area' %>
