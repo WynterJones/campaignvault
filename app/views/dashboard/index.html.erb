@@ -17,7 +17,7 @@
     <%= render(StatisticComponent, name: 'Apps', total: @all_apps, stat: false, prepend: false, append: false) %>
   </div>
   <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Database', total: '0', stat: false, prepend: false, append: false) %>
+    <%= render(StatisticComponent, name: 'Database', total: @all_databases, stat: false, prepend: false, append: false) %>
   </div>
 </div>
 

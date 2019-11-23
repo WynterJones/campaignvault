@@ -8,7 +8,7 @@ module TableHelper
       @column_keys = @table_columns['keys']
       builder(@structure, @column_keys, requests, settings)
     else
-      data = JSON.parse(requests.first.data)
+      data = requests.first.data
       structure = []
       column_keys = []
       counter = 0
