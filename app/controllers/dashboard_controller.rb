@@ -26,7 +26,7 @@ class DashboardController < ApplicationController
     @all_requests = number_with_delimiter(requests.where('created_at >= ?', @timeframe).count)
     @all_apps = number_with_delimiter(apps.where('created_at >= ?', @timeframe).count)
     @all_campaigns = number_with_delimiter(campaigns.where('created_at >= ?', @timeframe).count)
-    @all_databases = number_with_delimiter(databases.count)
+    @all_databases = number_with_delimiter(databases.where('created_at >= ?', @timeframe).count)
     @all_activity = requests.where('created_at >= ?', @timeframe).group_by_day(:created_at).count
   end
 

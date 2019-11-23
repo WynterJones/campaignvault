@@ -20,6 +20,7 @@ const tableControls = require("custom/table-controls")
 const tableColumns = require("custom/table-columns")
 const paramPicker = require("custom/param-pickers")
 const totalManager = require("custom/totals")
+const chart = require("custom/chart")
 import Sortable from 'sortablejs'
 import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
@@ -41,6 +42,9 @@ $(document).on('turbolinks:load', () => {
       }
     })
   }
+
+  // Chart
+  $(document).on('change', '#chart-type', function() { chart.change(this) })
 
   // Totals
   $(document).on('change', '#types_of_totals', function() { totalManager.changeType(this) })

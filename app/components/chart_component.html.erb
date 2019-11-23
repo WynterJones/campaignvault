@@ -1,4 +1,26 @@
 <div class="card-block chartjs">
+  <select id="chart-type" class="form-control form-control-sm float-right" style="width: 150px;margin-top: -5px">
+    <option <% if params[:chart] == 'line' %>selected<% end %> value="line">Line Chart</option>
+    <option <% if params[:chart] == 'area' %>selected<% end %> value="area">Area Chart</option>
+    <option <% if params[:chart] == 'bar' %>selected<% end %> value="bar">Bar Chart</option>
+    <option <% if params[:chart] == 'column' %>selected<% end %> value="column">Column Chart</option>
+    <option <% if params[:chart] == 'pie' %>selected<% end %> value="pie">Pie Chart</option>
+  </select>
+  <select id="" class="form-control form-control-sm float-right mr-2" style="width: 150px;margin-top: -5px">
+    <option value="col">Data Column</option>
+  </select>
   <p class="mb-3 text-muted"><strong><%= title %></strong></p>
-  <%= line_chart graph %>
+  <% if params[:chart].present? %>
+    <% if params[:chart] == 'area' %>
+      <%= area_chart graph, label: "Rows", round: 0, zeros: true, messages: {empty: "No data yet."} %>
+    <% elsif params[:chart] == 'bar' %>
+      <%= bar_chart graph, label: "Rows", round: 0, zeros: true, messages: {empty: "No data yet."} %>
+    <% elsif params[:chart] == 'column' %>
+      <%= column_chart graph, label: "Rows", round: 0, zeros: true, messages: {empty: "No data yet."} %>
+    <% elsif params[:chart] == 'pie' %>
+      <%= pie_chart graph, label: "Rows", round: 0, zeros: true, messages: {empty: "No data yet."} %>
+    <% end %>
+  <% else %>
+    <%= line_chart graph, label: "Rows", round: 0, zeros: true, messages: {empty: "No data yet."} %>
+  <% end %>
 </div>
