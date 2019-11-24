@@ -24,8 +24,7 @@
           <div class="col-md-12">
             <select id="new_select_an_app" class="form-control">
               <option disabled selected value> -- Select an App -- </option>
-              <%= all_apps_as_options() %>
-              <option value="custom">Custom</option>
+              <%= all_apps_as_options(@campaign.apps.map(&:slug)) %>
             </select>
 
             <div id="apps_database_list" class="card-block mt-3 hide">
@@ -35,8 +34,7 @@
                 <% end %>
                 <strong class="change_app_name">Stripe</strong>
               </h4>
-              <p class="text-muted mb-2 mt-3"><strong><span class="change_app_name">Stripe</span> can collect <span id="change_app_count">0</span> types of data:</strong></p>
-              <ul id="change_app_db_list" class="mb-0 text-muted"></ul>
+              <ul id="change_app_db_list" class="mb-0 p-0 text-muted" style="list-style: none"></ul>
             </div>
           </div>
 

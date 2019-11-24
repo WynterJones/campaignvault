@@ -53,6 +53,7 @@ $(document).on('turbolinks:load', () => {
 
   // New App
   $(document).on('change', '#new_select_an_app', function() { apps.newSelector(this) })
+  $(document).on('click', '.delete-app-row', function() { apps.deleteAppDatabase(this) })
 
   // Campaigns
   $(document).on('click', '.card-select-app', function() { apps.select(this) })

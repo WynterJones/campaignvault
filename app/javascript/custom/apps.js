@@ -25,9 +25,17 @@ const apps = {
     $('#app_name').val(name)
     $('#app_zapierapi').val(zapierapi)
     $('#app_db_list').val(databases)
-    databases.forEach(function(value) {
-      $('#change_app_db_list').append(`<li>${value}</li>`)
+    databases.forEach(function(value, index) {
+      $('#change_app_db_list').append(`<li data-index="${index}" class="p-2" style="border-bottom: 1px solid #ddd;">${value} <i class="fas fa-times delete-app-row mt-1 float-right" style="cursor:pointer;"></i></li>`)
     })
+  },
+
+  deleteAppDatabase: (element) => {
+    let databases = $('#app_db_list').val().split(',')
+    const index = $(element).parent().attr('data-index')
+    databases.splice(index, 1)
+    $('#app_db_list').val(databases)
+    $(element).parent().remove()
   }
 
 }
