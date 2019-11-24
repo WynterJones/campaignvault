@@ -1,0 +1,51 @@
+{
+   "selection1":[
+      {
+         "displayName":"Facebook Lead Ads",
+         "zapierAPI":"FacebookLeadsAPI",
+         "databases":["New Lead"],
+         "databases_desc":["Triggers when a new lead is created."]
+      },
+      {
+         "displayName":"Typeform",
+         "zapierAPI":"TypeformCLIAPI%401.0.11",
+         "databases":["New Entry"],
+         "databases_desc":["Triggers when a form is submitted."]
+      },
+      {
+         "displayName":"ActiveCampaign",
+         "zapierAPI":"ActiveCampaignDevAPI",
+         "databases":["New Campaign Starts Sending", "New Contact Added to List", "New or Updated Contact", "New Campaign Bounce", "New Campaign Open", "New Contact Note", "New Deal Added or Updated", "New Deal Task", "Updated Contact", "New Automation Webhook", "New Campaign Link Click", "New Campaign Unsubscribe", "New Deal Note"],
+         "databases_desc":["Triggers when a new campaign starts sending.", "Triggers when a new contact is added to a list.", "Triggers when a new contact is added or existing contact's details are updated.", "Triggers when a contact email address bounces from a sent campaign.", "Triggers when a contact opens a campaign (will trigger once per contact per campaign).", "Triggers when a new contact note is added.", "Triggers when a new deal is created or existing deal is updated.", "Triggers when a new deal task is created.", "Triggers when an existing contact details are updated.", "Triggers when an automation sends out webhook data. To add a webhook in ActiveCampaign, navigate to your Automations section, add or edit an automation, and create a new \"Webhook\" action.", "Triggers when a contact clicks a link in a campaign message (will only run once for each unique link).", "Triggers when a contact unsubscribes as a result of a campaign email sent to them.", "Triggers when a new deal note is created."]
+      },
+      {
+         "displayName":"ClickFunnels",
+         "zapierAPI":"ClickFunnelsDevAPI",
+         "databases":["New Contact Activity", "New Successful Purchase", "New Failed Purchase"],
+         "databases_desc":["Triggers when Contact activity record is created.", "Triggers when a successful Purchase is made in a Funnel.", "Triggers when a failed Purchase is made in a Funnel."]
+      },
+      {
+         "displayName":"Google Forms",
+         "zapierAPI":"GoogleFormsAPI",
+         "databases_desc":["Triggered when a new response row is added to the bottom of a spreadsheet.", "Triggered when a new response row is added or modified in a spreadsheet."]
+      },
+      {
+         "displayName":"HubSpot",
+         "zapierAPI":"HubSpotCLIAPI%401.4.0",
+         "databases":["New Form Submission", "New Contact", "New Contact in List", "New Contact Property Change"],
+         "databases_desc":["Triggers when a form is submitted.", "Triggers when a new contact is created.", "Triggers on a new deal", "Triggers when a new article is added to your COS blog.", "Triggers when a message is posted from HubSpot to the specified social media channel."]
+      },
+      {
+         "displayName":"Gravity Forms",
+         "zapierAPI":"GravityFormsDevAPI",
+         "databases":["New Form Submission"],
+         "databases_desc":["Triggers when a form is submitted."]
+      },
+      {
+         "displayName":"HubSpot CRM",
+         "zapierAPI":"HubSpotCRMDevAPI",
+         "databases":["New Contact", "New Contact Property Change"],
+         "databases_desc":["Triggered every time a new contact is created in HubSpot.", "Triggered every time a specified property is updated on any contact. This will also be triggered when a contact is created with this property.", "Triggers when a new deal enters a stage.", "Triggers when a new deal is created.", "Triggers when a new company is created."]
+      }
+   ]
+}
