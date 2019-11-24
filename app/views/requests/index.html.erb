@@ -1,7 +1,5 @@
 <h2 class="headline-title float-left">
-  <% if ActionController::Base.helpers.resolve_asset_path("apps/#{@app.slug}.png").present? %>
-    <%= image_tag("apps/#{@app.slug}.png", class: 'app-image-headline') %>
-  <% end %>
+  <%= image_tag("/apps/#{@app.slug}.png", class: 'app-image-headline') %>
   <%= @app.name %>
   <small class="text-muted"><%= @database.name.titleize %></small>
 </h2>

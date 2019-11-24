@@ -82,6 +82,11 @@ a {
   padding-right: 12px;
   display: block;
   float: right;
+  color: #718096;
+}
+
+.dotted-menu:hover {
+  color: #718096
 }
 
 .dropdown-menu {

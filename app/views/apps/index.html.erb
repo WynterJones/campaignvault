@@ -11,12 +11,9 @@
     <div class="col-md-12">
       <div class="card-block card-campaign-item mb-2">
         <div class="row">
-          <div class="col-md-5">
-            <span class="text-muted">Name</span>
-            <p><% if ActionController::Base.helpers.resolve_asset_path("apps/#{app.slug}.png").present? %>
-              <%= image_tag("apps/#{app.slug}.png", class: 'app-image-headline', style: 'width: 20px;margin-right: 5px') %>
-            <% end %>
-            <a href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= app.name %></a></p>
+          <div class="col-md-5 pt-2">
+            <p><%= image_tag("/apps/#{app.slug}.png", class: 'app-image-headline', style: 'width: 34px;margin-right: 10px') %>
+            <a style="padding-top: 3px;font-size: 1.2em" href="/campaigns/<%= @campaign.slug %>/<%= app.slug %>"><%= app.name %></a></p>
           </div>
           <div class="col-md-4">
             <span class="text-muted">Updated</span>

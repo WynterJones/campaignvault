@@ -44,11 +44,6 @@
        "databases_desc":["Triggers when Contact activity record is created.", "Triggers when a successful Purchase is made in a Funnel.", "Triggers when a failed Purchase is made in a Funnel."]
     },
     {
-       "displayName":"Google Forms",
-       "zapierAPI":"GoogleFormsAPI",
-       "databases_desc":["Triggered when a new response row is added to the bottom of a spreadsheet.", "Triggered when a new response row is added or modified in a spreadsheet."]
-    },
-    {
        "displayName":"HubSpot",
        "zapierAPI":"HubSpotCLIAPI%401.4.0",
        "databases":["Form Submission", "Contact", "Contact in List", "Contact Property Change"],
