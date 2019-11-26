@@ -8,6 +8,21 @@ module ApplicationHelper
     return logo_url
   end
 
+  def get_company_name()
+    if Setting.find_by(user_id: 1).company.present?
+      name = Setting.find_by(user_id: 1).company
+    else
+      name = "CampaignVault"
+    end
+    return name
+  end
+
+  def get_footer_text()
+    if Setting.find_by(user_id: 1).footer.present?
+      return Setting.find_by(user_id: 1).footer.html_safe
+    end
+  end
+
   def check_campaign_limit()
     return current_user.campaign_limit.to_i != 0 && Campaign.where(user_id: current_user.id).count >= current_user.campaign_limit.to_i
   end

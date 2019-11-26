@@ -22,8 +22,20 @@
       </div>
       <% if current_user.id == 1 %>
         <div class="col-md-12">
-          <label>**Admin Only** Logo URL</label>
+          <h4>Admin Only</h4>
+          <hr>
+        </div>
+        <div class="col-md-12 mb-3">
+          <label>Logo URL</label>
           <input type="text" name="settings[logo]" value="<%= @settings.logo %>" placeholder="Change the CampaignVault logo for all users." class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label>Company Name <small class="float-right">(appears in footer)</small></label>
+          <input type="text" name="settings[company]" value="<%= @settings.company %>" placeholder="" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label>Footer Text <small class="float-right">(html safe)</small></label>
+          <input type="text" name="settings[footer]" value="<%= @settings.footer %>" placeholder="" class="form-control">
         </div>
       <% end %>
     </div>

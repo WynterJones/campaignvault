@@ -11,7 +11,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body >
+  <body>
 
     <%= render 'shared/header' %>
     <main id="app-wrapper" class="container" role="main">
@@ -35,6 +35,11 @@
       </nav>
       <hr>
       <%= yield %>
+      <footer class="footer mt-3">
+        <hr>
+        <span class="text-muted text-small float-right"><%= get_footer_text() %></span>
+        <span class="text-muted text-small">&copy; Copyright 2019 - <%= get_company_name() %></span>
+      </footer>
     </main>
 
     <div class="modal fade hide" id="modal-window" tabindex="-1" role="dialog" aria-hidden="true"></div>
