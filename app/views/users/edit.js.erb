@@ -3,3 +3,6 @@ $('#modal-window').modal('toggle')
 if ($('select#user_role').val() == '3') {
   $('#optional_limits').show()
 }
+setTimeout(function() {
+  $('#modal-window form input[type=email]').first().select()
+}, 800)
