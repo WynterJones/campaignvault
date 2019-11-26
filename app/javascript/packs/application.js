@@ -21,6 +21,7 @@ const tableColumns = require("custom/table-columns")
 const paramPicker = require("custom/param-pickers")
 const totalManager = require("custom/totals")
 const chart = require("custom/chart")
+const user = require("custom/user")
 import Sortable from 'sortablejs'
 import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
@@ -45,6 +46,9 @@ $(document).on('turbolinks:load', () => {
       }
     })
   }
+
+  // Users
+  $(document).on('change', 'select#user_role', function() { user.change(this) })
 
   // Chart
   $(document).on('change', '#chart-type', function() { chart.change(this) })

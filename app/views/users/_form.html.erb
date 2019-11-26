@@ -2,7 +2,7 @@
   <div class="modal-body">
     <div class="form-group">
       <%= f.label :email %>
-      <%= f.email_field :email, required: true, autofocus: true, class: 'form-control' %>
+      <%= f.email_field :email, required: true, class: 'form-control' %>
     </div>
     <% if editing == false %>
       <div class="form-group">
@@ -13,6 +13,29 @@
     <div class="form-group">
       <%= f.label :role %>
       <%= f.select :role, [['User', 3], ['Collaborator', 2], ['Admin', 1]],  {},  {class: 'form-control'} %>
+    </div>
+    <div class="hide" id="optional_limits">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <%= f.label :campaign_limit %>
+          <%= f.number_field :campaign_limit, required: true, class: 'form-control', placeholder: '0' %>
+        </div>
+        <div class="col-sm-6 form-group">
+          <%= f.label :app_limit %>
+          <%= f.number_field :app_limit, required: true, class: 'form-control', placeholder: '0' %>
+        </div>
+        <div class="col-sm-6 form-group">
+          <%= f.label :database_limit %>
+          <%= f.number_field :database_limit, required: true, class: 'form-control', placeholder: '0' %>
+        </div>
+        <div class="col-sm-6 form-group">
+          <label>Record limit</label>
+          <%= f.number_field :request_limit, required: true, class: 'form-control', placeholder: '0' %>
+        </div>
+        <div class="col-sm-12">
+          <p class="text-small text-muted">Leaving blank or 0 will equal unlimited.</p>
+        </div>
+      </div>
     </div>
   </div>
   <div class="modal-footer">
