@@ -43,7 +43,9 @@ class AppsController < ApplicationController
         if @app.save
           databases = params[:db_list].split(',')
           databases.each do |database|
-            Database.create(app_id: @app.id, name: database, slug: database.parameterize, user_id: current_user.id)
+            if !check_database_limit()
+              Database.create(app_id: @app.id, name: database, slug: database.parameterize, user_id: current_user.id)
+            end
           end
           format.html { redirect_to url, notice: 'App was successfully created.' }
         else
