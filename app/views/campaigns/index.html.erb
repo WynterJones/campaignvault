@@ -1,4 +1,7 @@
-<%= link_to raw('<i class="fas fa-plus mr-1"></i> New Campaign'), '/new_campaign', class: 'btn btn-primary float-right', remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window' %>
+<% if !check_campaign_limit() %>
+  <%= link_to raw('<i class="fas fa-plus mr-1"></i> New Campaign'), '/new_campaign', class: 'btn btn-primary float-right', remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window' %>
+<% end %>
+
 <h2 class="headline-title">All Campaigns</h2>
 <hr />
 

@@ -46,12 +46,18 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
     @campaign.user_id = current_user.id
 
-    respond_to do |format|
-      if @campaign.save
-        url = "/campaigns/#{@campaign.slug}"
-        format.html { redirect_to url, notice: 'Campaign was successfully created.' }
-      else
-        format.html { render :new }
+    if check_campaign_limit()
+      respond_to do |format|
+        format.html {redirect_to '/campaigns', notice: "Limited Reached: You have hit your Limit of #{current_user.campaign_limit} Campaigns" }
+      end
+    else
+      respond_to do |format|
+        if @campaign.save
+          url = "/campaigns/#{@campaign.slug}"
+          format.html { redirect_to url, notice: 'Campaign was successfully created.' }
+        else
+          format.html { render :new }
+        end
       end
     end
   end

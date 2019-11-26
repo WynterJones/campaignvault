@@ -34,11 +34,17 @@ class DatabasesController < ApplicationController
     @database.user_id = current_user.id
 
     url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
-    respond_to do |format|
-      if @database.save
-        format.html { redirect_to url, notice: 'Database was successfully created.' }
-      else
-        format.html { redirect_to url, notice: 'Error: Database was not created.' }
+    if check_database_limit()
+      respond_to do |format|
+        format.html {redirect_to url, notice: "Limited Reached: You have hit your Limit of #{current_user.database_limit} Databases" }
+      end
+    else
+      respond_to do |format|
+        if @database.save
+          format.html { redirect_to url, notice: 'Database was successfully created.' }
+        else
+          format.html { redirect_to url, notice: 'Error: Database was not created.' }
+        end
       end
     end
   end

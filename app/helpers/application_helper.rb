@@ -8,6 +8,22 @@ module ApplicationHelper
     return logo_url
   end
 
+  def check_campaign_limit()
+    return current_user.campaign_limit.to_i != 0 && Campaign.where(user_id: current_user.id).count >= current_user.campaign_limit.to_i
+  end
+
+  def check_app_limit()
+    return current_user.app_limit.to_i != 0 && App.where(user_id: current_user.id).count >= current_user.app_limit.to_i
+  end
+
+  def check_database_limit()
+    return current_user.database_limit.to_i != 0 && Database.where(user_id: current_user.id).count >= current_user.database_limit.to_i
+  end
+
+  def check_request_limit()
+    return current_user.request_limit.to_i != 0 && Request.where(user_id: current_user.id).count >= current_user.request_limit.to_i
+  end
+
   def current_class?(test_path)
     request.path == test_path ? 'active' : ''
   end

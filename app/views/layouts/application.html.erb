@@ -16,6 +16,7 @@
     <%= render 'shared/header' %>
     <main id="app-wrapper" class="container" role="main">
       <nav aria-label="breadcrumb">
+        <span class="float-right text-small text-muted"><i class="far fa-user mr-1"></i> <%= current_user.email %></span>
         <ol class='breadcrumb'>
           <% counter = 0 %>
           <% breadcrumb_trail do |crumb| %>

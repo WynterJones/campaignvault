@@ -33,15 +33,22 @@ class AppsController < ApplicationController
     @app.campaign_id = @campaign.id
     @app.user_id = current_user.id
     url = "/campaigns/#{@campaign.slug}"
-    respond_to do |format|
-      if @app.save
-        databases = params[:db_list].split(',')
-        databases.each do |database|
-          Database.create(app_id: @app.id, name: database, slug: database.parameterize, user_id: current_user.id)
+
+    if check_app_limit()
+      respond_to do |format|
+        format.html {redirect_to url, notice: "Limited Reached: You have hit your Limit of #{current_user.app_limit} Apps" }
+      end
+    else
+      respond_to do |format|
+        if @app.save
+          databases = params[:db_list].split(',')
+          databases.each do |database|
+            Database.create(app_id: @app.id, name: database, slug: database.parameterize, user_id: current_user.id)
+          end
+          format.html { redirect_to url, notice: 'App was successfully created.' }
+        else
+          format.html { redirect_to url, error: 'Error: App was not created.' }
         end
-        format.html { redirect_to url, notice: 'App was successfully created.' }
-      else
-        format.html { redirect_to url, error: 'Error: App was not created.' }
       end
     end
   end

@@ -4,7 +4,9 @@
 </h2>
 
 <div class="webhook-options float-right">
-  <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add Database'), "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <% if !check_database_limit() %>
+    <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add Database'), "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <% end %>
 </div>
 
 <hr />
