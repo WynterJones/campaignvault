@@ -10,7 +10,7 @@ class RequestsController < ApplicationController
     @app = App.find_by(slug: params[:app_slug], campaign_id: @campaign.id)
     @database = Database.find_by(slug: params[:database_slug], app_id: @app.id)
     @stats = JSON.parse(@database.stats)
-    @request_activity = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).group_by_day(:created_at).count
+    @graph_request_activity = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).group_by_day(:created_at).count
     @request_count = Request.where('created_at >= ?', @timeframe).where(database_id: @database.id).count
 
     breadcrumb @campaign.name, "/campaigns/#{@campaign.slug}"

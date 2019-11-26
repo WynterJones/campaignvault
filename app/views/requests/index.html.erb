@@ -53,7 +53,7 @@
       <%= link_to raw('<i class="fas fa-plus mr-0"></i>'), "/new_total/#{@campaign.slug}/#{@app.slug}/#{@database.slug}", remote: true, class: 'btn btn-outline-light', 'data-toggle':  "modal", 'data-target': '#modal-window'  %>
     </div>
   </div>
-  <%= render(ChartComponent, title: 'Activity', graph: @request_activity) %>
+  <%= render(ChartComponent, title: 'Activity', graph: @graph_request_activity) %>
   <%= render 'shared/table_controls' %>
 
   <%= @results.html_safe %>
