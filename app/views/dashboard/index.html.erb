@@ -6,21 +6,40 @@
 
 <hr />
 
-<div class="row" id="animate-wrapper">
-  <div class="col-md-3">
-    <%= render(StatisticComponent, name: 'Records', total: @all_requests, stat: false, prepend: false, append: false) %>
+<div id="animate-wrapper">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render(StatisticComponent, name: 'Records', total: @all_requests, stat: false, prepend: false, append: false) %>
+    </div>
+    <div class="col-md-3 dashboard-extra-stat">
+      <%= render(StatisticComponent, name: 'Campaigns', total: @all_campaigns, stat: false, prepend: false, append: false) %>
+    </div>
+    <div class="col-md-3 dashboard-extra-stat">
+      <%= render(StatisticComponent, name: 'Apps', total: @all_apps, stat: false, prepend: false, append: false) %>
+    </div>
+    <div class="col-md-3 dashboard-extra-stat">
+      <%= render(StatisticComponent, name: 'Databases', total: @all_databases, stat: false, prepend: false, append: false) %>
+    </div>
   </div>
-  <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Campaigns', total: @all_campaigns, stat: false, prepend: false, append: false) %>
-  </div>
-  <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Apps', total: @all_apps, stat: false, prepend: false, append: false) %>
-  </div>
-  <div class="col-md-3 dashboard-extra-stat">
-    <%= render(StatisticComponent, name: 'Databases', total: @all_databases, stat: false, prepend: false, append: false) %>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-9">
+      <%= render(ChartComponent, title: 'All Activity', graph: @graph_all_activity) %>
+    </div>
+    <div class="col-md-3">
+      <div class="card-block p-4">
+        <h5>Account Details</h5>
+        <hr>
+        <% if current_user.role == 1 %>
+          <p class="text-small text-muted"><strong>You are an administrator.</strong></p>
+        <% end %>
+        <p>Campaigns <span class="float-right"><%= @all_campaigns %> / <strong><%= @max_campaigns %></strong></span></p>
+        <p>Apps <span class="float-right"><%= @all_apps %> / <strong><%= @max_apps %></strong></span></p>
+        <p>Databases <span class="float-right"><%= @all_databases %> / <strong><%= @max_databases %></strong></span></p>
+        <p>Records <span class="float-right"><%= @all_requests %> / <strong><%= @max_requests %></strong></span></p>
+      </div>
+    </div>
   </div>
 </div>
-
-<hr />
-
-<%= render(ChartComponent, title: 'All Activity', graph: @graph_all_activity) %>

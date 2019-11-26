@@ -3,7 +3,7 @@
 <h2 class="headline-title">Account</h2>
 <hr>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, autocomplete: 'off' }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, autocomplete: 'off', id: 'animate-wrapper' }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="card-block has-footer">
     <div class="row">

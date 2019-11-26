@@ -13,5 +13,17 @@ class DashboardController < ApplicationController
     @all_campaigns = number_with_delimiter(campaigns.where('created_at >= ?', @timeframe).count)
     @all_databases = number_with_delimiter(databases.where('created_at >= ?', @timeframe).count)
     @graph_all_activity = requests.where('created_at >= ?', @timeframe).group_by_day(:created_at).count
+
+    @max_campaigns = '999'
+    @max_apps = '999'
+    @max_databases = '999'
+    @max_requests = '999'
+
+    if current_user.role == 1
+      @max_campaigns = '∞'
+      @max_apps = '∞'
+      @max_databases = '∞'
+      @max_requests = '∞'
+    end
   end
 end

@@ -26,7 +26,10 @@ import Tagify from '@yaireo/tagify'
 import { CountUp } from 'countup.js'
 
 $(document).on('turbolinks:load', () => {
-  TurbolinksAnimate.init({ element: $('#animate-wrapper')[0], animation: 'fadein' })
+  // Animate
+  if ($('#animate-wrapper').length > 0) {
+    TurbolinksAnimate.init({ element: $('#animate-wrapper')[0], animation: 'fadein' })
+  }
 
   $('.statistic h3 span').each(function() {
     components.counter($(this).attr('id'), CountUp)
