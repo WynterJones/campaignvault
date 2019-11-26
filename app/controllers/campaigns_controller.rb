@@ -5,7 +5,7 @@ class CampaignsController < ApplicationController
 
   def index
     set_meta_tags title: 'Campaigns'
-    @campaigns = Campaign.order(updated_at: :desc).all.paginate(page: params[:page], per_page: params[:per_page] || 25)
+    @campaigns = Campaign.order(updated_at: :desc).where(user_id: current_user).paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
   def apps
@@ -44,6 +44,7 @@ class CampaignsController < ApplicationController
 
   def create
     @campaign = Campaign.new(campaign_params)
+    @campaign.user_id = current_user.id
 
     respond_to do |format|
       if @campaign.save

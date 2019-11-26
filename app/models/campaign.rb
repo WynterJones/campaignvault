@@ -2,6 +2,7 @@ class Campaign < ApplicationRecord
   validates_uniqueness_of :name
   after_destroy :destroy_apps
   has_many :apps
+  belongs_to :user
 
   def name=(val)
     write_attribute(:slug, val.parameterize)

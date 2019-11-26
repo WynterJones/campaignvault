@@ -2,6 +2,7 @@ class DatabasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_campaign, except: [:destroy, :update]
   before_action :set_app, except: [:destroy, :update]
+  before_action :check_user_id
 
   def index
     breadcrumb 'Campaigns', campaigns_path
@@ -30,6 +31,8 @@ class DatabasesController < ApplicationController
   def create
     @database = Database.new(database_params)
     @database.app_id = @app.id
+    @database.user_id = current_user.id
+
     url = "/campaigns/#{@campaign.slug}/#{@app.slug}"
     respond_to do |format|
       if @database.save
@@ -74,6 +77,12 @@ class DatabasesController < ApplicationController
 
     def set_app
       @app = App.includes(:databases).find_by(slug: params[:app_slug], campaign_id: @campaign.id)
+    end
+
+    def check_user_id
+      if @campaign.user_id != current_user.id
+        redirect_to '/campaigns'
+      end
     end
 
     def database_params

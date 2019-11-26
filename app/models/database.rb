@@ -4,6 +4,7 @@ class Database < ApplicationRecord
   has_many :requests
   belongs_to :app
   before_create :update_connected
+  belongs_to :user
 
   def name=(val)
     write_attribute(:slug, val.parameterize)

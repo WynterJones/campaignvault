@@ -2,6 +2,7 @@ class App < ApplicationRecord
   after_destroy :destroy_requests
   has_many :databases
   belongs_to :campaign
+  belongs_to :user
 
   def name=(val)
     write_attribute(:slug, val.parameterize)

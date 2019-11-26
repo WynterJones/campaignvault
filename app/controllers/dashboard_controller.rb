@@ -19,10 +19,10 @@ class DashboardController < ApplicationController
   def index
     set_meta_tags title: 'Dashboard'
     @timeframe = timeframe(params[:timeframe])
-    requests = Request.all
-    apps = App.all
-    campaigns = Campaign.all
-    databases = Database.all
+    requests = Request.where(user_id: current_user)
+    apps = App.where(user_id: current_user)
+    campaigns = Campaign.where(user_id: current_user)
+    databases = Database.where(user_id: current_user)
     @all_requests = number_with_delimiter(requests.where('created_at >= ?', @timeframe).count)
     @all_apps = number_with_delimiter(apps.where('created_at >= ?', @timeframe).count)
     @all_campaigns = number_with_delimiter(campaigns.where('created_at >= ?', @timeframe).count)

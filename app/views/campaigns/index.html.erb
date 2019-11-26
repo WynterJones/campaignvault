@@ -18,13 +18,9 @@
             <span class="text-muted">Updated</span>
             <p class="text-small text-muted pt-1"><%= time_ago_in_words(campaign.created_at).capitalize %> ago</p>
           </div>
-          <div class="col-md-1">
+          <div class="col-md-2">
             <span class="text-muted">Apps</span>
             <p><%= number_to_human(App.where(campaign_id: campaign.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
-          </div>
-          <div class="col-md-1">
-            <span class="text-muted">Databases</span>
-            <p><%= number_to_human(App.includes(:databases).find_by(campaign_id: campaign.id).databases.count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
           </div>
           <div class="col-md-1 text-right">
             <div class="dropdown dropleft">

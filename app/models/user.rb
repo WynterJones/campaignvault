@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
   has_many :settings
+  has_many :apps
+  has_many :campaigns
+  has_many :databases
+  has_many :requests
 
   after_create :set_settings
 

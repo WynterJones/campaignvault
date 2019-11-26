@@ -1,6 +1,7 @@
 class RequestsController < ApplicationController
   before_action :authenticate_user!
   breadcrumb 'Campaigns', :campaigns_url
+  before_action :check_user_id
 
   def index
     @settings = Setting.find_by_user_id(current_user.id)
@@ -49,4 +50,13 @@ class RequestsController < ApplicationController
       format.js
     end
   end
+
+  private
+
+    def check_user_id
+      campaign = Campaign.find_by(slug: params[:campaign_slug])
+      if campaign.user_id != current_user.id
+        redirect_to '/campaigns'
+      end
+    end
 end

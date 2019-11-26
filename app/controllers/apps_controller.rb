@@ -3,6 +3,7 @@ class AppsController < ApplicationController
   before_action :set_campaign, except: [:update, :destroy]
   before_action :set_app, only: [:edit]
   before_action :set_app_update, only: [:update, :destroy]
+  before_action :check_user_id
 
   def index
     set_meta_tags title: @campaign.name
@@ -30,12 +31,13 @@ class AppsController < ApplicationController
   def create
     @app = App.new(app_params)
     @app.campaign_id = @campaign.id
+    @app.user_id = current_user.id
     url = "/campaigns/#{@campaign.slug}"
     respond_to do |format|
       if @app.save
         databases = params[:db_list].split(',')
         databases.each do |database|
-          Database.create(app_id: @app.id, name: database, slug: database.parameterize)
+          Database.create(app_id: @app.id, name: database, slug: database.parameterize, user_id: current_user.id)
         end
         format.html { redirect_to url, notice: 'App was successfully created.' }
       else
@@ -77,6 +79,12 @@ class AppsController < ApplicationController
     def set_app_update
       @campaign = Campaign.find_by(id: params[:campaign_slug])
       @app = App.find_by(id: params[:slug], campaign_id: @campaign.id)
+    end
+
+    def check_user_id
+      if @campaign.user_id != current_user.id
+        redirect_to '/campaigns'
+      end
     end
 
     def app_params
