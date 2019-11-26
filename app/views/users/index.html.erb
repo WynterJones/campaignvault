@@ -22,10 +22,10 @@
         <tr>
           <td><%= user.email %></td>
           <td><% if user.role == 1 %>Admin<% elsif user.role == 2 %>Collaborator<% elsif user.role == 3 %>User<% end %></td>
-          <td class="table-total text-center">0</td>
-          <td class="table-total text-center">0</td>
-          <td class="table-total text-center">0</td>
-          <td class="table-total text-center">0</td>
+          <td class="table-total text-center"><%= Campaign.where(user_id: user.id).count %></td>
+          <td class="table-total text-center"><%= App.where(user_id: user.id).count %></td>
+          <td class="table-total text-center"><%= Database.where(user_id: user.id).count %></td>
+          <td class="table-total text-center"><%= Request.where(user_id: user.id).count %></td>
           <td class="table-total text-center"><%= user.sign_in_count %></td>
           <td><a href="<% if user.id == 1 %>/account<% else %>/users/edit/<%= user.id %><% end %>" class="btn btn-sm btn-block btn-outline-secondary" data-remote="true" data-toggle="modal" data-target="#modal-window"><% if user.id == 1 %>Account<% else %>Edit<% end %></a></td>
         </tr>
