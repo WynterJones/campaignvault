@@ -8,6 +8,30 @@ class User < ApplicationRecord
 
   after_create :set_settings
 
+  def campaign_limit=(val)
+    if !val.present?
+      write_attribute(:campaign_limit, 0)
+    end
+  end
+
+  def app_limit=(val)
+    if !val.present?
+      write_attribute(:app_limit, 0)
+    end
+  end
+
+  def database_limit=(val)
+    if !val.present?
+      write_attribute(:database_limit, 0)
+    end
+  end
+
+  def request_limit=(val)
+    if !val.present?
+      write_attribute(:request_limit, 0)
+    end
+  end
+
   def set_settings
     user = self
     settings = Setting.new
