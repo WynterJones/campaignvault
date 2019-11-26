@@ -18,7 +18,13 @@ class SaveRequest
       campaign = Campaign.find_by_slug(campaign_slug)
       app = App.find_by(campaign_id: campaign.id, slug: app_slug)
       database = Database.find_by(app_id: app.id, slug: database_slug)
-      Request.create(data: newhash, values: newarray, database_id: database.id, user_id: database.user_id)
+      the_user = User.find(database.user_id)
+      if the_user.request_limit.to_i != 0 && Request.where(user_id: the_user.id).count >= the_user.request_limit.to_i
+        puts 'User has hit limit of records and no longer collecting records.'
+      else
+        Request.create(data: newhash, values: newarray, database_id: database.id, user_id: database.user_id)
+      end
+
       if database.connected == false
         database.connected = true
         database.save

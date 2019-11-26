@@ -20,10 +20,6 @@ module ApplicationHelper
     return current_user.database_limit.to_i != 0 && Database.where(user_id: current_user.id).count >= current_user.database_limit.to_i
   end
 
-  def check_request_limit()
-    return current_user.request_limit.to_i != 0 && Request.where(user_id: current_user.id).count >= current_user.request_limit.to_i
-  end
-
   def current_class?(test_path)
     request.path == test_path ? 'active' : ''
   end
