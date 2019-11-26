@@ -12,11 +12,19 @@ class UsersController < ApplicationController
     set_meta_tags title: 'New User'
     breadcrumb 'New', ''
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit
     set_meta_tags title: 'Edit User'
     breadcrumb 'Edit', ''
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -62,6 +70,6 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password, :role)
     end
 end

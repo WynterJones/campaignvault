@@ -2,6 +2,7 @@ user = User.new
 user.email = 'demo@campaignvault.com'
 user.password = 'campaignvault'
 user.password_confirmation = 'campaignvault'
+user.role = 1
 user.save!
 
 puts "Saved User"

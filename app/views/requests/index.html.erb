@@ -20,7 +20,7 @@
     </div>
 
     <div class="col-md-3 mb-3">
-      <%= render(StatisticComponent, name: 'Rows', total: @requests.count, stat: false, prepend: false, append: false) %>
+      <%= render(StatisticComponent, name: 'Records', total: @requests.count, stat: false, prepend: false, append: false) %>
     </div>
     <% if @stats['stats'].present? %>
       <% @stats['stats'].each_with_index do |value, index| %>

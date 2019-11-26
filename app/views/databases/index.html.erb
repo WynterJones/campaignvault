@@ -16,19 +16,19 @@
           <div class="col-md-5 pt-2">
             <p><a style="font-size: 1.2em" href="/campaigns/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>"><%= database.name.titleize %></a></p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <span class="text-muted">Updated</span>
             <p class="text-small text-muted pt-1"><%= time_ago_in_words(database.created_at).capitalize %> ago</p>
           </div>
           <div class="col-md-1">
-            <span class="text-muted">Rows</span>
+            <span class="text-muted">Records</span>
             <p><%= number_to_human(Request.where(database_id: database.id).count, :format => '%n%u', :units => { :thousand => 'K', :million => 'M' }) %></p>
           </div>
-          <div class="col-md-1 pt-2 text-center">
+          <div class="col-md-2 pt-2 text-center">
             <% if database.connected.present? %>
               <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="font-size: 1.2em;padding-top: 5px;color: #eaebf0"></i></strong>
             <% else %>
-              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier">Connect</a>
+              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier">Connect to Zapier</a>
             <% end %>
           </div>
           <div class="col-md-1 text-right">
