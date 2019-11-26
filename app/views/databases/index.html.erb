@@ -28,7 +28,7 @@
           </div>
           <div class="col-md-2 pt-2 text-center">
             <% if database.connected.present? %>
-              <strong class="text-muted"><i class="fas fa-check-circle mr-1" style="font-size: 1.2em;padding-top: 5px;color: #eaebf0"></i></strong>
+              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-outline-light">Connected</a>
             <% else %>
               <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier">Connect to Zapier</a>
             <% end %>

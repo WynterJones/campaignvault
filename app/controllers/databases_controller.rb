@@ -2,7 +2,7 @@ class DatabasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_campaign, except: [:destroy, :update]
   before_action :set_app, except: [:destroy, :update]
-  before_action :check_user_id
+  before_action :check_user_id, except: [:destroy, :update]
 
   def index
     breadcrumb 'Campaigns', campaigns_path

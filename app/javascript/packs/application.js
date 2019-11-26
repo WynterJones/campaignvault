@@ -83,6 +83,7 @@ $(document).on('turbolinks:load', () => {
   $(document).on('click', '#table-selectAll', function() { tableControls.selectAll() })
   $(document).on('click', '#table-deselectAll', function() { tableControls.deselectAll() })
   $(document).on('click', '#table-deleteSelected', function() { tableControls.deleteSelected() })
+  $(document).on('click', '#table-editColumns', function() { tableControls.editColumns() })
 
   // Search
   search.init()

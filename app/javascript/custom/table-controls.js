@@ -12,6 +12,10 @@ const tableControls = {
 
   deleteSelected: () => {
     $('.dt-buttons .dt-button').eq(2).trigger('click')
+  },
+
+  editColumns: () => {
+    $('.datatables tr td').last().trigger('click')
   }
 
 }
