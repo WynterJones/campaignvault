@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '~/:campaign/:app/:database', to: 'save_request#receive'
 
   # Misc
-  get 'welcome', to: 'dashboard#welcome', as: 'welcome'
+  get 'welcome', to: 'welcome#index', as: 'welcome'
   get 'export', to: 'export#export', as: 'export'
   post 'delete_rows/:campaign_slug/:app_slug/:database_slug', to: 'requests#delete'
 
