@@ -14,6 +14,7 @@ class SaveRequestController < ApplicationController
       params.delete :campaign
       params.delete :app
       params.delete :database
+      params.delete :user_token
       data = params.to_enum.to_h
     end
     if data.present?
