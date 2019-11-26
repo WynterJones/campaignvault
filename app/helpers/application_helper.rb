@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def get_logo()
+    if Setting.find_by(user_id: 1).logo.present?
+      logo_url = Setting.find_by(user_id: 1).logo
+    else
+      logo_url = "logo-dark.png"
+    end
+    return logo_url
+  end
+
   def current_class?(test_path)
     request.path == test_path ? 'active' : ''
   end

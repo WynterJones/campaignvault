@@ -20,6 +20,10 @@
           <option <% if @settings.date_format == '%b %d, %m - %l:%M %p' %>selected<% end %> value="%b %d, %m - %l:%M %p">Month Day, Year  - HH:MM PM (abbr.)</option>
         </select>
       </div>
+      <div class="col-md-12">
+        <label>White Label Logo URL</label>
+        <input type="text" name="settings[logo]" value="<%= @settings.logo %>" placeholder="Change the CampaignVault logo for all users." class="form-control">
+      </div>
     </div>
     <br>
     <div class="card-block-footer clearfix">

@@ -24,6 +24,6 @@ class SettingsController < ApplicationController
     end
 
     def settings_params
-      params.require(:settings).permit(:theme, :date_format, :tooltip, :timezone)
+      params.require(:settings).permit(:date_format, :timezone, :logo)
     end
 end
