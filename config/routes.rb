@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   root 'dashboard#index'
 
   # Webhooks
-  put '~/:campaign/:app/:database', to: 'save_request#receive'
-  post '~/:campaign/:app/:database', to: 'save_request#receive'
-  get '~/:campaign/:app/:database', to: 'save_request#receive'
+  put '~/:user_token/:campaign/:app/:database', to: 'save_request#receive'
+  post '~/:user_token/:campaign/:app/:database', to: 'save_request#receive'
+  get '~/:user_token/:campaign/:app/:database', to: 'save_request#receive'
 
   # Misc
   get 'welcome', to: 'welcome#index', as: 'welcome'

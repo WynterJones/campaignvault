@@ -5,9 +5,8 @@ class User < ApplicationRecord
   has_many :campaigns
   has_many :databases
   has_many :requests
-
   after_create :set_settings
-
+  before_create :generate_token
 
   def set_settings
     user = self
@@ -17,4 +16,11 @@ class User < ApplicationRecord
     settings.user_id = user.id
     settings.save!
   end
+
+  protected
+
+    def generate_token
+      self.token = SecureRandom.base64(5).tr('+/=', '0aZ')
+      generate_token if User.exists?(token: self.token)
+    end
 end
