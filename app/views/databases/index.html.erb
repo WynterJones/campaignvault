@@ -29,9 +29,9 @@
           </div>
           <div class="col-md-2 pt-2 text-center">
             <% if database.connected.present? %>
-              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-outline-light">Connected</a>
+              <a href="/zapier/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>"  data-remote="true" data-toggle="modal" data-target="#modal-window" class="btn btn-sm btn-outline-light">Connected</a>
             <% else %>
-              <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-sm btn-zapier">Connect to Zapier</a>
+              <a href="/zapier/<%= @campaign.slug %>/<%= @app.slug %>/<%= database.slug %>" data-remote="true" data-toggle="modal" data-target="#modal-window" class="btn btn-sm btn-zapier">Connect</a>
             <% end %>
           </div>
           <div class="col-md-1 text-right">

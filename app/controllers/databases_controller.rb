@@ -12,6 +12,14 @@ class DatabasesController < ApplicationController
     @databases = @app.databases.order(id: :asc).paginate(page: params[:page], per_page: params[:per_page] || 25)
   end
 
+  def zapier
+    @database = Database.find_by(slug: params[:database_slug], user_id: current_user.id)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def new
     @database = Database.new
     respond_to do |format|

@@ -1,0 +1,25 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Connect to Zapier</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="text-muted text-small">1) Click to Copy the below Webhook URL to clipboard.</p>
+          <p class="text-muted text-small">2) Click "Create Zap" to connect to Zapier.</p>
+          <p class="text-muted text-small">3) Select <strong>"New <%= @database.name %>"</strong> trigger.</p>
+          <p class="text-muted text-small">4) Paste webhook URL as Zapier POST URL.</p>
+          <p class="text-muted text-small">5) Send test data and you're ready to collect data.</p>
+          <div class="card-block">
+            <input type="text" value="<%= request.base_url %>/~/<%= current_user.token %>/<%= @campaign.slug %>/<%= @app.slug %>/<%= @database.slug %>" class="form-control mb-2 click-to-copy">
+            <a href="https://zapier.com/zapbook/create/<%= @app.zapierapi %>/WebHookAPI" target="_blank" class="btn btn-zapier"><i class="fas fa-arrow-right mr-1"></i> Create Zap</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
