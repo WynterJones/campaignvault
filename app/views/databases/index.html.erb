@@ -6,11 +6,19 @@
 <div class="webhook-options float-right">
   <% if !check_database_limit() %>
     <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add Database'), "/new/#{@campaign.slug}/#{@app.slug}/database", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <% else %>
+    <p class="pt-2 text-muted text-small">Database Limit Reached</p>
   <% end %>
 </div>
 
-
 <hr />
+
+<% if @databases.length == 0 %>
+  <div class="card-block text-muted text-center p-4" style="font-size: 1.4em;background: none">
+    <p class="mb-0">You have no databases for this app yet.</p>
+  </div>
+<% end %>
+
 <div class="row">
   <% @databases.each do |database| %>
     <div class="col-md-12">

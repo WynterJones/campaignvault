@@ -1,12 +1,19 @@
-<% if !check_campaign_limit() %>
-  <%= link_to raw('<i class="fas fa-plus mr-1"></i> New Campaign'), '/new_campaign', class: 'btn btn-primary float-right', remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window' %>
-<% end %>
+<h2 class="headline-title float-left">All Campaigns</h2>
 
-<h2 class="headline-title">All Campaigns</h2>
+<div class="webhook-options float-right clearfix mb-3">
+  <% if !check_campaign_limit() %>
+    <%= link_to raw('<i class="fas fa-plus mr-1"></i> New Campaign'), '/new_campaign', class: 'btn btn-primary float-right', remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window' %>
+  <% else %>
+    <p class="pt-2 text-muted text-small">Campaigns Limit Reached</p>
+  <% end %>
+</div>
 <hr />
 
+
 <% if @campaigns.length == 0 %>
-  Create a Campaign
+  <div class="card-block text-muted text-center p-4" style="font-size: 1.4em;background: none">
+    <p class="mb-0">You have no campaigns yet.</p>
+  </div>
 <% end %>
 
 <div class="row" id="animate-wrapper">

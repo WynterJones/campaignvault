@@ -2,7 +2,7 @@ module TableHelper
   def buildTable(database, settings, requests, request_count)
     @table_columns = JSON.parse(database.table_columns)
     if request_count == 0
-      @results = '<p class="text-muted table-no-data">No data collected yet. Setup Zapier to send test data.</p>'
+      @results = '<p class="card-block text-muted text-center p-4" style="font-size: 1.4em;background: none">No data collected yet.</p>'
     elsif @table_columns['structure'].present?
       @structure = @table_columns['structure']
       @column_keys = @table_columns['keys']

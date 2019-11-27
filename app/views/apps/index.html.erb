@@ -3,10 +3,18 @@
 <div class="webhook-options float-right clearfix mb-3">
   <% if !check_app_limit() %>
     <%= link_to raw('<i class="fas fa-plus mr-1"></i> Add App'), "/new/#{@campaign.slug}/app", {remote: true, class: 'btn btn-primary', 'data-toggle':  "modal", 'data-target': '#modal-window'}  %>
+  <% else %>
+    <p class="pt-2 text-muted text-small">Apps Limit Reached</p>
   <% end %>
 </div>
 
 <hr>
+
+<% if @apps.length == 0 %>
+  <div class="card-block text-muted text-center p-4" style="font-size: 1.4em;background: none">
+    <p class="mb-0">You have no apps for this campaign yet.</p>
+  </div>
+<% end %>
 
 <div class="row" id="animate-wrapper">
   <% @apps.each do |app| %>
