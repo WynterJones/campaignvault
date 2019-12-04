@@ -7,22 +7,9 @@
         <label>Timezone</label>
         <%= time_zone_select("settings", "timezone", nil, {default: "Eastern Time (US & Canada)"}, {class: 'form-control'}) %>
       </div>
-      <!-- <div class="col-md-6 mb-4">
-        <label>Date Format</label>
-        <select name="settings[date_format]" class="form-control">
-          <option <% if @settings.date_format == '%m/%d/%y - %l:%M %p' %>selected<% end %> value="%m/%d/%y - %l:%M %p">MM/DD/YY - HH:MM PM</option>
-          <option <% if @settings.date_format == '%m/%d/%y' %>selected<% end %> value="%m/%d/%y">MM/DD/YY</option>
-          <option <% if @settings.date_format == '%m-%d-%y - %l:%M %p' %>selected<% end %> value="%m-%d-%y - %l:%M %p">MM-DD-YY - HH:MM PM</option>
-          <option <% if @settings.date_format == '%m-%d-%y' %>selected<% end %> value="%m-%d-%y">MM-DD-YY</option>
-          <option <% if @settings.date_format == '%B %d, %Y' %>selected<% end %> value="%B %d, %Y">Month Day, Year</option>
-          <option <% if @settings.date_format == '%B %d, %Y - %l:%M %p' %>selected<% end %> value="%B %d, %Y - %l:%M %p">Month Day, Year - HH:MM PM</option>
-          <option <% if @settings.date_format == '%b %d, %m' %>selected<% end %> value="%b %d, %m">Month Day, Year (abbr.)</option>
-          <option <% if @settings.date_format == '%b %d, %m - %l:%M %p' %>selected<% end %> value="%b %d, %m - %l:%M %p">Month Day, Year  - HH:MM PM (abbr.)</option>
-        </select>
-      </div> -->
       <% if current_user.id == 1 %>
         <div class="col-md-12">
-          <h4>Admin Only</h4>
+          <h4>Admin Settings</h4>
           <hr>
         </div>
         <div class="col-md-12 mb-3">
