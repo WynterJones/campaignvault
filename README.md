@@ -2,8 +2,10 @@
 
 Learn more about the project here:: https://campaignvault.com/
 
-Rails 6.0.0
-Ruby 2.6.5
+- Rails 6.0.0
+- Ruby 2.6.5
+
+You can free to use this code as you wish.
 
 #### Required Ruby Gems
 
